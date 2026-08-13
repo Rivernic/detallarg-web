@@ -1,1 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DETALLARG — Software de gestión para talleres de detailing</title>
+<meta name="description" content="Check-in con fotos y firma digital, agenda, fichas de clientes y vehículos. Software de gestión hecho en Argentina para el detailing argentino.">
+<link rel="canonical" href="https://detallarg.com/">
+<meta name="theme-color" content="#15130F">
 
+<!-- Open Graph / redes sociales -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://detallarg.com/">
+<meta property="og:title" content="DETALLARG — Software de gestión para talleres de detailing">
+<meta property="og:description" content="Check-in con fotos y firma digital, agenda, y fichas de clientes y vehículos. Hecho por gente que también factura autos, no solo software.">
+<meta property="og:image" content="https://detallarg.com/og-image.jpg">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+
+<!--
+  PENDIENTES ANTES DE PUBLICAR:
+  1) Reemplazar el número de WhatsApp (5491112345678) por el real en todos los links wa.me.
+  2) Confirmar los precios finales en pesos de la sección Planes — hoy son valores de referencia.
+  3) Subir og-image.jpg real (1200x630px) y actualizar la URL en las etiquetas og:image.
+  4) Confirmar que el ID de Google Analytics (G-JQW5ZD2PF5) es el de ustedes.
+  5) Crear las páginas de Términos y Condiciones / Política de Privacidad (hoy son anclas placeholder).
+-->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQW5ZD2PF5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQW5ZD2PF5');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%2315130F%22/><text x=%2250%22 y=%2258%22 font-family=%22Archivo%22 font-weight=%22800%22 font-size=%2242%22 fill=%22%23C77B3E%22 text-anchor=%22middle%22>DA</text></svg>">
+
+<style>
+:root{
+  --bg:#15130F; --surface:#1E1B15; --surface-2:#272119;
+  --accent:#C77B3E; --accent-dark:#A6612E; --accent-soft:rgba(199,123,62,0.12);
+  --text:#F4EFE5; --text-muted:#9C9483; --text-faint:#6E6858;
+  --border:rgba(244,239,229,0.10); --border-strong:rgba(199,123,62,0.35);
+  --danger-muted:#B5564A; --radius:12px;
+  --font-display:'Archivo',sans-serif; --font-body:'Inter',sans-serif;
+  --font-mono:'JetBrains Mono',monospace; --font-sig:'Caveat',cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+a{color:inherit;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.container{max-width:1120px;margin:0 auto;padding:0 22px;}
+
+/* HEADER */
+header{padding:18px 0;display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;z-index:100;background:rgba(21,19,15,0.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);}
+.logo{font-family:var(--font-display);font-weight:800;font-size:1.5rem;letter-spacing:-0.5px;}
+.logo .accent{color:var(--accent);}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{text-decoration:none;color:var(--text-muted);font-size:0.95rem;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.btn-primary{background:var(--accent);color:#1A1408;font-weight:700;padding:11px 22px;border-radius:8px;
+  text-decoration:none;display:inline-block;border:none;cursor:pointer;font-size:0.9rem;transition:background .2s,transform .2s;}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:var(--text);padding:11px 22px;border-radius:8px;font-weight:600;
+  text-decoration:none;border:1px solid var(--border-strong);display:inline-block;font-size:0.9rem;transition:border-color .2s,background .2s;}
+.btn-secondary:hover{background:var(--surface);}
+.menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:6px;}
+.mobile-menu{display:none;flex-direction:column;gap:4px;background:var(--surface);border-bottom:1px solid var(--border);padding:14px 22px 20px;}
+.mobile-menu a{padding:10px 0;text-decoration:none;color:var(--text);border-bottom:1px solid var(--border);font-weight:500;}
+.mobile-menu .btn-primary{margin-top:12px;text-align:center;}
+.mobile-menu.open{display:flex;}
+@media(max-width:900px){
+  .nav-links,.header-cta-desktop{display:none;}
+  .menu-toggle{display:block;}
+}
+
+/* HERO */
+.hero{text-align:center;padding:80px 0 50px;}
+.eyebrow{font-family:var(--font-mono);font-size:0.78rem;color:var(--accent);background:var(--accent-soft);
+  border:1px solid var(--border-strong);padding:6px 16px;border-radius:20px;text-transform:uppercase;
+  letter-spacing:1px;display:inline-block;margin-bottom:26px;}
+.hero h1{font-family:var(--font-display);font-size:2.9rem;font-weight:800;line-height:1.12;letter-spacing:-1px;
+  max-width:820px;margin:0 auto 22px;}
+.hero p{font-size:1.15rem;color:var(--text-muted);max-width:640px;margin:0 auto 34px;font-weight:400;}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* HERO MOCKUP: ficha de check-in */
+.checkin-card{max-width:520px;margin:64px auto 0;background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:28px;text-align:left;}
+.checkin-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;
+  padding-bottom:16px;border-bottom:1px solid var(--border);}
+.checkin-head .label{font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;}
+.checkin-head .plate{font-family:var(--font-mono);font-weight:700;font-size:1rem;color:var(--text);margin-top:2px;}
+.example-badge{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-faint);border:1px solid var(--border);
+  padding:4px 10px;border-radius:12px;white-space:nowrap;}
+.checkin-svg{width:100%;height:auto;display:block;margin-bottom:16px;}
+.damage-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:18px;}
+.damage-list li{display:flex;gap:10px;align-items:flex-start;font-size:0.92rem;color:var(--text-muted);}
+.damage-num{font-family:var(--font-mono);font-weight:700;color:var(--accent);flex-shrink:0;}
+.checkin-sign{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:16px;}
+.checkin-sign .conf-label{font-size:0.85rem;color:var(--text-muted);}
+.checkin-sign .sig{font-family:var(--font-sig);font-size:1.7rem;color:var(--text);}
+.checkin-sign .sig-meta{font-family:var(--font-mono);font-size:0.72rem;color:var(--text-faint);}
+
+/* COMPARISON */
+.section-title{text-align:center;margin:100px 0 42px;}
+.section-title h2{font-family:var(--font-display);font-size:2.1rem;font-weight:700;letter-spacing:-0.5px;}
+.section-title p{color:var(--text-muted);font-size:1.05rem;margin-top:10px;}
+.comparison-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+@media(max-width:768px){.comparison-box{grid-template-columns:1fr;}}
+.comp-card{padding:20px;border-radius:12px;border:1px solid var(--border);}
+.comp-card.before{border-color:rgba(181,86,74,0.3);}
+.comp-card.after{border-color:var(--border-strong);}
+.comp-tag{font-family:var(--font-mono);font-weight:700;font-size:0.75rem;padding:4px 10px;border-radius:6px;
+  display:inline-block;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.5px;}
+.before .comp-tag{background:rgba(181,86,74,0.15);color:var(--danger-muted);}
+.after .comp-tag{background:var(--accent-soft);color:var(--accent);}
+.comp-card h3{font-family:var(--font-display);font-size:1.2rem;margin-bottom:14px;font-weight:700;}
+.comp-card ul{list-style:none;color:var(--text-muted);font-size:0.94rem;}
+.comp-card li{margin-bottom:10px;padding-left:22px;position:relative;}
+.before li::before{content:"×";position:absolute;left:0;color:var(--danger-muted);font-weight:700;}
+.after li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700;}
+
+/* QUIENES SOMOS */
+.founders-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px;}
+.founder-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px;}
+.founder-icon{width:44px;height:44px;background:var(--accent-soft);border-radius:10px;display:flex;
+  align-items:center;justify-content:center;color:var(--accent);font-size:1.15rem;margin-bottom:16px;}
+.founder-card h3{font-family:var(--font-display);font-size:1.1rem;margin-bottom:8px;}
+.founder-card p{color:var(--text-muted);font-size:0.92rem;}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:40px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px;transition:border-color .2s,transform .2s;}
+.card:hover{border-color:var(--border-strong);transform:translateY(-3px);}
+.card-icon{width:46px;height:46px;background:var(--accent-soft);border-radius:10px;display:flex;
+  align-items:center;justify-content:center;color:var(--accent);font-size:1.2rem;margin-bottom:20px;}
+.card h3{font-size:1.2rem;margin-bottom:9px;font-weight:700;font-family:var(--font-display);}
+.card p{color:var(--text-muted);font-size:0.94rem;}
+
+/* CALCULADORA */
+.calculator-box{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:40px;margin:90px 0;text-align:center;}
+.calculator-box h2{font-family:var(--font-display);font-size:1.8rem;margin-bottom:10px;font-weight:700;}
+.calculator-box>p{color:var(--text-muted);max-width:600px;margin:0 auto;}
+.calc-controls{display:flex;justify-content:center;gap:34px;margin:32px 0;flex-wrap:wrap;}
+.calc-input-group{text-align:left;}
+.calc-input-group label{display:block;font-size:0.85rem;color:var(--text-muted);margin-bottom:8px;font-family:var(--font-mono);}
+.calc-slider{width:220px;accent-color:var(--accent);}
+.calc-result-number{font-family:var(--font-display);font-size:2.8rem;font-weight:800;color:var(--accent);}
+.calc-note{font-size:0.82rem;color:var(--text-faint);margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto;}
+
+/* STEPS */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:40px;}
+.step-card{background:var(--surface);border:1px solid var(--border);padding:28px;border-radius:14px;position:relative;}
+.step-num{font-family:var(--font-mono);font-size:1.8rem;font-weight:700;color:var(--accent);opacity:0.5;margin-bottom:10px;}
+.step-card h3{font-family:var(--font-display);margin-bottom:8px;font-size:1.1rem;}
+.step-card p{color:var(--text-muted);font-size:0.92rem;}
+
+/* PRICING */
+.pricing-note{text-align:center;color:var(--text-muted);font-size:0.98rem;max-width:560px;margin:-10px auto 30px;}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:20px;}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;
+  display:flex;flex-direction:column;justify-content:space-between;position:relative;}
+.price-card.featured{border-color:var(--border-strong);background:var(--surface-2);}
+.price-badge{position:absolute;top:-13px;right:26px;background:var(--accent);color:#1A1408;font-size:0.7rem;
+  font-family:var(--font-mono);padding:5px 12px;border-radius:12px;font-weight:700;}
+.price-card h3{font-family:var(--font-display);font-size:1.2rem;margin-bottom:4px;}
+.price-card>div>p.desc{color:var(--text-muted);font-size:0.88rem;margin-top:6px;}
+.price{font-family:var(--font-display);font-size:2.3rem;font-weight:800;margin:18px 0 4px;}
+.price span{font-size:0.95rem;color:var(--text-muted);font-weight:400;font-family:var(--font-body);}
+.price-features{list-style:none;margin:20px 0;}
+.price-features li{margin-bottom:12px;color:var(--text-muted);display:flex;gap:10px;font-size:0.9rem;align-items:flex-start;}
+.price-features li i{color:var(--accent);margin-top:3px;flex-shrink:0;font-size:0.85rem;}
+
+/* FAQ */
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;padding:20px 22px;}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  font-weight:600;font-size:1rem;gap:14px;}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{content:"+";color:var(--accent);font-size:1.3rem;font-weight:700;flex-shrink:0;}
+.faq-item[open] summary::after{content:"–";}
+.faq-answer{color:var(--text-muted);margin-top:12px;font-size:0.94rem;line-height:1.7;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:44px 0;margin-top:100px;}
+.footer-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;margin-bottom:20px;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.88rem;}
+.footer-links a:hover{color:var(--text);}
+.footer-legal{color:var(--text-faint);font-size:0.82rem;}
+
+.whatsapp-float{position:fixed;bottom:26px;right:26px;background:#25d366;color:#fff;width:58px;height:58px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;text-decoration:none;
+  box-shadow:0 8px 22px rgba(37,211,102,0.35);z-index:1000;transition:transform .2s;}
+.whatsapp-float:hover{transform:scale(1.08);}
+</style>
+</head>
+<body>
+
+<a href="https://wa.me/5491112345678?text=Hola!%20Quiero%20probar%20Detallarg%20en%20mi%20taller%20de%20detailing" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+
+<div class="container">
+  <header>
+    <div class="logo">DETALL<span class="accent">ARG</span></div>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="#funciones">Funcionalidades</a>
+      <a href="#comparativa">Beneficios</a>
+      <a href="#equipo">Quiénes somos</a>
+      <a href="#precios">Planes</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a href="#precios" class="btn-primary header-cta-desktop">Probar 14 días gratis</a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars" id="menuIcon" aria-hidden="true"></i>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#funciones" onclick="closeMenu()">Funcionalidades</a>
+    <a href="#comparativa" onclick="closeMenu()">Beneficios</a>
+    <a href="#equipo" onclick="closeMenu()">Quiénes somos</a>
+    <a href="#precios" onclick="closeMenu()">Planes</a>
+    <a href="#faq" onclick="closeMenu()">Preguntas</a>
+    <a href="#precios" class="btn-primary" onclick="closeMenu()">Probar 14 días gratis</a>
+  </div>
+
+  <section class="hero">
+    <span class="eyebrow">Hecho en Argentina, para el detailing argentino</span>
+    <h1>El software de gestión hecho para talleres de detailing</h1>
+    <p>Check-in con fotos y firma digital para que ningún rayón previo termine en una discusión. Agenda, fichas de clientes y vehículos, todo en un solo lugar — pensado por gente que también factura autos, no solo software.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/5491112345678?text=Quiero%20solicitar%20un%20acceso%20demo%20de%20Detallarg" target="_blank" rel="noopener" class="btn-primary">Solicitar demo anticipada</a>
+      <a href="#funciones" class="btn-secondary">Explorar funciones</a>
+    </div>
+
+    <div class="checkin-card">
+      <div class="checkin-head">
+        <div>
+          <div class="label">Ficha de check-in</div>
+          <div class="plate">AB 213 JO</div>
+        </div>
+        <span class="example-badge">Vista de ejemplo</span>
+      </div>
+
+      <svg class="checkin-svg" viewBox="0 0 320 130" role="img" aria-label="Diagrama de un auto con puntos marcados de daños previos">
+        <rect x="45" y="68" width="230" height="34" rx="14" fill="none" stroke="var(--text-faint)" stroke-width="1.5"/>
+        <path d="M85,68 L108,36 Q118,30 132,30 L188,30 Q202,30 212,36 L235,68 Z" fill="none" stroke="var(--text-faint)" stroke-width="1.5"/>
+        <line x1="160" y1="30" x2="160" y2="68" stroke="var(--text-faint)" stroke-width="1"/>
+        <circle cx="98" cy="104" r="17" fill="var(--bg)" stroke="var(--text-faint)" stroke-width="1.5"/>
+        <circle cx="98" cy="104" r="6" fill="none" stroke="var(--text-faint)" stroke-width="1"/>
+        <circle cx="222" cy="104" r="17" fill="var(--bg)" stroke="var(--text-faint)" stroke-width="1.5"/>
+        <circle cx="222" cy="104" r="6" fill="none" stroke="var(--text-faint)" stroke-width="1"/>
+        <circle cx="70" cy="80" r="6" fill="var(--accent)"/>
+        <text x="70" y="83.5" text-anchor="middle" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="#1A1408">1</text>
+        <circle cx="205" cy="60" r="6" fill="var(--accent)"/>
+        <text x="205" y="63.5" text-anchor="middle" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="#1A1408">2</text>
+        <circle cx="150" cy="33" r="6" fill="var(--accent)"/>
+        <text x="150" y="36.5" text-anchor="middle" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="#1A1408">3</text>
+      </svg>
+
+      <ul class="damage-list">
+        <li><span class="damage-num">1</span> Rayón leve, paragolpes delantero · 2 fotos</li>
+        <li><span class="damage-num">2</span> Marca de granizo leve, puerta trasera · 1 foto</li>
+        <li><span class="damage-num">3</span> Sin observaciones, techo</li>
+      </ul>
+
+      <div class="checkin-sign">
+        <div>
+          <div class="conf-label">Conformidad del cliente</div>
+          <div class="sig-meta">Firmado · 14:32</div>
+        </div>
+        <div class="sig">Martina G.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comparativa">
+    <div class="section-title">
+      <h2>¿Cómo cambia la gestión de tu taller?</h2>
+      <p>Protegé tu reputación y ahorrate discusiones innecesarias con los clientes.</p>
+    </div>
+    <div class="comparison-box">
+      <div class="comp-card before">
+        <span class="comp-tag">Sin Detallarg</span>
+        <h3>Caos y reclamos injustos</h3>
+        <ul>
+          <li>"Ese rayón no estaba cuando te dejé el auto"</li>
+          <li>Cuadernos en papel perdidos o manchados con cera</li>
+          <li>Te olvidás de avisar al cliente cuando el auto está listo</li>
+          <li>El cliente nunca vuelve para el mantenimiento</li>
+        </ul>
+      </div>
+      <div class="comp-card after">
+        <span class="comp-tag">Con Detallarg</span>
+        <h3>Orden y respaldo</h3>
+        <ul>
+          <li>Check-in con fotos y firma digital previa del cliente</li>
+          <li>Historial ordenado por patente, siempre a mano</li>
+          <li>Avisos automáticos directo al WhatsApp del cliente</li>
+          <li>Recordatorios automáticos para el próximo mantenimiento</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="equipo">
+    <div class="section-title">
+      <h2>Quiénes lo hacen</h2>
+      <p>Un equipo que conoce el taller tanto como el software.</p>
+    </div>
+    <div class="founders-grid">
+      <div class="founder-card">
+        <div class="founder-icon"><i class="fa-solid fa-spray-can-sparkles" aria-hidden="true"></i></div>
+        <h3>Augusto — Detailing</h3>
+        <p>Hace años que hace detailing de forma profesional, con el equipamiento y la técnica de taller real. Conoce a más de 100 talleres y detailers independientes en el país.</p>
+      </div>
+      <div class="founder-card">
+        <div class="founder-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></div>
+        <h3>Martino — Negocio</h3>
+        <p>Administración de empresas. Piensa el modelo de planes, precios y la relación con cada taller para que la herramienta se pague sola.</p>
+      </div>
+      <div class="founder-card">
+        <div class="founder-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
+        <h3>Nico — Producto y sistemas</h3>
+        <p>Lidera el desarrollo de la plataforma: de la idea al Figma, del Figma al producto que un taller usa todos los días.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="funciones">
+    <div class="section-title">
+      <h2>Todo lo que tu taller necesita en un solo lugar</h2>
+      <p>Digitalizá tu flujo operativo completo desde el celular o la tablet.</p>
+    </div>
+    <div class="features-grid">
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></div>
+        <h3>Check-in y mapa de daños</h3>
+        <p>Fotos del estado del auto y firma de conformidad en pantalla antes de tocar el vehículo.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></div>
+        <h3>Avisos por WhatsApp</h3>
+        <p>"Vehículo recibido", "en curado", "listo para retirar" — un click y el cliente se entera.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+        <h3>Agenda multi-cabina</h3>
+        <p>Planificá turnos considerando el tiempo de curado de cerámicos, acrílicos y PPF.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-file-invoice" aria-hidden="true"></i></div>
+        <h3>Presupuestador</h3>
+        <p>Armá presupuestos en PDF con tus paquetes de tratamientos para enviar por chat.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+        <h3>Garantías digitales</h3>
+        <p>Certificado de garantía con el producto aplicado y recomendaciones de mantenimiento.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fa-solid fa-chart-column" aria-hidden="true"></i></div>
+        <h3>Costos e insumos</h3>
+        <p>Medí el gasto en pulimentos y coatings por trabajo para conocer tu margen real.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculadora" class="calculator-box">
+    <h2>Calculá el retorno de tu inversión</h2>
+    <p>Mirá cuánto dinero extra podés generar recuperando clientes para mantenimiento y evitando discusiones por rayones preexistentes.</p>
+    <div class="calc-controls">
+      <div class="calc-input-group">
+        <label>Autos procesados por mes: <span id="autos-val" style="color:var(--text);font-weight:700;">15</span></label>
+        <input type="range" min="5" max="60" value="15" class="calc-slider" id="autos-slider" oninput="updateCalc()">
+      </div>
+      <div class="calc-input-group">
+        <label>Valor promedio por trabajo ($): <span id="precio-val" style="color:var(--text);font-weight:700;">$60.000</span></label>
+        <input type="range" min="15000" max="250000" value="60000" step="5000" class="calc-slider" id="precio-slider" oninput="updateCalc()">
+      </div>
+    </div>
+    <p style="font-size:0.85rem;color:var(--text-muted);text-transform:uppercase;font-family:var(--font-mono);">Ingreso estimado extra por año</p>
+    <div class="calc-result-number" id="roi-result">+$864.000</div>
+    <p class="calc-note">*Estimación ilustrativa a partir de los valores que cargaste arriba, no un dato medido sobre talleres reales todavía.</p>
+  </section>
+
+  <section id="como-funciona">
+    <div class="section-title">
+      <h2>Implementación en 3 pasos</h2>
+      <p>Sin instalaciones. Abrís el navegador y arrancás en 5 minutos.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Ingreso del vehículo</h3>
+        <p>Cargás la patente, sacás fotos del estado del auto y hacés firmar la conformidad al cliente.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Proceso de trabajo</h3>
+        <p>Avanzás los estados del servicio y el sistema le avisa el progreso al cliente.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Entrega y fidelización</h3>
+        <p>Cobrás, mandás la garantía digital y la app programa el recordatorio del próximo mantenimiento.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="precios">
+    <div class="section-title">
+      <h2>Planes en pesos, sin sorpresas</h2>
+      <p>Empezás gratis 14 días con el plan Pro completo. Después elegís el plan que se ajuste a tu taller.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div>
+          <h3>Independiente</h3>
+          <p class="desc">Para el detailer que trabaja solo, a domicilio o en su garage.</p>
+          <div class="price">$45.000<span>/mes</span></div>
+          <ul class="price-features">
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 30 autos por mes</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Check-in fotográfico ilimitado</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Declaración de conformidad</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Fichas de clientes y vehículos</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/5491112345678?text=Quiero%20el%20plan%20Independiente%20de%20Detallarg" class="btn-secondary" style="text-align:center;margin-top:16px;">Empezar prueba gratis</a>
+      </div>
+
+      <div class="price-card featured">
+        <span class="price-badge">Más elegido</span>
+        <div>
+          <h3>Taller Pro</h3>
+          <p class="desc">Para talleres con equipo de trabajo y varias cabinas.</p>
+          <div class="price">$95.000<span>/mes</span></div>
+          <ul class="price-features">
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Autos y operarios ilimitados</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Mapa de daños completo</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Avisos automáticos por WhatsApp</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Presupuestador y garantías QR</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Control de costos e insumos</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/5491112345678?text=Quiero%20el%20plan%20Taller%20Pro%20de%20Detallarg" class="btn-primary" style="text-align:center;margin-top:16px;">Probar 14 días gratis</a>
+      </div>
+
+      <div class="price-card">
+        <div>
+          <h3>Intermedio</h3>
+          <p class="desc">Para el taller que ya suma un par de operarios.</p>
+          <div class="price">$68.000<span>/mes</span></div>
+          <ul class="price-features">
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 80 autos por mes</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 3 operarios</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Agenda multi-cabina</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Avisos automáticos por WhatsApp</li>
+          </ul>
+        </div>
+        <a href="https://wa.me/5491112345678?text=Quiero%20el%20plan%20Intermedio%20de%20Detallarg" class="btn-secondary" style="text-align:center;margin-top:16px;">Empezar prueba gratis</a>
+      </div>
+    </div>
+    <p class="pricing-note" style="margin-top:26px;">Precios de referencia, sujetos a confirmación antes del lanzamiento.</p>
+  </section>
+
+  <section id="faq" style="margin-top:90px;">
+    <div class="section-title"><h2>Preguntas frecuentes</h2></div>
+    <div style="max-width:800px;margin:0 auto;">
+      <details class="faq-item">
+        <summary>¿Necesito descargar alguna app de la Play Store o App Store?</summary>
+        <div class="faq-answer">No hace falta. Detallarg se usa desde el navegador de cualquier celular, tablet o computadora, y podés agregar un ícono en la pantalla de inicio para abrirlo como una app.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Por qué los precios están en pesos y no en dólares?</summary>
+        <div class="faq-answer">Porque así vas a pagar vos: en pesos, sin depender del dólar del día. Los planes se van a ir ajustando según la economía argentina, pero siempre vas a ver el precio final claro, sin sorpresas.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cómo firma la conformidad el cliente si no está en el taller?</summary>
+        <div class="faq-answer">Le mandás un link por WhatsApp con el informe fotográfico inicial para que lo revise y lo apruebe desde su propio celular.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Puedo probar la plataforma antes de pagar?</summary>
+        <div class="faq-answer">Sí, 14 días de prueba gratis con acceso al plan Pro completo, para que lo uses con autos reales en tu taller.</div>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="logo">DETALL<span class="accent">ARG</span></div>
+      <div class="footer-links">
+        <a href="#funciones">Funcionalidades</a>
+        <a href="#precios">Planes</a>
+        <a href="#terminos">Términos y condiciones</a>
+        <a href="#privacidad">Política de privacidad</a>
+      </div>
+    </div>
+    <div class="footer-legal">© 2026 DETALLARG.COM — Hecho en Argentina para la industria del detailing.</div>
+  </footer>
+</div>
+
+<script>
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.querySelector('.menu-toggle');
+  const icon = document.getElementById('menuIcon');
+  const isOpen = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+  document.getElementById('menuIcon').className = 'fa-solid fa-bars';
+}
+function updateCalc(){
+  const autos = parseInt(document.getElementById('autos-slider').value, 10);
+  const precio = parseInt(document.getElementById('precio-slider').value, 10);
+  document.getElementById('autos-val').innerText = autos;
+  document.getElementById('precio-val').innerText = '$' + precio.toLocaleString('es-AR');
+  const retorno = Math.round(autos * 12 * 0.20 * (precio * 0.6));
+  document.getElementById('roi-result').innerText = '+$' + retorno.toLocaleString('es-AR');
+}
+</script>
+</body>
+</html>
