@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DETALLARG | Software de Gestión para Talleres de Detailing</title>
+    <meta name="description" content="Gestioná tu taller de detailing como un profesional. Check-in con fotos, mapa de daños, agenda de turnos, recordatorios de curado y avisos por WhatsApp.">
+
+    <!-- Google Analytics Tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQW5ZD2PF5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JQW5ZD2PF5');
+    </script>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Favicon Personalizado DETALLARG -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%2308090c%22 stroke=%22%2300d2ff%22 stroke-width=%224%22/><text x=%2250%22 y=%2250%22 font-family=%22'JetBrains Mono'%22 font-weight=%22bold%22 font-size=%2240%22 fill=%22%23ffffff%22 text-anchor=%22middle%22 dy=%22.3em%22>D<tspan fill=%22%23e31c3e%22>A</tspan></text></svg>">
+
+    <style>
+        :root {
+            --bg-color: #060709;
+            --card-bg: rgba(18, 22, 31, 0.5);
+            --card-hover: rgba(26, 32, 46, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #00d2ff;
+            --accent-blue-glow: rgba(0, 210, 255, 0.35);
+            --accent-red: #e31c3e;
+            --accent-red-glow: rgba(227, 28, 62, 0.35);
+            --border: rgba(255, 255, 255, 0.1);
+            --border-active: rgba(0, 210, 255, 0.4);
+            --success: #10b981;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Fondo de alta tecnología con luces LED simuladas */
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 15%, rgba(0, 210, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(227, 28, 62, 0.06) 0%, transparent 40%),
+                linear-gradient(var(--card-bg) 1px, transparent 1px), 
+                linear-gradient(90deg, var(--card-bg) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+            z-index: -1;
+        }
+
+        .container { max-width: 1150px; margin: 0 auto; padding: 0 20px; }
+
+        /* HEADER */
+        header {
+            padding: 20px 0; display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(16px); position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid var(--border);
+            background: rgba(6, 7, 9, 0.85);
+        }
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 1.7rem; letter-spacing: -1px; }
+        .logo span.blue { color: var(--accent-blue); }
+        .logo span.red { color: var(--accent-red); }
+        
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; font-weight: 500; }
+        .nav-links a:hover { color: var(--accent-blue); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #0072ff 100%);
+            color: #000; font-weight: 800; padding: 12px 24px; border-radius: 8px;
+            text-decoration: none; transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--accent-blue-glow); display: inline-block;
+            border: none; cursor: pointer; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 30px var(--accent-blue-glow); filter: brightness(1.1); }
+
+        /* HERO SECTION */
+        .hero { text-align: center; padding: 100px 0 60px 0; }
+        .badge-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+        .badge {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+            color: var(--accent-blue); background: rgba(0, 210, 255, 0.08); border: 1px solid var(--border-active);
+            padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .badge.red { color: var(--accent-red); border-color: rgba(227, 28, 62, 0.4); background: rgba(227, 28, 62, 0.08); }
+
+        .hero h1 { font-size: 3.8rem; font-weight: 900; line-height: 1.08; margin-bottom: 24px; letter-spacing: -2px; }
+        .hero h1 span.highlight {
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-blue) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p { font-size: 1.3rem; color: var(--text-muted); max-width: 780px; margin: 0 auto 35px auto; font-weight: 300; }
+        
+        .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-secondary {
+            background: var(--card-bg); color: var(--text-main); padding: 12px 24px; border-radius: 8px;
+            font-weight: 600; text-decoration: none; border: 1px solid var(--border); transition: all 0.3s;
+            display: inline-block; font-size: 0.9rem;
+        }
+        .btn-secondary:hover { border-color: var(--accent-blue); background: var(--card-hover); }
+
+        /* DASHBOARD PREVIEW MOCKUP */
+        .preview-container {
+            margin: 60px 0; border-radius: 16px; border: 1px solid var(--border-active);
+            background: rgba(10, 13, 20, 0.9); padding: 24px; backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 40px rgba(0, 210, 255, 0.1); position: relative; overflow: hidden;
+        }
+        .preview-header { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 14px; align-items: center; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+        
+        .mock-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; text-align: left; }
+        .mock-card { background: var(--card-bg); padding: 18px; border-radius: 10px; border: 1px solid var(--border); }
+        .mock-card h4 { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+        .mock-card .val { font-size: 1.5rem; font-weight: 800; margin-top: 6px; color: #fff; }
+
+        /* NUEVA SECCIÓN: ANTES Y DESPUÉS (SLIDER DE TRANSFORMACIÓN) */
+        .comparison-section { margin: 90px 0; }
+        .comparison-box {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 35px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;
+        }
+        @media (max-width: 768px) { .comparison-box { grid-template-columns: 1fr; } }
+        
+        .comp-card { padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+        .comp-card.before { background: rgba(227, 28, 62, 0.05); border-color: rgba(227, 28, 62, 0.2); }
+        .comp-card.after { background: rgba(0, 210, 255, 0.05); border-color: rgba(0, 210, 255, 0.3); }
+        .comp-tag { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.8rem; padding: 4px 10px; border-radius: 6px; display: inline-block; margin-bottom: 12px; }
+        .before .comp-tag { background: rgba(227, 28, 62, 0.2); color: var(--accent-red); }
+        .after .comp-tag { background: rgba(0, 210, 255, 0.2); color: var(--accent-blue); }
+
+        /* FEATURES */
+        .section-title { text-align: center; margin: 90px 0 45px 0; }
+        .section-title h2 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1.5px; }
+        .section-title p { color: var(--text-muted); font-size: 1.15rem; font-weight: 300; }
+
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 16px; padding: 32px; backdrop-filter: blur(10px);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-6px); border-color: var(--accent-blue); background: var(--card-hover); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); }
+        .card-icon {
+            width: 52px; height: 52px; background: rgba(0, 210, 255, 0.08);
+            border: 1px solid var(--border-active); border-radius: 12px; display: flex;
+            align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 22px;
+        }
+        .card h3 { font-size: 1.35rem; margin-bottom: 10px; font-weight: 700; }
+        .card p { color: var(--text-muted); font-size: 0.98rem; font-weight: 300; }
+
+        /* NUEVA SECCIÓN: CALCULADORA DE INGRESOS EXTRA / ROI */
+        .calculator-box {
+            background: linear-gradient(135deg, rgba(18, 22, 31, 0.8) 0%, rgba(10, 13, 20, 0.95) 100%);
+            border: 1px solid var(--border-active); border-radius: 20px; padding: 40px; margin: 80px 0; text-align: center;
+        }
+        .calc-controls { display: flex; justify-content: center; gap: 30px; margin: 30px 0; flex-wrap: wrap; }
+        .calc-input-group { text-align: left; }
+        .calc-input-group label { display: block; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+        .calc-slider { width: 220px; accent-color: var(--accent-blue); }
+        .calc-result-number { font-size: 3.2rem; font-weight: 900; color: var(--accent-blue); text-shadow: 0 0 20px var(--accent-blue-glow); }
+
+        /* HOW IT WORKS */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
+        .step-card {
+            background: var(--card-bg); border: 1px solid var(--border); padding: 30px; border-radius: 14px; position: relative;
+        }
+        .step-num {
+            font-family: 'JetBrains Mono', monospace; font-size: 2.8rem; font-weight: 800;
+            color: var(--accent-blue); opacity: 0.3; position: absolute; top: 15px; right: 20px;
+        }
+
+        /* PRICING */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
+        .price-card {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 40px;
+            display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: all 0.3s;
+        }
+        .price-card.featured { border-color: var(--accent-blue); background: rgba(0, 210, 255, 0.03); box-shadow: 0 0 40px rgba(0, 210, 255, 0.12); }
+        .price-badge {
+            position: absolute; top: -14px; right: 30px; background: linear-gradient(90deg, var(--accent-blue), #0072ff); color: #000;
+            font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; padding: 5px 14px; border-radius: 12px; font-weight: 800;
+        }
+        .price { font-size: 3.2rem; font-weight: 900; margin: 18px 0; color: #fff; }
+        .price span { font-size: 1.05rem; color: var(--text-muted); font-weight: 400; }
+        .price-features { list-style: none; margin: 25px 0; }
+        .price-features li { margin-bottom: 14px; color: var(--text-muted); display: flex; align-items: center; gap: 12px; font-size: 0.98rem; }
+        .price-features li::before { content: "✓"; color: var(--accent-blue); font-weight: bold; }
+
+        /* FAQ */
+        .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; padding: 22px; cursor: pointer; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: var(--border-active); }
+        .faq-item h4 { font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+        .faq-answer { color: var(--text-muted); margin-top: 12px; display: none; font-size: 0.98rem; font-weight: 300; line-height: 1.7; }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border); padding: 50px 0; margin-top: 100px;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+        }
+        .footer-text { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* FLOAT WHATSAPP */
+        .whatsapp-float {
+            position: fixed; bottom: 28px; right: 28px; background: #25d366; color: white;
+            width: 62px; height: 62px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem; text-decoration: none; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000; transition: transform 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.12); }
+    </style>
+</head>
+<body>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/5491112345678?text=Hola%20Nico!%20Quiero%20probar%20Detallarg%20en%20mi%20taller%20de%20detailing" class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">💬</a>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo">DETALL<span class="blue">ARG</span><span class="red">.COM</span></div>
+            <nav class="nav-links">
+                <a href="#funciones">Funcionalidades</a>
+                <a href="#comparativa">Beneficios</a>
+                <a href="#calculadora">Calculadora ROI</a>
+                <a href="#precios">Planes</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <a href="#precios" class="btn-primary">Probar 14 Días Gratis</a>
+        </header>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="badge-container">
+                <span class="badge">🔥 EL URABLE ARGENTINO</span>
+                <span class="badge red">🇦🇷 HECHO EN ARGENTINA</span>
+            </div>
+            <h1>El software definitivo para escalar tu <span>Taller de Detailing</span></h1>
+            <p>Diseñado para detalladores independientes y talleres Pro. Check-in con inspección de daños, firmas de conformidad digitales, agenda inteligente y notificaciones automáticas por WhatsApp.</p>
+            <div class="hero-cta">
+                <a href="https://wa.me/5491112345678?text=Quiero%20solicitar%20un%20acceso%20demo%20de%20Detallarg" target="_blank" class="btn-primary">Solicitar Demo Anticipada 🚀</a>
+                <a href="#funciones" class="btn-secondary">Explorar Funciones</a>
+            </div>
+
+            <!-- DASHBOARD PREVIEW MOCKUP -->
+            <div class="preview-container">
+                <div class="preview-header">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                    <span style="font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-muted); margin-left: 12px;">app.detallarg.com/taller/panel-control</span>
+                </div>
+                <div class="mock-dashboard">
+                    <div class="mock-card">
+                        <h4>Vehículos en Taller</h4>
+                        <div class="val">6 Unidades</div>
+                        <span style="color: var(--success); font-size: 0.82rem; font-weight: 600;">3 Listos para entregar</span>
+                    </div>
+                    <div class="mock-card">
+                        <h4>En Proceso de Curado</h4>
+                        <div class="val">Audi TT RS</div>
+                        <span style="color: var(--accent-blue); font-size: 0.82rem;">Cerámico 9H Gtechniq (Faltan 4hs)</span>
+                    </div>
+                    <div class="mock-card">
+                        <h4>Check-in Inspección</h4>
+                        <div class="val">VW Amarok V6</div>
+                        <span style="color: var(--accent-red); font-size: 0.82rem;">5 fotos + Firma de conformidad</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: ANTES VS DESPUÉS DEL TALLER -->
+        <section id="comparativa" class="comparison-section">
+            <div class="section-title">
+                <h2>¿Cómo cambia la gestión de tu Taller?</h2>
+                <p>Protegé tu reputación y ahorrate discusiones innecesarias con los clientes.</p>
+            </div>
+            <div class="comparison-box">
+                <div class="comp-card before">
+                    <span class="comp-tag">SIN DETALLARG (ANTES)</span>
+                    <h3 style="margin-bottom: 12px; color: var(--accent-red);">Caos & Reclamos Injustos</h3>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px;">❌ "Ese rayón no estaba cuando te dejé el auto".</li>
+                        <li style="margin-bottom: 8px;">❌ Cuadernos en papel perdidos o manchados con cera.</li>
+                        <li style="margin-bottom: 8px;">❌ Te olvidás de avisar al cliente cuando el auto está listo.</li>
+                        <li style="margin-bottom: 8px;">❌ El cliente nunca vuelve para el service de mantenimiento.</li>
+                    </ul>
+                </div>
+                <div class="comp-card after">
+                    <span class="comp-tag">CON DETALLARG (AHORA)</span>
+                    <h3 style="margin-bottom: 12px; color: var(--accent-blue);">Profesionalismo Especular</h3>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.95rem;">
+                        <li style="margin-bottom: 8px;">✅ Check-in con fotos y firma digital previa del cliente.</li>
+                        <li style="margin-bottom: 8px;">✅ Historial clínico digital ordenado por patente.</li>
+                        <li style="margin-bottom: 8px;">✅ Avisos automáticos directos al WhatsApp del dueño.</li>
+                        <li style="margin-bottom: 8px;">✅ Alertas automáticas a los 6 meses para reacondicionamiento.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES URABLE INPIRED -->
+        <section id="funciones">
+            <div class="section-title">
+                <h2>Todo lo que tu taller necesita en un solo lugar</h2>
+                <p>Digitalizá tu flujo operativo completo desde el celular o tablet.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="card">
+                    <div class="card-icon">📋</div>
+                    <h3>Check-in & Mapa de Daños</h3>
+                    <p>Capturá fotos en alta definición. Marcá rayones, bollos o faltantes en el gráfico interactivo del auto y hacé firmar la conformidad en pantalla antes de tocar el vehículo.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📲</div>
+                    <h3>Integración Oficial WhatsApp</h3>
+                    <p>Avisale al cliente con un click: "Vehículo recibido", "Paso de corrección finalizado", "En curado de sellador" y "Listo para retirar".</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📅</div>
+                    <h3>Agenda Multi-Cabina</h3>
+                    <p>Planificá turnos considerando el tiempo de secado/curado de vidriados cerámicos, acrílicos y PPF para no saturar tu espacio físico.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🏷️</div>
+                    <h3>Presupuestador Profesional</h3>
+                    <p>Armá presupuestos interactivos en PDF con tus paquetes (Abrillantado, Corrección 2/3 pasos, PPF, Interior) para enviar por chat.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Garantías Digitales QR</h3>
+                    <p>Emití un certificado de garantía con QR para tu cliente con la marca del producto aplicado, lote y recomendaciones de lavado correcto.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Control de Costos e Insumos</h3>
+                    <p>Medí el gasto en pulimentos, microfibra y coatings por cada trabajo para conocer exactamente tu margen real de ganancia por auto.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: CALCULADORA ROI PARA EL TALLERISTA -->
+        <section id="calculadora" class="calculator-box">
+            <h2 style="font-size: 2.2rem; margin-bottom: 10px;">Calculá el Retorno de tu Inversión</h2>
+            <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto;">Mirá cuánto dinero extra podés generar recuperando clientes para service de sellados y evitando abonar arreglos por rayones preexistentes.</p>
+            
+            <div class="calc-controls">
+                <div class="calc-input-group">
+                    <label>Autos procesados por mes: <span id="autos-val" style="color:#fff; font-weight:bold;">15</span></label>
+                    <input type="range" min="5" max="60" value="15" class="calc-slider" id="autos-slider" oninput="updateCalc()">
+                </div>
+                <div class="calc-input-group">
+                    <label>Valor promedio por trabajo (USD): <span id="precio-val" style="color:#fff; font-weight:bold;">$180</span></label>
+                    <input type="range" min="50" max="800" value="180" step="10" class="calc-slider" id="precio-slider" oninput="updateCalc()">
+                </div>
+            </div>
+
+            <p style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; font-family: 'JetBrains Mono', monospace;">Ingreso Estimado Extra Anual en tu Taller:</p>
+            <div class="calc-result-number" id="roi-result">+$2,592 USD</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">*Basado en un 20% de recompras automáticas por alertas de mantenimiento cerámico a 6 meses.</p>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section id="como-funciona">
+            <div class="section-title">
+                <h2>Implementación en 3 pasos rápidos</h2>
+                <p>Sin instalaciones complicadas. Abrís el navegador y arrancás en 5 minutos.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <h3 style="margin-bottom: 10px;">Ingreso del Vehículo</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Cargás la patente, sacás las fotos del estado de pintura e interiores y hacés firmar la conformidad al cliente en el celular.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <h3 style="margin-bottom: 10px;">Proceso de Trabajo</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Avanzás los estados (Lavado ➔ Descontaminado ➔ Corrección ➔ Curado). El sistema notifica los progresos al dueño.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <h3 style="margin-bottom: 10px;">Entrega y Fidelización</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Cobrás, enviás la garantía QR digital por WhatsApp y la app programa automáticamente el recordatorio de mantenimiento futuro.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section id="precios">
+            <div class="section-title">
+                <h2>Planes transparentes pensados para la Argentina</h2>
+                <p>Sin contratos de permanencia. Probá gratis durante 14 días completos.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div>
+                        <h3>Independiente / Mobile</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">Ideal para detalladores a domicilio o garajes individuales.</p>
+                        <div class="price">$25 USD <span>/mes</span></div>
+                        <ul class="price-features">
+                            <li>Hasta 30 autos mensuales</li>
+                            <li>Check-in Fotográfico ilimitado</li>
+                            <li>Declaración de Conformidad</li>
+                            <li>Fichas de Clientes y Vehículos</li>
+                            <li>Soporte directo vía WhatsApp</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5491112345678?text=Quiero%20el%20plan%20Independiente%20de%20Detallarg" class="btn-secondary" style="text-align: center; margin-top: 20px;">Comenzar Prueba Gratis</a>
+                </div>
+
+                <div class="price-card featured">
+                    <span class="price-badge">MÁS ELEGIDO POR TALLERES</span>
+                    <div>
+                        <h3>Taller Pro</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 6px;">Para talleres establecidos con equipo de trabajo y cabinas.</p>
+                        <div class="price">$50 USD <span>/mes</span></div>
+                        <ul class="price-features">
+                            <li>Autos Ilimitados</li>
+                            <li>Check-in completo con Mapa de Daños</li>
+                            <li>Avisos Automáticos por WhatsApp</li>
+                            <li>Múltiples Operarios y Módulos de Trabajo</li>
+                            <li>Recordatorios de Mantenimiento Automatizados</li>
+                            <li>Emisión de Garantías Digitales QR</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5491112345678?text=Quiero%20el%20plan%20Taller%20Pro%20de%20Detallarg" class="btn-primary" style="text-align: center; margin-top: 20px;">Probar 14 Días Gratis</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" style="margin-top: 90px;">
+            <div class="section-title">
+                <h2>Preguntas Frecuentes</h2>
+            </div>
+
+            <div style="max-width: 820px; margin: 0 auto;">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4>¿Necesito descargar alguna aplicación de la PlayStore o AppStore? <span style="color: var(--accent-blue); font-weight: bold;">+</span></h4>
+                    <div class="faq-answer">No hace falta. DETALLARG es una PWA (Progressive Web App). Se usa directamente desde el navegador de cualquier teléfono, tablet o computadora, y podés agregar un icono en la pantalla de inicio de tu celular para abrirlo como una app nativa.</div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4>¿Cómo firma la conformidad el cliente si no está en el taller? <span style="color: var(--accent-blue); font-weight: bold;">+</span></h4>
+                    <div class="faq-answer">Si el cliente te deja el auto y se va rápido, el sistema te permite enviarle un link por WhatsApp con el informe fotográfico inicial para que lo revise y lo apruebe digitalmente desde su propio celular.</div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <h4>¿Puedo probar la plataforma antes de pagar? <span style="color: var(--accent-blue); font-weight: bold;">+</span></h4>
+                    <div class="faq-answer">Totalmente. Tenés 14 días de prueba 100% gratuita con acceso a todas las funciones para que lo uses con autos reales en tu taller.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="logo">DETALL<span class="blue">ARG</span><span class="red">.COM</span></div>
+            <div class="footer-text">© 2026 DETALLARG.COM - Creado para potenciar la industria del Detailing en Argentina.</div>
+        </footer>
+    </div>
+
+    <!-- SCRIPTS INTERACTIVOS -->
+    <script>
+        // Acordeón Preguntas Frecuentes
+        function toggleFaq(element) {
+            const answer = element.querySelector('.faq-answer');
+            const span = element.querySelector('h4 span');
+            if (answer.style.display === "block") {
+                answer.style.display = "none";
+                span.textContent = "+";
+            } else {
+                answer.style.display = "block";
+                span.textContent = "-";
+            }
+        }
+
+        // Calculadora Interactiva de ROI
+        function updateCalc() {
+            const autos = document.getElementById('autos-slider').value;
+            const precio = document.getElementById('precio-slider').value;
+            
+            document.getElementById('autos-val').innerText = autos;
+            document.getElementById('precio-val').innerText = '$' + precio;
+
+            // Estimación: 20% de clientes vuelven por service de mantenimiento anual
+            const retornoEstimado = Math.round(autos * 12 * 0.20 * (precio * 0.6));
+            document.getElementById('roi-result').innerText = '+$' + retornoEstimado.toLocaleString() + ' USD';
+        }
+    </script>
+</body>
+</html>
