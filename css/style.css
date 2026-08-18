@@ -1,10 +1,10 @@
 /* ============ TOKENS ============ */
 :root {
-  --accent: #C77B3E;
-  --accent-2: #E0A15C;
-  --accent-dark: #8F5426;
-  --accent-soft: rgba(199, 123, 62, 0.14);
-  --accent-glow: rgba(199, 123, 62, 0.28);
+  --accent: #529CC1;
+  --accent-2: #72B2D5;
+  --accent-dark: #36494E;
+  --accent-soft: rgba(82, 156, 193, 0.14);
+  --accent-glow: rgba(82, 156, 193, 0.28);
   --danger-muted: #B5564A;
   --radius: 14px;
   --font-display: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -13,39 +13,39 @@
   --font-sig: 'Caveat', cursive;
 
   /* Tema Oscuro (Taller / Noche) — Default */
-  --bg: #0A0A0B;
-  --surface: #151517;
-  --surface-2: #1E1E20;
-  --text: #F5F5F2;
-  --text-muted: #9C9A97;
-  --text-faint: #67655F;
-  --border: rgba(245, 245, 242, 0.10);
-  --border-strong: rgba(199, 123, 62, 0.35);
+  --bg: #040303;
+  --surface: #0E1315;
+  --surface-2: #182023;
+  --text: #FFFFFF;
+  --text-muted: #C0C9CA;
+  --text-faint: #758386;
+  --border: rgba(192, 201, 202, 0.12);
+  --border-strong: rgba(82, 156, 193, 0.38);
 
-  --chrome-1: #74767b;
-  --chrome-2: #e8e9ec;
-  --chrome-3: #ffffff;
-  --chrome-4: #8a8c90;
-  --chrome-5: #d4d5d8;
+  --chrome-1: #36494E;
+  --chrome-2: #C0C9CA;
+  --chrome-3: #FFFFFF;
+  --chrome-4: #529CC1;
+  --chrome-5: #C0C9CA;
 }
 
 /* Tema Claro (Quirófano / Día) */
 body.theme-light {
-  --bg: #F3F1EC;
+  --bg: #F4F7F8;
   --surface: #FFFFFF;
-  --surface-2: #EDEBE4;
-  --text: #141310;
-  --text-muted: #5C584E;
-  --text-faint: #93897A;
-  --border: rgba(20, 19, 16, 0.10);
-  --border-strong: rgba(199, 123, 62, 0.45);
-  --accent-glow: rgba(199, 123, 62, 0.18);
+  --surface-2: #E5ECED;
+  --text: #040303;
+  --text-muted: #36494E;
+  --text-faint: #758386;
+  --border: rgba(54, 73, 78, 0.12);
+  --border-strong: rgba(82, 156, 193, 0.45);
+  --accent-glow: rgba(82, 156, 193, 0.18);
 
-  --chrome-1: #6e7075;
-  --chrome-2: #5a5c60;
-  --chrome-3: #3a3b3e;
-  --chrome-4: #7c7e83;
-  --chrome-5: #6d6f73;
+  --chrome-1: #36494E;
+  --chrome-2: #529CC1;
+  --chrome-3: #040303;
+  --chrome-4: #36494E;
+  --chrome-5: #529CC1;
 }
 
 /* ============ RESET & BASE ============ */
@@ -126,7 +126,7 @@ img, svg {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: #0A0A0B;
+  background: #040303;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -157,7 +157,7 @@ img, svg {
 }
 
 .loader-word .base {
-  color: rgba(245, 245, 242, 0.10);
+  color: rgba(192, 201, 202, 0.12);
 }
 
 .loader-word .fill {
@@ -168,7 +168,7 @@ img, svg {
   width: 0%;
   overflow: hidden;
   white-space: nowrap;
-  background: linear-gradient(115deg, #8a8c90, #ffffff 40%, #C77B3E 60%, #e8e9ec);
+  background: linear-gradient(115deg, #36494E, #FFFFFF 40%, #529CC1 60%, #C0C9CA);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -184,7 +184,7 @@ img, svg {
 .loader-bar {
   width: min(280px, 60vw);
   height: 2px;
-  background: rgba(245, 245, 242, 0.12);
+  background: rgba(192, 201, 202, 0.15);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -217,7 +217,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 10, 11, 0.75);
+  background: rgba(4, 3, 3, 0.80);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -225,7 +225,7 @@ header {
 }
 
 body.theme-light header {
-  background: rgba(243, 241, 236, 0.82);
+  background: rgba(244, 247, 248, 0.85);
 }
 
 .logo {
@@ -260,7 +260,7 @@ body.theme-light header {
 /* Botones */
 .btn-primary {
   background: var(--accent);
-  color: #160F08;
+  color: #040303;
   font-weight: 700;
   padding: 10px 20px;
   border-radius: 8px;
@@ -274,7 +274,7 @@ body.theme-light header {
 .btn-primary:hover {
   background: var(--accent-2);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(199, 123, 62, 0.25);
+  box-shadow: 0 6px 20px rgba(82, 156, 193, 0.35);
 }
 
 .btn-primary:active {
@@ -294,7 +294,7 @@ body.theme-light header {
 }
 
 .btn-secondary:hover {
-  background: var(--surface);
+  background: var(--surface-2);
   border-color: var(--accent);
   transform: translateY(-1px);
 }
@@ -349,11 +349,11 @@ body.theme-light header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* Ordena los elementos de arriba hacia abajo */
+  justify-content: flex-start;
   text-align: center;
   overflow: hidden;
-  padding: 0 0 100px; /* Quitamos el padding top para dejar que la luz controle el espacio */
-  background: #0A0A0B;
+  padding: 0 0 100px;
+  background: #040303;
 }
 
 .stage-ceiling {
@@ -362,20 +362,20 @@ body.theme-light header {
   left: 0;
   width: 100%;
   height: 50%;
-  background: radial-gradient(ellipse 70% 100% at 50% -10%, rgba(199, 123, 62, 0.12), transparent 65%);
+  background: radial-gradient(ellipse 70% 100% at 50% -10%, rgba(82, 156, 193, 0.15), transparent 65%);
   pointer-events: none;
   z-index: 1;
 }
 
 .hex-rig {
-  position: relative; /* ¡CLAVE! Ahora ocupa espacio real y empuja el texto abajo */
+  position: relative;
   top: auto;
   left: auto;
-  transform: none; /* Quitamos el centrado absoluto porque flexbox ya lo centra */
+  transform: none;
   width: min(880px, 94vw);
-  margin-top: 5vh; /* Separación desde el techo/header */
-  margin-bottom: 4vh; /* Separación exacta antes de que empiece el texto */
-  opacity: 0.9;
+  margin-top: 4vh;
+  margin-bottom: 3.5vh;
+  opacity: 0.95;
   z-index: 5;
   pointer-events: none;
 }
@@ -387,12 +387,12 @@ body.theme-light header {
 }
 
 .hex-rig line, .hex-rig path {
-  stroke: rgba(245, 245, 242, 0.45);
+  stroke: rgba(192, 201, 202, 0.45);
 }
 
 .hex-rig .lit {
-  stroke: var(--accent-2);
-  filter: drop-shadow(0 0 8px rgba(224, 161, 92, 0.9));
+  stroke: var(--accent);
+  filter: drop-shadow(0 0 10px rgba(82, 156, 193, 0.95));
 }
 
 .light-cone {
@@ -402,8 +402,7 @@ body.theme-light header {
   transform: translateX(-50%);
   width: 100%;
   height: 100%;
-  /* El haz de luz nace a la altura de la lámpara (12% aprox) */
-  background: conic-gradient(from 180deg at 50% 12%, transparent 35%, rgba(245, 245, 242, 0.04) 50%, transparent 65%);
+  background: conic-gradient(from 180deg at 50% 12%, transparent 35%, rgba(192, 201, 202, 0.04) 50%, transparent 65%);
   pointer-events: none;
   z-index: 1;
 }
@@ -415,9 +414,9 @@ body.theme-light header {
   width: 100%;
   height: 35%;
   background: 
-    linear-gradient(to top, #050506 0%, rgba(5, 5, 6, 0) 100%),
-    repeating-linear-gradient(100deg, rgba(245, 245, 242, 0.02) 0 2px, transparent 2px 90px);
-  border-top: 1px solid rgba(245, 245, 242, 0.06);
+    linear-gradient(to top, #040303 0%, rgba(4, 3, 3, 0) 100%),
+    repeating-linear-gradient(100deg, rgba(192, 201, 202, 0.02) 0 2px, transparent 2px 90px);
+  border-top: 1px solid rgba(192, 201, 202, 0.08);
   z-index: 1;
   pointer-events: none;
 }
@@ -429,19 +428,19 @@ body.theme-light header {
   transform: translateX(-50%);
   width: 65%;
   height: 20%;
-  background: radial-gradient(ellipse at 50% 100%, rgba(199, 123, 62, 0.2), transparent 70%);
+  background: radial-gradient(ellipse at 50% 100%, rgba(82, 156, 193, 0.22), transparent 70%);
 }
 
 .hero-content {
   position: relative;
   z-index: 5;
-  padding-top: 0; /* Ya no hace falta forzar padding, la luz lo empuja natural */
+  padding-top: 0;
 }
 
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent-2);
+  color: var(--accent);
   background: var(--accent-soft);
   border: 1px solid var(--border-strong);
   padding: 6px 16px;
@@ -460,12 +459,12 @@ body.theme-light header {
   letter-spacing: -1px;
   max-width: 840px;
   margin: 0 auto 20px;
-  color: #F5F5F2;
+  color: #FFFFFF;
 }
 
 .hero-stage p {
   font-size: 1.1rem;
-  color: #B4B0A6;
+  color: #C0C9CA;
   max-width: 640px;
   margin: 0 auto 32px;
   font-weight: 400;
@@ -482,9 +481,9 @@ body.theme-light header {
 .iphone {
   width: 254px;
   border-radius: 40px;
-  background: #0d0d0e;
-  border: 6px solid #232325;
-  box-shadow: 0 35px 70px -20px rgba(0, 0, 0, 0.65), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  background: #080B0C;
+  border: 6px solid #182023;
+  box-shadow: 0 35px 70px -20px rgba(0, 0, 0, 0.75), inset 0 0 0 1px rgba(192, 201, 202, 0.1);
   overflow: hidden;
   position: relative;
   will-change: transform, opacity;
@@ -492,7 +491,7 @@ body.theme-light header {
 }
 
 body.theme-light .iphone {
-  box-shadow: 0 35px 70px -20px rgba(20, 19, 16, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 35px 70px -20px rgba(4, 3, 3, 0.25), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .iphone::before {
@@ -503,7 +502,7 @@ body.theme-light .iphone {
   transform: translateX(-50%);
   width: 78px;
   height: 20px;
-  background: #0d0d0e;
+  background: #080B0C;
   border-radius: 12px;
   z-index: 5;
 }
@@ -989,9 +988,9 @@ body.theme-light .iphone {
 }
 
 .crm-event.b2 {
-  background: rgba(120, 150, 255, 0.10);
-  border-color: rgba(120, 150, 255, 0.35);
-  border-left-color: #7896FF;
+  background: rgba(192, 201, 202, 0.12);
+  border-color: rgba(192, 201, 202, 0.35);
+  border-left-color: var(--text-muted);
 }
 
 .crm-event .svc {
@@ -1033,7 +1032,7 @@ body.theme-light .iphone {
   font-size: 1.8rem;
   font-weight: 800;
   color: var(--accent);
-  opacity: 0.65;
+  opacity: 0.75;
   margin-bottom: 10px;
 }
 
@@ -1222,7 +1221,7 @@ body.theme-light .iphone {
   top: -13px;
   right: 26px;
   background: var(--accent);
-  color: #160F08;
+  color: #040303;
   font-size: 0.72rem;
   font-family: var(--font-mono);
   padding: 5px 14px;
@@ -1368,8 +1367,8 @@ body.theme-light .iphone {
 }
 
 @keyframes pulse-ring {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(199, 123, 62, 0.4); }
-  50% { box-shadow: 0 0 0 8px rgba(199, 123, 62, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(82, 156, 193, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(82, 156, 193, 0); }
 }
 
 .contact-card h3 {
