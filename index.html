@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DETALLARG — Software de gestión para talleres de detailing</title>
-<meta name="description" content="Check-in con fotos y firma digital, agenda, fichas de clientes y vehículos. Software de gestión hecho en Argentina para el detailing argentino.">
+<title>DETALLARG — La plataforma integral de gestión para talleres de detailing</title>
+<meta name="description" content="Check-in digital con relevamiento fotográfico y firma de conformidad, agenda de turnos y CRM. El estándar operativo para la industria del detailing en Argentina.">
 <link rel="canonical" href="https://detallarg.com/">
 <meta name="theme-color" content="#0A0A0B">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://detallarg.com/">
-<meta property="og:title" content="DETALLARG — Software de gestión para talleres de detailing">
-<meta property="og:description" content="Check-in con fotos y firma digital, agenda, y fichas de clientes y vehículos. Hecho por gente que también factura autos, no solo software.">
+<meta property="og:title" content="DETALLARG — Plataforma de gestión para talleres de detailing">
+<meta property="og:description" content="Check-in con fotos, firma digital y fidelización automatizada. Software de alto rendimiento pensado por y para profesionales del detailing.">
 <meta property="og:image" content="https://detallarg.com/og-image.jpg">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary_large_image">
@@ -22,27 +22,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Detallarg">
-
-<!--
-  PENDIENTES ANTES DE PUBLICAR:
-  1) [EN CURSO] Reemplazar el número de WhatsApp (5491112345678) por el real — está centralizado en la constante WA_NUMBER al final del <script>, así que alcanza con cambiarlo en un solo lugar. Lo van a cargar ustedes cuando llegue el chip de WhatsApp Business.
-  2) Confirmar los precios finales en pesos de la sección Planes — hoy son valores de referencia (también repetidos en el JSON-LD de abajo, actualizar ahí también). Esto es una decisión de negocio, no algo que se resuelva en el código.
-  3) [HECHO] og-image.jpg generado (1200x630px) con la identidad de marca — está en la raíz del sitio, junto a index.html. Si más adelante cambian el isotipo o quieren una versión con foto real en vez de tipografía, hay que regenerarlo.
-  4) Confirmar que el ID de Google Analytics (G-JQW5ZD2PF5) es el de ustedes — esto solo lo pueden verificar entrando a su cuenta de GA4.
-  5) [HECHO] Términos y Condiciones (terminos.html) y Política de Privacidad (privacidad.html) creadas como borrador, enlazadas desde el footer. Cubren Ley 25.326 (datos personales, relevante por el check-in fotográfico y la firma digital) y nociones de Ley 24.240 (venta de suscripción online). SON BORRADOR: hace falta que un abogado/a las revise antes de publicar el sitio.
-  6) Reemplazar apple-touch-icon.png y los íconos de manifest.json por versiones definitivas de marca si cambian el isotipo.
-  7) Mails ya confirmados: contacto@detallarg.com (consultas generales) y soporte@detallarg.com (soporte técnico).
-  8) Apps nativas (sección #app-nativa): hoy son badges "Próximamente" sin link (aria-disabled). Cuando estén publicadas, reemplazar cada <span class="store-badge"> por un <a> con la URL real de App Store / Google Play y sacar el aria-disabled.
-  9) [HECHO] robots.txt y sitemap.xml agregados en la raíz.
-  10) [HECHO] Schema Organization sumado más abajo (sigue generando rich results, a diferencia de FAQPage — ver nota siguiente).
-  11) [HECHO] Tracking de conversión en GA4: clicks a WhatsApp y submit de la waitlist, ver el final del <script>.
-  12) A futuro, no ahora: cuando implementen los avisos automáticos de verdad (no el mockup visual de la sección Funciones), van a necesitar la API oficial de WhatsApp Business Platform (Twilio, 360dialog o Meta directo) en vez de un WhatsApp personal — mandar mensajes salientes automatizados desde un número común arriesga que Meta lo banee por volumen.
--->
-<!-- Nota SEO: el FAQPage de más abajo ya NO genera rich snippet en Google — Google retiró
-     los FAQ rich results de los resultados de búsqueda el 7 de mayo de 2026 (para todos los
-     sitios, incluidos los que quedaban habilitados desde 2023). El schema se mantiene porque
-     no molesta y sigue siendo información estructurada válida, pero no hace falta seguir
-     invirtiendo tiempo en sincronizarlo pensando en el desplegable de Google. -->
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQW5ZD2PF5"></script>
 <script>
@@ -59,16 +38,15 @@
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230A0A0B%22/><text x=%2250%22 y=%2258%22 font-family=%22Archivo%22 font-weight=%22800%22 font-size=%2242%22 fill=%22%23C77B3E%22 text-anchor=%22middle%22>DA</text></svg>">
 
-<!-- Datos estructurados: precios y Organization siguen generando rich results en Google;
-     FAQPage ya no (ver nota más arriba), se mantiene solo como metadata estructurada. -->
+<!-- Schema JSON-LD -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Detallarg",
   "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "description": "Software de gestión para talleres de detailing: check-in con fotos y firma digital, agenda, fichas de clientes y vehículos.",
+  "operatingSystem": "Web, iOS, Android",
+  "description": "Software integral de gestión para talleres de detailing: check-in con fotos y firma digital, agenda de cabinas y fidelización de clientes.",
   "url": "https://detallarg.com/",
   "image": "https://detallarg.com/og-image.jpg",
   "offers": [
@@ -96,7 +74,6 @@
   ]
 }
 </script>
-<!-- Organization: a diferencia de FAQPage, este schema sigue generando rich results -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -107,9 +84,9 @@
   "email": "contacto@detallarg.com",
   "foundingLocation": "Argentina",
   "founders": [
-    { "@type": "Person", "name": "Augusto Di Paolo", "jobTitle": "CEO" },
-    { "@type": "Person", "name": "Martino Alfonso", "jobTitle": "CPO" },
-    { "@type": "Person", "name": "Nicolás Martínez", "jobTitle": "CTO" }
+    { "@type": "Person", "name": "Augusto Di Paolo", "jobTitle": "CEO & Co-Founder" },
+    { "@type": "Person", "name": "Martino Alfonso", "jobTitle": "CPO & Co-Founder" },
+    { "@type": "Person", "name": "Nicolás Martínez", "jobTitle": "CTO & Co-Founder" }
   ]
 }
 </script>
@@ -120,42 +97,34 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Ya puedo empezar a usar Detallarg en mi taller?",
+      "name": "¿Cómo funciona la prueba gratuita de 1 mes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Todavía no abrimos al público general. Hoy damos acceso anticipado curado, coordinado por WhatsApp, mientras terminamos de pulir el lanzamiento. Si querés ser de los primeros talleres en probarlo, escribinos o sumate a la lista de espera."
+        "text": "Tenés 30 días de acceso total y sin costo al plan Taller Pro completo para usarlo en tu día a día con vehículos reales. Sin tarjetas de crédito ni compromisos."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Necesito descargar alguna app de la Play Store o App Store?",
+      "name": "¿Necesito descargar alguna app o funciona desde el celular?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Todavía no. Hoy Detallarg se usa desde el navegador de cualquier celular, tablet o computadora, y podés agregar un ícono en la pantalla de inicio para abrirlo como una app. Ya estamos desarrollando las apps nativas para Android y iOS, que van a ser nuestro próximo gran lanzamiento."
+        "text": "Detallarg funciona directo desde cualquier navegador web y como PWA instalable en la pantalla de inicio. Próximamente estará disponible de manera nativa en Google Play y App Store."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Por qué los precios están en pesos y no en dólares?",
+      "name": "¿Por qué los precios están en pesos argentinos?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Porque así vas a pagar vos: en pesos, sin depender del dólar del día. Los planes se van a ir ajustando según la economía argentina, pero siempre vas a ver el precio final claro, sin sorpresas."
+        "text": "Porque operamos en Argentina. Pagás en pesos, con facturación transparente y previsibilidad operativa para tu negocio."
       }
     },
     {
       "@type": "Question",
-      "name": "¿Cómo firma la conformidad el cliente si no está en el taller?",
+      "name": "¿Cómo firma la conformidad el cliente si no está presente?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Le mandás un link por WhatsApp con el informe fotográfico inicial para que lo revise y lo apruebe desde su propio celular."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Puedo probar la plataforma antes de pagar?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sí, 14 días de prueba gratis con acceso al plan Pro completo, para que lo uses con autos reales en tu taller."
+        "text": "El sistema genera un enlace seguro que podés enviar por WhatsApp con el reporte fotográfico inicial para que el cliente lo apruebe y firme digitalmente desde su teléfono."
       }
     }
   ]
@@ -174,10 +143,10 @@
     <span class="fill">DETALLARG</span>
   </div>
   <div class="loader-bar"><span></span></div>
-  <div class="loader-label">Cargando taller…</div>
+  <div class="loader-label">Iniciando sistema…</div>
 </div>
 
-<a href="https://wa.me/5491112345678?text=Hola!%20Quiero%20probar%20Detallarg%20en%20mi%20taller%20de%20detailing" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://wa.me/5491112345678?text=Hola!%20Quiero%20comenzar%20mi%20mes%20gratis%20en%20Detallarg" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
 
 <header>
   <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
@@ -191,7 +160,7 @@
       <a href="#app-nativa">App</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a href="#precios" class="btn-primary header-cta-desktop">Probar 14 días gratis</a>
+    <a href="#precios" class="btn-primary header-cta-desktop">1 Mes Gratis Pro</a>
     <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()">
       <i class="fa-solid fa-bars" id="menuIcon" aria-hidden="true"></i>
     </button>
@@ -206,7 +175,7 @@
   <a href="#precios" onclick="closeMenu()">Planes</a>
   <a href="#app-nativa" onclick="closeMenu()">App</a>
   <a href="#contacto" onclick="closeMenu()">Contacto</a>
-  <a href="#precios" class="btn-primary" onclick="closeMenu()">Probar 14 días gratis</a>
+  <a href="#precios" class="btn-primary" onclick="closeMenu()">1 Mes Gratis Pro</a>
 </div>
 
 <main>
@@ -214,6 +183,8 @@
 <!-- ============ HERO: TALLER ============ -->
 <section class="hero-stage" data-theme="dark">
   <div class="stage-ceiling"></div>
+  
+  <!-- Luz de techo colocada arriba de toda la jerarquía visual -->
   <div class="hex-rig" aria-hidden="true">
     <svg viewBox="0 0 700 160" fill="none">
       <g stroke-width="2" stroke-linejoin="round">
@@ -239,14 +210,14 @@
   <div class="light-cone" aria-hidden="true"></div>
 
   <div class="hero-content container">
-    <span class="eyebrow">Hecho en Argentina, para el detailing argentino</span>
-    <h1>El software de gestión hecho para talleres de detailing</h1>
-    <p>Check-in con fotos y firma digital para que ningún rayón previo termine en una discusión. Agenda, fichas de clientes y vehículos, todo en un solo lugar — pensado por gente que también factura autos, no solo software.</p>
+    <span class="eyebrow">El estándar de gestión automotriz</span>
+    <h1>El software definitivo para profesionales del detailing</h1>
+    <p>Check-in digital con registro fotográfico de daños y firma de conformidad en pantalla. Centralizá tu agenda de cabinas, fichas técnicas de vehículos y fidelización de clientes en una única plataforma de alto rendimiento.</p>
     <div class="hero-cta">
-      <a href="https://wa.me/5491112345678?text=Quiero%20solicitar%20un%20acceso%20demo%20de%20Detallarg" target="_blank" rel="noopener" class="btn-primary">Solicitar demo anticipada</a>
-      <a href="#funciones" class="btn-secondary">Explorar funciones</a>
+      <a href="#precios" class="btn-primary">Comenzar 1 mes gratis</a>
+      <a href="#funciones" class="btn-secondary">Conocer la plataforma</a>
     </div>
-    <p style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-faint);letter-spacing:0.3px;margin-top:18px;">Acceso anticipado curado por WhatsApp — todavía no abrimos al público general.</p>
+    <p style="font-family:var(--font-mono);font-size:0.72rem;color:var(--text-faint);letter-spacing:0.3px;margin-top:18px;">Plan Taller Pro bonificado 100% durante los primeros 30 días · Sin tarjeta</p>
 
     <div class="hero-phone-wrap">
       <div class="iphone hero-phone" id="heroPhone">
@@ -286,28 +257,28 @@
 <section id="comparativa" class="band" data-theme="light">
   <div class="container">
     <div class="section-title reveal">
-      <h2>¿Cómo cambia la gestión de tu taller?</h2>
-      <p>Protegé tu reputación y ahorrate discusiones innecesarias con los clientes.</p>
+      <h2>Profesionalizá la operación de tu taller</h2>
+      <p>Blindá tu reputación, evitá reclamos infundados y maximizá la recurrencia de tus clientes.</p>
     </div>
     <div class="comparison-box reveal">
       <div class="comp-card before">
         <span class="comp-tag">Sin Detallarg</span>
-        <h3>Caos y reclamos injustos</h3>
+        <h3>Fricción operativa y reclamos</h3>
         <ul>
-          <li>"Ese rayón no estaba cuando te dejé el auto"</li>
-          <li>Cuadernos en papel perdidos o manchados con cera</li>
-          <li>Te olvidás de avisar al cliente cuando el auto está listo</li>
-          <li>El cliente nunca vuelve para el mantenimiento</li>
+          <li>Discusiones por detalles y rayones preexistentes</li>
+          <li>Planillas manuales y cuadernos que se pierden o manchan</li>
+          <li>Falta de comunicación sobre el estado del trabajo</li>
+          <li>Cero seguimiento para mantenimientos periódicos</li>
         </ul>
       </div>
       <div class="comp-card after">
         <span class="comp-tag">Con Detallarg</span>
-        <h3>Orden y respaldo</h3>
+        <h3>Control, respaldo y fidelización</h3>
         <ul>
-          <li>Check-in con fotos y firma digital previa del cliente</li>
-          <li>Historial ordenado por patente, siempre a mano</li>
-          <li>Avisos automáticos directo al WhatsApp del cliente</li>
-          <li>Recordatorios automáticos para el próximo mantenimiento</li>
+          <li>Check-in con fotos HD y firma digital previa del cliente</li>
+          <li>Historial centralizado por patente accesible al instante</li>
+          <li>Notificaciones automáticas del avance por WhatsApp</li>
+          <li>Recordatorios programados para futuros tratamientos</li>
         </ul>
       </div>
     </div>
@@ -318,15 +289,15 @@
 <section id="funciones" class="band" data-theme="dark">
   <div class="container">
     <div class="section-title reveal">
-      <h2>Todo lo que tu taller necesita, explicado en tu bolsillo</h2>
-      <p>Cada pantalla resuelve un problema real de operar un taller de detailing en Argentina.</p>
+      <h2>Módulos diseñados para la dinámica real del taller</h2>
+      <p>Herramientas especializadas para optimizar cada etapa del proceso de detallado.</p>
     </div>
 
     <div class="feature-row">
       <div class="feature-text reveal">
-        <span class="feature-index">01 — Check-in</span>
-        <h3>Un mapa de daños antes de tocar el auto</h3>
-        <p>Fotos del estado del vehículo y firma de conformidad en pantalla antes de arrancar. Ese rayón que "no estaba" queda documentado, con hora y firma, desde el minuto uno.</p>
+        <span class="feature-index">01 — Check-in Digital</span>
+        <h3>Mapeo integral de daños previo al servicio</h3>
+        <p>Documentá visualmente cada panel antes de comenzar. Con firma de conformidad legal y registro fotográfico respaldado en la nube para una protección total contra reclamos.</p>
       </div>
       <div class="feature-visual">
         <div class="iphone fall">
@@ -349,18 +320,18 @@
 
     <div class="feature-row reverse">
       <div class="feature-text reveal">
-        <span class="feature-index">02 — Avisos</span>
-        <h3>El cliente se entera sin que vos llames</h3>
-        <p>"Vehículo recibido", "en curado", "listo para retirar" — un click en el sistema y el mensaje sale solo al WhatsApp del cliente, con tu firma de taller.</p>
+        <span class="feature-index">02 — Automatización</span>
+        <h3>Actualizaciones automáticas vía WhatsApp</h3>
+        <p>Mantené al cliente informado en tiempo real con cambios de estado: "Vehículo recibido", "Proceso de corrección", "En curado" y "Listo para entrega".</p>
       </div>
       <div class="feature-visual">
         <div class="iphone fall">
           <div class="iphone-screen">
             <div class="iphone-status"><span>11:02</span><span>WhatsApp</span></div>
             <div class="scr-chat">
-              <div class="bubble">Tu Corolla ya está en curado ✨<span class="t">Detallarg · 11:02</span></div>
-              <div class="bubble">Ceramic coating aplicado, faltan 3 hs de secado<span class="t">Detallarg · 13:40</span></div>
-              <div class="bubble me">Listo para retirar 🚗 Te esperamos hasta las 19 hs<span class="t">Detallarg · 17:05</span></div>
+              <div class="bubble">Tu Corolla ya está en proceso de curado ✨<span class="t">Detallarg · 11:02</span></div>
+              <div class="bubble">Ceramic coating aplicado, tiempo de secado restante: 3 hs<span class="t">Detallarg · 13:40</span></div>
+              <div class="bubble me">Vehículo listo para retirar 🚗 Te esperamos hasta las 19 hs<span class="t">Detallarg · 17:05</span></div>
             </div>
           </div>
         </div>
@@ -369,9 +340,9 @@
 
     <div class="feature-row">
       <div class="feature-text reveal">
-        <span class="feature-index">03 — Agenda</span>
-        <h3>Turnos que respetan los tiempos de curado</h3>
-        <p>Planificá por cabina y considerá el tiempo de curado real de cerámicos, acrílicos y PPF, para no comprometer un box que todavía está secando.</p>
+        <span class="feature-index">03 — Agenda de Cabinas</span>
+        <h3>Planificación técnica considerando curados</h3>
+        <p>Organizá turnos por box de trabajo optimizando los tiempos reales de secado para cerámicos, selladores y PPF sin saturar la capacidad del taller.</p>
       </div>
       <div class="feature-visual">
         <div class="iphone fall">
@@ -393,9 +364,9 @@
 
     <div class="feature-row reverse">
       <div class="feature-text reveal">
-        <span class="feature-index">04 — Presupuestos</span>
-        <h3>Un presupuesto profesional en menos de un minuto</h3>
-        <p>Armá el detalle con tus paquetes de tratamientos y mandalo por chat en PDF. Primera impresión prolija, sin escribir todo a mano cada vez.</p>
+        <span class="feature-index">04 — Presupuestación</span>
+        <h3>Cotizaciones estandarizadas en segundos</h3>
+        <p>Generá presupuestos profesionales en PDF con tu catálogo de paquetes y envialos al instante para agilizar aprobaciones.</p>
       </div>
       <div class="feature-visual">
         <div class="iphone fall">
@@ -403,8 +374,8 @@
             <div class="iphone-status"><span>16:20</span><span>Presupuesto</span></div>
             <div class="scr-budget" style="text-align:left;">
               <div class="line"><span>Lavado detallado</span><span>$18.000</span></div>
-              <div class="line"><span>Pulido 2 etapas</span><span>$40.000</span></div>
-              <div class="line"><span>Ceramic coating 1 año</span><span>$65.000</span></div>
+              <div class="line"><span>Corrección 2 etapas</span><span>$40.000</span></div>
+              <div class="line"><span>Sellado Cerámico 1 año</span><span>$65.000</span></div>
               <div class="total"><span>Total</span><span style="color:var(--accent);">$123.000</span></div>
             </div>
           </div>
@@ -415,13 +386,13 @@
     <div class="mini-grid reveal">
       <div class="mini-card">
         <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-        <h4>Garantías digitales</h4>
-        <p>Certificado con el producto aplicado y recomendaciones de mantenimiento, con QR para reclamar cobertura.</p>
+        <h4>Garantías digitales QR</h4>
+        <p>Certificados técnicos con especificaciones del producto aplicado y cronograma de mantenimiento oficial.</p>
       </div>
       <div class="mini-card">
         <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
-        <h4>Costos e insumos</h4>
-        <p>Medí el gasto en pulimentos y coatings por trabajo para conocer tu margen real por vehículo.</p>
+        <h4>Costos y consumos</h4>
+        <p>Control exacto de insumos y productos por vehículo para calcular tu margen neto por trabajo.</p>
       </div>
     </div>
   </div>
@@ -431,21 +402,21 @@
 <section class="band tight" data-theme="light">
   <div class="container">
     <div class="calculator-box reveal">
-      <h2>Calculá el retorno de tu inversión</h2>
-      <p>Mirá cuánto dinero extra podés generar recuperando clientes para mantenimiento y evitando discusiones por rayones preexistentes.</p>
+      <h2>Calculá el retorno estimado de tu taller</h2>
+      <p>Descubrí cuánto capital extra podés generar recuperando clientes para mantenimiento periódico y previniendo pérdidas por reclamos.</p>
       <div class="calc-controls">
         <div class="calc-input-group">
-          <label for="autos-slider">Autos procesados por mes: <span id="autos-val" style="color:var(--text);font-weight:700;">15</span></label>
+          <label for="autos-slider">Autos atendidos por mes: <span id="autos-val" style="color:var(--text);font-weight:700;">15</span></label>
           <input type="range" min="5" max="60" value="15" class="calc-slider" id="autos-slider" oninput="updateCalc()">
         </div>
         <div class="calc-input-group">
-          <label for="precio-slider">Valor promedio por trabajo ($): <span id="precio-val" style="color:var(--text);font-weight:700;">$60.000</span></label>
+          <label for="precio-slider">Ticket promedio por trabajo ($): <span id="precio-val" style="color:var(--text);font-weight:700;">$60.000</span></label>
           <input type="range" min="15000" max="250000" value="60000" step="5000" class="calc-slider" id="precio-slider" oninput="updateCalc()">
         </div>
       </div>
-      <p style="font-size:0.85rem;color:var(--text-muted);text-transform:uppercase;font-family:var(--font-mono);">Ingreso estimado extra por año</p>
+      <p style="font-size:0.85rem;color:var(--text-muted);text-transform:uppercase;font-family:var(--font-mono);">Facturación extra proyectada al año</p>
       <div class="calc-result-number" id="roi-result">+$1.296.000</div>
-      <p class="calc-note">*Estimación ilustrativa a partir de los valores que cargaste arriba, no un dato medido sobre talleres reales todavía.</p>
+      <p class="calc-note">*Proyección basada en un 20% de tasa de retorno para servicios de mantenimiento/refuerzo valorados en un 60% del ticket promedio.</p>
     </div>
   </div>
 </section>
@@ -454,8 +425,8 @@
 <section id="calendario" class="band" data-theme="dark">
   <div class="container">
     <div class="section-title reveal">
-      <h2>Así se ve tu semana en el CRM</h2>
-      <p>Cada turno queda con vehículo, tratamiento y cabina asignada. Sin cuadernos, sin superposiciones.</p>
+      <h2>Control total sobre tu flujo de trabajo</h2>
+      <p>Visualizá tu semana operativa por cabina, operario y tratamiento asignado sin superposiciones.</p>
     </div>
     <div class="crm-panel reveal">
       <div class="crm-topbar">
@@ -496,24 +467,24 @@
 <section id="como-funciona" class="band" data-theme="light">
   <div class="container">
     <div class="section-title reveal">
-      <h2>Implementación en 3 pasos</h2>
-      <p>Sin instalaciones. Abrís el navegador y arrancás en 5 minutos.</p>
+      <h2>Implementación inmediata en 3 pasos</h2>
+      <p>Empezá a operar hoy mismo desde cualquier dispositivo sin procesos de instalación engorrosos.</p>
     </div>
     <div class="steps-grid reveal">
       <div class="step-card">
         <div class="step-num">01</div>
-        <h3>Ingreso del vehículo</h3>
-        <p>Cargás la patente, sacás fotos del estado del auto y hacés firmar la conformidad al cliente.</p>
+        <h3>Recepción y Check-in</h3>
+        <p>Registrá el dominio, tomá las fotos de estado y formalizá la conformidad digital al instante.</p>
       </div>
       <div class="step-card">
         <div class="step-num">02</div>
-        <h3>Proceso de trabajo</h3>
-        <p>Avanzás los estados del servicio y el sistema le avisa el progreso al cliente.</p>
+        <h3>Gestión del Tratamiento</h3>
+        <p>Monitoreá los estados de trabajo y mantené informado al cliente de forma automatizada.</p>
       </div>
       <div class="step-card">
         <div class="step-num">03</div>
-        <h3>Entrega y fidelización</h3>
-        <p>Cobrás, mandás la garantía digital y la app programa el recordatorio del próximo mantenimiento.</p>
+        <h3>Entrega y Retención</h3>
+        <p>Emití el certificado de garantía digital y programá los avisos automáticos de mantenimiento.</p>
       </div>
     </div>
   </div>
@@ -523,27 +494,27 @@
 <section id="equipo" class="band" data-theme="dark">
   <div class="container">
     <div class="section-title reveal">
-      <h2>Quiénes lo hacen</h2>
-      <p>Un equipo que conoce el taller tanto como el software.</p>
+      <h2>Liderazgo y Ejecución</h2>
+      <p>Un equipo interdisciplinario que combina visión de negocio, ingeniería de software y conocimiento profundo del detailing.</p>
     </div>
     <div class="founders-grid reveal">
       <div class="founder-card">
         <div class="founder-icon"><i class="fa-solid fa-spray-can-sparkles" aria-hidden="true"></i></div>
         <h3>Augusto Di Paolo</h3>
-        <span class="founder-role">CEO · Fundador Comercial</span>
-        <p>Hace años que hace detailing de forma profesional, con el equipamiento y la técnica de taller real. Conoce a más de 100 talleres y detailers independientes en el país.</p>
+        <span class="founder-role">CEO · Co-Founder</span>
+        <p>Estudiante avanzado de Administración de Empresas con amplia trayectoria práctica en el detailing profesional. Conoce a fondo la dinámica del box, conectando con más de 100 talleres y detailers en el país.</p>
       </div>
       <div class="founder-card">
         <div class="founder-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></div>
         <h3>Martino Alfonso</h3>
-        <span class="founder-role">CPO · Fundador de Producto</span>
-        <p>Administración de empresas. Piensa el modelo de planes, precios y la relación con cada taller para que la herramienta se pague sola.</p>
+        <span class="founder-role">CPO · Co-Founder</span>
+        <p>Formación en Administración de Empresas enfocada en desarrollo de producto y estrategia de negocio. Especialista en optimización de procesos y modelos SaaS escalables para que la plataforma genere ROI inmediato.</p>
       </div>
       <div class="founder-card">
         <div class="founder-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></div>
         <h3>Nicolás Martínez</h3>
-        <span class="founder-role">CTO · Fundador Tecnológico</span>
-        <p>Lidera el desarrollo de la plataforma: de la idea al Figma, del Figma al producto que un taller usa todos los días.</p>
+        <span class="founder-role">CTO · Co-Founder</span>
+        <p>Estudiante avanzado de Ingeniería en Sistemas y desarrollador con sólida experiencia en proyectos de software para clientes internacionales. Lidera la arquitectura técnica, seguridad y escalabilidad de la plataforma.</p>
       </div>
     </div>
   </div>
@@ -553,58 +524,58 @@
 <section id="precios" class="band" data-theme="light">
   <div class="container">
     <div class="section-title reveal">
-      <h2>Planes en pesos, sin sorpresas</h2>
-      <p>Empezás gratis 14 días con el plan Pro completo. Después elegís el plan que se ajuste a tu taller.</p>
+      <h2>Planes transparentes en pesos argentinos</h2>
+      <p>Comenzá con <strong>1 mes gratis del plan Taller Pro completo</strong>. Sin sorpresas ni letra chica.</p>
     </div>
     <div class="pricing-grid reveal">
       <div class="price-card">
         <div>
           <h3>Independiente</h3>
-          <p class="desc">Para el detailer que trabaja solo, a domicilio o en su garage.</p>
+          <p class="desc">Para el detailer que opera de forma autónoma o en garage propio.</p>
           <div class="price">$45.000<span>/mes</span></div>
           <ul class="price-features">
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 30 autos por mes</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 30 vehículos por mes</li>
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Check-in fotográfico ilimitado</li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Declaración de conformidad</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Declaración y firma de conformidad</li>
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Fichas de clientes y vehículos</li>
           </ul>
         </div>
-        <a href="https://wa.me/5491112345678?text=Quiero%20el%20plan%20Independiente%20de%20Detallarg" class="btn-secondary" style="text-align:center;margin-top:16px;">Empezar prueba gratis</a>
+        <a href="https://wa.me/5491112345678?text=Quiero%20comenzar%20mi%20mes%20gratis%20en%20Detallarg%20(Plan%20Independiente)" class="btn-secondary" style="text-align:center;margin-top:16px;">Comenzar 1 mes gratis</a>
       </div>
 
       <div class="price-card featured">
-        <span class="price-badge">Más elegido</span>
+        <span class="price-badge">1 Mes Gratis Pro</span>
         <div>
           <h3>Taller Pro</h3>
-          <p class="desc">Para talleres con equipo de trabajo y varias cabinas.</p>
+          <p class="desc">Para centros de estética automotriz con múltiples cabinas y equipo.</p>
           <div class="price">$95.000<span>/mes</span></div>
           <ul class="price-features">
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Autos y operarios ilimitados</li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Mapa de daños completo</li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Avisos automáticos por WhatsApp</li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Presupuestador y garantías QR</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Vehículos y operarios ilimitados</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Check-in y mapeo de daños avanzado</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Notificaciones automáticas WhatsApp</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Presupuestos y garantías QR</li>
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Control de costos e insumos</li>
           </ul>
         </div>
-        <a href="https://wa.me/5491112345678?text=Quiero%20el%20plan%20Taller%20Pro%20de%20Detallarg" class="btn-primary" style="text-align:center;margin-top:16px;">Probar 14 días gratis</a>
+        <a href="https://wa.me/5491112345678?text=Quiero%20activar%20mi%20mes%20gratis%20del%20Plan%20Taller%20Pro" class="btn-primary" style="text-align:center;margin-top:16px;">Activar 1 mes gratis Pro</a>
       </div>
 
       <div class="price-card">
         <div>
           <h3>Intermedio</h3>
-          <p class="desc">Para el taller que ya suma un par de operarios.</p>
+          <p class="desc">Para talleres en crecimiento que incorporan equipo técnico.</p>
           <div class="price">$68.000<span>/mes</span></div>
           <ul class="price-features">
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 80 autos por mes</li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 3 operarios</li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Agenda multi-cabina</li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Avisos automáticos por WhatsApp</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 80 vehículos por mes</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 3 operarios simultáneos</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Agenda de turnos multi-cabina</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i>Notificaciones automáticas WhatsApp</li>
           </ul>
         </div>
-        <a href="https://wa.me/5491112345678?text=Quiero%20el%20plan%20Intermedio%20de%20Detallarg" class="btn-secondary" style="text-align:center;margin-top:16px;">Empezar prueba gratis</a>
+        <a href="https://wa.me/5491112345678?text=Quiero%20comenzar%20mi%20mes%20gratis%20en%20Detallarg%20(Plan%20Intermedio)" class="btn-secondary" style="text-align:center;margin-top:16px;">Comenzar 1 mes gratis</a>
       </div>
     </div>
-    <p class="pricing-note reveal" style="margin-top:26px;">Precios de referencia, sujetos a confirmación antes del lanzamiento.</p>
+    <p class="pricing-note reveal" style="margin-top:26px;">Primeros 30 días de prueba bonificados en su totalidad para cualquier plan.</p>
   </div>
 </section>
 
@@ -612,9 +583,9 @@
 <section id="app-nativa" class="band tight" data-theme="dark">
   <div class="container">
     <div class="section-title reveal">
-      <span class="eyebrow">Próximo lanzamiento</span>
-      <h2>La app nativa ya está en desarrollo</h2>
-      <p>Hoy Detallarg funciona perfecto desde el navegador de tu celular. El siguiente paso es llevarlo a Play Store y App Store, con cámara más rápida para el check-in fotográfico, notificaciones push y mejor uso en el box del taller.</p>
+      <span class="eyebrow">Ecosistema Mobile</span>
+      <h2>Próximamente en App Store y Google Play</h2>
+      <p>Operá hoy mismo desde la web y sumate al acceso prioritario de las aplicaciones nativas para iOS y Android, con captura fotográfica offline, notificaciones push y máxima velocidad en cabina.</p>
     </div>
     <div class="store-badges reveal">
       <span class="store-badge" aria-disabled="true">
@@ -626,7 +597,7 @@
         <span class="label"><small>Próximamente en</small>Google Play</span>
       </span>
     </div>
-    <p class="store-note reveal">¿Querés ser de los primeros en probarla apenas salga? <a href="#contacto">Sumate a la lista de espera →</a></p>
+    <p class="store-note reveal">¿Querés acceso prioritario apenas publiquemos? <a href="#contacto">Registrate en la lista de espera →</a></p>
   </div>
 </section>
 
@@ -636,24 +607,20 @@
     <div class="section-title reveal"><h2>Preguntas frecuentes</h2></div>
     <div style="max-width:800px;margin:0 auto;" class="reveal">
       <details class="faq-item" open>
-        <summary>¿Ya puedo empezar a usar Detallarg en mi taller?</summary>
-        <div class="faq-answer">Todavía no abrimos al público general. Hoy damos acceso anticipado curado, coordinado por WhatsApp, mientras terminamos de pulir el lanzamiento. Si querés ser de los primeros talleres en probarlo, escribinos o sumate a la lista de espera.</div>
+        <summary>¿Cómo funciona la prueba gratuita de 1 mes?</summary>
+        <div class="faq-answer">Tenés 30 días de acceso total y sin costo al plan Taller Pro completo para usarlo en tu día a día con vehículos reales. Sin tarjetas de crédito ni compromisos.</div>
       </details>
       <details class="faq-item">
-        <summary>¿Necesito descargar alguna app de la Play Store o App Store?</summary>
-        <div class="faq-answer">Todavía no. Hoy Detallarg se usa desde el navegador de cualquier celular, tablet o computadora, y podés agregar un ícono en la pantalla de inicio para abrirlo como una app. Ya estamos desarrollando las apps nativas para Android y iOS, que van a ser nuestro próximo gran lanzamiento.</div>
+        <summary>¿Necesito descargar alguna app para empezar?</summary>
+        <div class="faq-answer">No hace falta. Podés usar Detallarg de inmediato desde el navegador de cualquier celular, tablet o PC, o añadirlo a la pantalla de inicio como PWA. Las apps nativas para iOS y Android estarán disponibles muy pronto en las tiendas oficiales.</div>
       </details>
       <details class="faq-item">
-        <summary>¿Por qué los precios están en pesos y no en dólares?</summary>
-        <div class="faq-answer">Porque así vas a pagar vos: en pesos, sin depender del dólar del día. Los planes se van a ir ajustando según la economía argentina, pero siempre vas a ver el precio final claro, sin sorpresas.</div>
+        <summary>¿Por qué los precios están en pesos argentinos?</summary>
+        <div class="faq-answer">Porque apostamos a la industria nacional. Pagás en pesos con valores transparentes, sin recargos por cotizaciones variables ni sorpresas cambiarias.</div>
       </details>
       <details class="faq-item">
         <summary>¿Cómo firma la conformidad el cliente si no está en el taller?</summary>
-        <div class="faq-answer">Le mandás un link por WhatsApp con el informe fotográfico inicial para que lo revise y lo apruebe desde su propio celular.</div>
-      </details>
-      <details class="faq-item">
-        <summary>¿Puedo probar la plataforma antes de pagar?</summary>
-        <div class="faq-answer">Sí, 14 días de prueba gratis con acceso al plan Pro completo, para que lo uses con autos reales en tu taller.</div>
+        <div class="faq-answer">Le enviás un enlace directo por WhatsApp con el reporte fotográfico inicial para que lo revise y lo apruebe digitalmente desde su propio teléfono.</div>
       </details>
     </div>
   </div>
@@ -663,39 +630,38 @@
 <section id="contacto" class="band" data-theme="dark">
   <div class="container">
     <div class="section-title reveal">
-      <h2>Hablemos</h2>
-      <p>Para demos, consultas comerciales o soporte técnico, elegí el canal que prefieras.</p>
+      <h2>Iniciá con Detallarg</h2>
+      <p>Activá tu mes de prueba o contactanos para una atención personalizada.</p>
     </div>
     <div class="contact-grid reveal">
       <div class="contact-card">
         <div class="ic"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></div>
-        <span class="pending-tag">A definir</span>
-        <h3>WhatsApp</h3>
-        <p>Respuesta rápida para demos y consultas del día a día. Número en camino.</p>
-        <a class="mail" href="https://wa.me/5491112345678?text=Hola!%20Quiero%20más%20información%20de%20Detallarg" target="_blank" rel="noopener">Escribir por WhatsApp →</a>
+        <h3>Atención Comercial</h3>
+        <p>Escribinos directo para activar tu mes gratis o despejar dudas operativas.</p>
+        <a class="mail" href="https://wa.me/5491112345678?text=Hola!%20Quiero%20activar%20mi%20mes%20gratis%20en%20Detallarg" target="_blank" rel="noopener">Escribir por WhatsApp →</a>
       </div>
       <div class="contact-card">
         <div class="ic"><i class="fa-solid fa-envelope" aria-hidden="true"></i></div>
-        <h3>Contacto general</h3>
-        <p>Consultas comerciales, demos y alianzas con talleres.</p>
+        <h3>Contacto General</h3>
+        <p>Consultas comerciales, acuerdos institucionales y alianzas.</p>
         <a class="mail" href="mailto:contacto@detallarg.com">contacto@detallarg.com</a>
       </div>
       <div class="contact-card support">
         <div class="ic"><i class="fa-solid fa-headset" aria-hidden="true"></i></div>
-        <h3>Soporte técnico</h3>
-        <p>¿Algo no anda como debería? Nuestro equipo te responde.</p>
+        <h3>Soporte Técnico</h3>
+        <p>Asistencia técnica dedicada para talleres adheridos a la plataforma.</p>
         <a class="mail" href="mailto:soporte@detallarg.com">soporte@detallarg.com</a>
       </div>
       <div class="contact-card">
         <div class="ic"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></div>
-        <h3>Lista de espera</h3>
-        <p>Todavía no lanzamos al público. Dejanos tu mail y te avisamos apenas abramos la plataforma, y cuando salgan las apps de Play Store y App Store.</p>
+        <h3>Lanzamiento de Apps</h3>
+        <p>Dejanos tu email para notificarte el lanzamiento de las aplicaciones en Play Store y App Store.</p>
         <form class="waitlist-form" onsubmit="joinWaitlist(event)">
           <label for="waitlist-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Tu email</label>
-          <input type="email" id="waitlist-email" required placeholder="tu@mail.com" autocomplete="email">
-          <button type="submit" class="btn-primary">Sumarme</button>
+          <input type="email" id="waitlist-email" required placeholder="tu@email.com" autocomplete="email">
+          <button type="submit" class="btn-primary">Avisarme</button>
         </form>
-        <p class="waitlist-note">Abre tu cliente de mail para confirmar, sin pasar por ningún servidor nuestro.</p>
+        <p class="waitlist-note">Sin spam: únicamente novedades de lanzamientos y actualizaciones.</p>
       </div>
     </div>
   </div>
@@ -714,12 +680,12 @@
         <a href="privacidad.html">Política de privacidad</a>
       </div>
     </div>
-    <div class="footer-legal">© 2026 DETALLARG.COM — Hecho en Argentina para la industria del detailing.</div>
+    <div class="footer-legal">© 2026 DETALLARG.COM — El software estándar para la industria del detailing en Argentina.</div>
   </div>
 </footer>
 
 <script>
-/* ---------- menú móvil ---------- */
+/* ---------- Menú Móvil ---------- */
 function toggleMenu(){
   const menu = document.getElementById('mobileMenu');
   const btn = document.querySelector('.menu-toggle');
@@ -734,35 +700,33 @@ function closeMenu(){
   document.getElementById('menuIcon').className = 'fa-solid fa-bars';
 }
 
-/* ---------- calculadora ---------- */
+/* ---------- Calculadora ROI ---------- */
 function updateCalc(){
   const autos = parseInt(document.getElementById('autos-slider').value, 10);
   const precio = parseInt(document.getElementById('precio-slider').value, 10);
   document.getElementById('autos-val').innerText = autos;
   document.getElementById('precio-val').innerText = '$' + precio.toLocaleString('es-AR');
+  
+  // 20% retención recurrente * ticket promedio de mantenimiento (60% del principal)
   const retorno = Math.round(autos * 12 * 0.20 * (precio * 0.6));
   document.getElementById('roi-result').innerText = '+$' + retorno.toLocaleString('es-AR');
 }
-/* corre una vez al cargar para que el número inicial siempre coincida con la fórmula,
-   sin importar qué valores default tengan los sliders en el HTML */
 updateCalc();
 
-/* ---------- lista de espera (sin backend: arma un mailto) ---------- */
+/* ---------- Waitlist Form ---------- */
 function joinWaitlist(e){
   e.preventDefault();
   const emailInput = document.getElementById('waitlist-email');
   const email = emailInput.value.trim();
   if(!email) return;
-  const subject = encodeURIComponent('Quiero sumarme a la lista de espera de Detallarg');
-  const body = encodeURIComponent('Hola! Quiero anotarme a la lista de espera de Detallarg.\n\nMi mail de contacto: ' + email);
+  const subject = encodeURIComponent('Interés en App Store / Play Store - Detallarg');
+  const body = encodeURIComponent('Hola equipo de Detallarg,\n\nQuiero recibir novedades y acceso prioritario al lanzamiento de las apps móviles.\n\nEmail: ' + email);
   trackEvent('waitlist_submit', { method: 'mailto' });
   window.location.href = 'mailto:contacto@detallarg.com?subject=' + subject + '&body=' + body;
   emailInput.value = '';
 }
 
-/* ---------- tracking de conversión (GA4) ----------
-   Mide qué CTA engancha más mientras el sitio está en fase de validación.
-   No requiere backend: usa el mismo gtag que ya carga Analytics. */
+/* ---------- GA4 Tracking ---------- */
 function trackEvent(name, params){
   if (typeof gtag === 'function') gtag('event', name, params || {});
 }
@@ -779,15 +743,13 @@ document.querySelectorAll('a[href="#funciones"]').forEach(a => {
   a.addEventListener('click', () => trackEvent('explore_features_click', {}));
 });
 
-/* ---------- número de WhatsApp centralizado ----------
-   Para actualizar el número real, cambiá SOLO esta constante:
-   todos los links wa.me del sitio (flotante, CTAs, precios, contacto) se actualizan solos. */
+/* ---------- Número de WhatsApp Centralizado ---------- */
 const WA_NUMBER = '5491112345678';
 document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
   a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/' + WA_NUMBER);
 });
 
-/* ---------- loader tipo "recarga" (solo la primera vez por sesión) ---------- */
+/* ---------- Loader ---------- */
 const alreadyLoaded = sessionStorage.getItem('detallarg_loaded');
 if (alreadyLoaded) {
   document.getElementById('loader').classList.add('skip');
@@ -800,7 +762,6 @@ if (alreadyLoaded) {
       sessionStorage.setItem('detallarg_loaded', '1');
     }, 2100);
   });
-  /* fallback por si 'load' tarda o ya se disparó */
   setTimeout(() => {
     const l = document.getElementById('loader');
     if(l && !l.classList.contains('hide')) l.classList.add('hide');
@@ -809,7 +770,7 @@ if (alreadyLoaded) {
   }, 3200);
 }
 
-/* ---------- oscilación de tema (día/noche tipo Porsche) ---------- */
+/* ---------- Observer Tema Día / Noche ---------- */
 const themeSections = document.querySelectorAll('[data-theme]');
 const themeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -821,7 +782,7 @@ const themeObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
 themeSections.forEach(s => themeObserver.observe(s));
 
-/* ---------- reveal / fall on scroll ---------- */
+/* ---------- Scroll Reveal ---------- */
 const revealEls = document.querySelectorAll('.reveal, .fall');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
