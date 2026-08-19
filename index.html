@@ -178,11 +178,11 @@
   <a href="#precios" class="btn-primary" onclick="closeMenu()">1 Mes Gratis Pro</a>
 </div>
 
-<main><!-- ============ HERO: TALLER ============ -->
+<!-- ============ HERO: TALLER ============ -->
 <section class="hero-stage" data-theme="dark">
   <div class="stage-ceiling" aria-hidden="true"></div>
 
-  <!-- Parrilla Modular LED de Detailing (Hexágonos Perfectos) -->
+  <!-- Luces Hexagonales LED Simétricas -->
   <div class="hex-rig" aria-hidden="true">
     <svg viewBox="0 0 880 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -197,16 +197,17 @@
         </filter>
       </defs>
 
-      <!-- Conectores y tubos base -->
+      <!-- Fila 1 -->
       <g stroke="rgba(192, 201, 202, 0.25)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
-        <!-- Fila 1 -->
         <polygon points="120,50 150,0 210,0 240,50 210,100 150,100" />
         <polygon points="260,50 290,0 350,0 380,50 350,100 290,100" />
         <polygon points="400,50 430,0 490,0 520,50 490,100 430,100" />
         <polygon points="540,50 570,0 630,0 660,50 630,100 570,100" />
         <polygon points="680,50 710,0 770,0 800,50 770,100 710,100" />
+      </g>
 
-        <!-- Fila 2 (Intercalada perfecta) -->
+      <!-- Fila 2 -->
+      <g stroke="rgba(192, 201, 202, 0.25)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
         <polygon points="50,140 80,90 140,90 170,140 140,190 80,190" />
         <polygon points="190,140 220,90 280,90 310,140 280,190 220,190" />
         <polygon points="330,140 360,90 420,90 450,140 420,190 360,190" />
@@ -215,8 +216,8 @@
         <polygon points="750,140 780,90 840,90 870,140 840,190 780,190" />
       </g>
 
-      <!-- Tubos LED activos de alta potencia -->
-      <g class="lit-grid" stroke="#529CC1" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" filter="url(#hex-led-glow)">
+      <!-- Luces LED Encendidas con Glow -->
+      <g stroke="#529CC1" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" filter="url(#hex-led-glow)">
         <polygon points="260,50 290,0 350,0 380,50 350,100 290,100" />
         <polygon points="400,50 430,0 490,0 520,50 490,100 430,100" />
         <polygon points="540,50 570,0 630,0 660,50 630,100 570,100" />
@@ -227,8 +228,6 @@
       </g>
     </svg>
   </div>
-
-  <div class="light-cone" aria-hidden="true"></div>
 
   <!-- Contenido Central -->
   <div class="hero-content">
@@ -245,8 +244,6 @@
       Plan Taller Pro bonificado 100% durante los primeros 30 días · Sin tarjeta
     </p>
   </div>
-
-  <div class="stage-floor"><div class="floor-glow"></div></div>
 </section>
   
 <!-- ============ COMPARATIVA ============ -->
