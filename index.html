@@ -178,62 +178,68 @@
   <a href="#precios" class="btn-primary" onclick="closeMenu()">1 Mes Gratis Pro</a>
 </div>
 
-<!-- ============ HERO: TALLER ============ -->
+<main>
+
+<!-- ============ HERO: ESTUDIO AUTOMOTRIZ 3D ============ -->
 <section class="hero-stage" data-theme="dark">
   <div class="stage-ceiling" aria-hidden="true"></div>
 
-  <!-- Luces Hexagonales LED Simétricas -->
-  <div class="hex-rig" aria-hidden="true">
-    <svg viewBox="0 0 880 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 1. Parrilla Hexagonal 3D en el Techo -->
+  <div class="hex-rig-3d" aria-hidden="true">
+    <svg viewBox="0 0 760 220" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <filter id="hex-led-glow" x="-20%" y="-20%" width="140%" height="140%">
+        <filter id="neon-glow-hero" x="-30%" y="-30%" width="160%" height="160%">
           <feGaussianBlur stdDeviation="3" result="blur1" />
-          <feGaussianBlur stdDeviation="7" result="blur2" />
+          <feGaussianBlur stdDeviation="8" result="blur2" />
+          <feGaussianBlur stdDeviation="16" result="blur3" />
           <feMerge>
+            <feMergeNode in="blur3" />
             <feMergeNode in="blur2" />
             <feMergeNode in="blur1" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
       </defs>
-
-      <!-- Fila 1 -->
-      <g stroke="rgba(192, 201, 202, 0.25)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
-        <polygon points="120,50 150,0 210,0 240,50 210,100 150,100" />
-        <polygon points="260,50 290,0 350,0 380,50 350,100 290,100" />
-        <polygon points="400,50 430,0 490,0 520,50 490,100 430,100" />
-        <polygon points="540,50 570,0 630,0 660,50 630,100 570,100" />
-        <polygon points="680,50 710,0 770,0 800,50 770,100 710,100" />
+      
+      <g class="grid-tubes" filter="url(#neon-glow-hero)">
+        <!-- Fila 1 -->
+        <polygon points="146,55 168,17 212,17 234,55 212,93 168,93" />
+        <polygon points="278,55 300,17 344,17 366,55 344,93 300,93" />
+        <polygon points="410,55 432,17 476,17 498,55 476,93 432,93" />
+        <polygon points="542,55 564,17 608,17 630,55 608,93 564,93" />
+        
+        <!-- Fila 2 (Centro) -->
+        <polygon points="80,93 102,55 146,55 168,93 146,131 102,131" />
+        <polygon points="212,93 234,55 278,55 300,93 278,131 234,131" />
+        <polygon points="344,93 366,55 410,55 432,93 410,131 366,131" class="lit-core" />
+        <polygon points="476,93 498,55 542,55 564,93 542,131 498,131" />
+        <polygon points="608,93 630,55 674,55 696,93 674,131 630,131" />
+        
+        <!-- Fila 3 -->
+        <polygon points="146,131 168,93 212,93 234,131 212,169 168,169" />
+        <polygon points="278,131 300,93 344,93 366,131 344,169 300,169" />
+        <polygon points="410,131 432,93 476,93 498,131 476,169 432,169" />
+        <polygon points="542,131 564,93 608,93 630,131 608,169 564,169" />
       </g>
-
-      <!-- Fila 2 -->
-      <g stroke="rgba(192, 201, 202, 0.25)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
-        <polygon points="50,140 80,90 140,90 170,140 140,190 80,190" />
-        <polygon points="190,140 220,90 280,90 310,140 280,190 220,190" />
-        <polygon points="330,140 360,90 420,90 450,140 420,190 360,190" />
-        <polygon points="470,140 500,90 560,90 590,140 560,190 500,190" />
-        <polygon points="610,140 640,90 700,90 730,140 700,190 640,190" />
-        <polygon points="750,140 780,90 840,90 870,140 840,190 780,190" />
-      </g>
-
-      <!-- Luces LED Encendidas con Glow -->
-      <g stroke="#529CC1" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" filter="url(#hex-led-glow)">
-        <polygon points="260,50 290,0 350,0 380,50 350,100 290,100" />
-        <polygon points="400,50 430,0 490,0 520,50 490,100 430,100" />
-        <polygon points="540,50 570,0 630,0 660,50 630,100 570,100" />
-        <polygon points="190,140 220,90 280,90 310,140 280,190 220,190" />
-        <polygon points="330,140 360,90 420,90 450,140 420,190 360,190" stroke="#FFFFFF" stroke-width="3.5" />
-        <polygon points="470,140 500,90 560,90 590,140 560,190 500,190" stroke="#FFFFFF" stroke-width="3.5" />
-        <polygon points="610,140 640,90 700,90 730,140 700,190 640,190" />
-      </g>
+      
+      <!-- Tirantes de suspensión metálicos -->
+      <line x1="190" y1="0" x2="190" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
+      <line x1="322" y1="0" x2="322" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
+      <line x1="454" y1="0" x2="454" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
+      <line x1="586" y1="0" x2="586" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
     </svg>
   </div>
 
-  <!-- Contenido Central -->
-  <div class="hero-content">
+  <!-- 2. Cono de iluminación cenital -->
+  <div class="light-cone" aria-hidden="true"></div>
+
+  <!-- 3. Contenedor de Texto Dimensional apoyado en el piso -->
+  <div class="hero-floor-container">
     <span class="eyebrow">Sistema operativo para estética vehicular</span>
-    <h1>La plataforma integral para el detailing profesional</h1>
-    <p>Check-in con relevamiento fotográfico de daños, firma digital de conformidad y CRM de cabinas. Todo el flujo operativo de tu taller centralizado en un solo lugar.</p>
+    <h1 class="hero-title-3d">La plataforma integral para el detailing profesional</h1>
+    <p class="hero-description-3d">
+      Check-in con relevamiento fotográfico de daños, firma digital de conformidad y CRM de cabinas. Todo el flujo operativo de tu taller centralizado en un solo lugar.
+    </p>
     
     <div class="hero-cta">
       <a href="#precios" class="btn-primary">Comenzar 1 mes gratis</a>
@@ -244,8 +250,11 @@
       Plan Taller Pro bonificado 100% durante los primeros 30 días · Sin tarjeta
     </p>
   </div>
+
+  <!-- 4. Piso del taller con reflejo -->
+  <div class="stage-floor"><div class="floor-glow"></div></div>
 </section>
-  
+
 <!-- ============ COMPARATIVA ============ -->
 <section id="comparativa" class="band" data-theme="light">
   <div class="container">
