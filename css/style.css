@@ -347,7 +347,7 @@ body.theme-light header {
   position: relative;
   width: 100%;
   padding: 60px 0 90px;
-  background-color: #040303 !important;
+  background-color: var(--bg);
   text-align: center;
   overflow: hidden;
 }
@@ -374,6 +374,7 @@ body.theme-light header {
   text-align: center;
   max-width: 900px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .eyebrow {
@@ -410,13 +411,13 @@ body.theme-light header {
   letter-spacing: -1.2px;
   max-width: 860px;
   margin: 0 auto 20px;
-  color: #FFFFFF !important;
+  color: var(--text);
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
 }
 
 .hero-stage p {
   font-size: 1.1rem;
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
   max-width: 680px;
   margin: 0 auto 32px;
   font-weight: 400;
@@ -434,9 +435,9 @@ body.theme-light header {
 .hero-subtext {
   font-family: var(--font-mono);
   font-size: 0.74rem;
-  color: var(--text-faint) !important;
+  color: var(--text-faint);
   letter-spacing: 0.3px;
-  margin-top: 22px !important;
+  margin-top: 22px;
 }
 
 /* ============ IPHONE COMPONENT ============ */
