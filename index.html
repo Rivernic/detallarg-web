@@ -710,6 +710,15 @@
 </footer>
 
 <script>
+
+  /* ---------- Control Dinámico de Luminosidad de la Cabina ---------- */
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroHeight = document.querySelector('.hero-stage')?.offsetHeight || 700;
+  // A medida que scrolleas hacia abajo, la luz se atenúa de 1.0 a 0.2
+  const intensity = Math.max(0.2, 1 - (scrollY / (heroHeight * 0.75)));
+  document.documentElement.style.setProperty('--light-intensity', intensity.toFixed(2));
+}, { passive: true });
 /* ---------- Menú Móvil ---------- */
 function toggleMenu(){
   const menu = document.getElementById('mobileMenu');
