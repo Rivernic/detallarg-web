@@ -520,6 +520,8 @@
       <p>Comenzá con <strong>1 mes gratis del plan Taller Pro completo</strong>. Sin sorpresas ni letra chica.</p>
     </div>
     <div class="pricing-grid reveal">
+      
+      <!-- Plan Independiente -->
       <div class="price-card">
         <div>
           <h3>Independiente</h3>
@@ -532,9 +534,10 @@
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Fichas de clientes y vehículos</li>
           </ul>
         </div>
-        <a href="https://wa.me/5491112345678?text=Quiero%20comenzar%20mi%20mes%20gratis%20en%20Detallarg%20(Plan%20Independiente)" class="btn-secondary" style="text-align:center;margin-top:16px;">Comenzar 1 mes gratis</a>
+        <a href="#" class="btn-secondary mp-checkout-btn" data-plan="independiente" style="text-align:center;margin-top:16px;">Suscribirme</a>
       </div>
 
+      <!-- Plan Taller Pro (Destacado) -->
       <div class="price-card featured">
         <span class="price-badge">1 Mes Gratis Pro</span>
         <div>
@@ -549,9 +552,10 @@
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Control de costos e insumos</li>
           </ul>
         </div>
-        <a href="https://wa.me/5491112345678?text=Quiero%20activar%20mi%20mes%20gratis%20del%20Plan%20Taller%20Pro" class="btn-primary" style="text-align:center;margin-top:16px;">Activar 1 mes gratis Pro</a>
+        <a href="#" class="btn-primary mp-checkout-btn" data-plan="pro" style="text-align:center;margin-top:16px;">Activar 1 mes gratis Pro</a>
       </div>
 
+      <!-- Plan Intermedio -->
       <div class="price-card">
         <div>
           <h3>Intermedio</h3>
@@ -564,7 +568,7 @@
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Notificaciones automáticas WhatsApp</li>
           </ul>
         </div>
-        <a href="https://wa.me/5491112345678?text=Quiero%20comenzar%20mi%20mes%20gratis%20en%20Detallarg%20(Plan%20Intermedio)" class="btn-secondary" style="text-align:center;margin-top:16px;">Comenzar 1 mes gratis</a>
+        <a href="#" class="btn-secondary mp-checkout-btn" data-plan="intermedio" style="text-align:center;margin-top:16px;">Suscribirme</a>
       </div>
     </div>
     <p class="pricing-note reveal" style="margin-top:26px;">Primeros 30 días de prueba bonificados en su totalidad para cualquier plan.</p>
@@ -822,6 +826,31 @@ document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
   a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/' + WA_NUMBER);
 });
 
+  /* ---------- Configuración de Checkout / Suscripciones Mercado Pago ---------- */
+const MP_LINKS = {
+  // Pegar acá los links de suscripción mensual generados desde Mercado Pago
+  independiente: "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=TU_PLAN_ID_INDEPENDIENTE",
+  intermedio: "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=TU_PLAN_ID_INTERMEDIO",
+  pro: "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=TU_PLAN_ID_PRO"
+};
+
+document.querySelectorAll('.mp-checkout-btn').forEach(btn => {
+  const plan = btn.getAttribute('data-plan');
+  if (MP_LINKS[plan]) {
+    btn.href = MP_LINKS[plan];
+    btn.target = "_blank";
+    btn.rel = "noopener noreferrer";
+  }
+
+  // Tracking de intención de compra para Google Analytics
+  btn.addEventListener('click', () => {
+    trackEvent('begin_checkout', {
+      plan_name: plan,
+      currency: 'ARS'
+    });
+  });
+});
+  
 /* ---------- Observer Tema Día / Noche ---------- */
 const themeSections = document.querySelectorAll('[data-theme]');
 const themeObserver = new IntersectionObserver((entries) => {
