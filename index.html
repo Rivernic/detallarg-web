@@ -179,67 +179,44 @@
 </div>
 
 <main>
-
-<!-- ============ HERO: ESTUDIO AUTOMOTRIZ 3D ============ -->
+<!-- ============ HERO: TALLER (DISEÑO LIMPIO) ============ -->
 <section class="hero-stage" data-theme="dark">
   <div class="stage-ceiling" aria-hidden="true"></div>
 
-  <!-- 1. Parrilla Hexagonal 3D en el Techo -->
-  <div class="hex-rig-3d" aria-hidden="true">
-    <svg viewBox="0 0 760 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="neon-glow-hero" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="3" result="blur1" />
-          <feGaussianBlur stdDeviation="8" result="blur2" />
-          <feGaussianBlur stdDeviation="16" result="blur3" />
-          <feMerge>
-            <feMergeNode in="blur3" />
-            <feMergeNode in="blur2" />
-            <feMergeNode in="blur1" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-      
-      <g class="grid-tubes" filter="url(#neon-glow-hero)">
+  <!-- Luces hexagonales planas y nítidas -->
+  <div class="hex-rig" aria-hidden="true">
+    <svg viewBox="0 0 760 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="rgba(192, 201, 202, 0.35)" stroke-width="2.5" stroke-linejoin="round">
         <!-- Fila 1 -->
-        <polygon points="146,55 168,17 212,17 234,55 212,93 168,93" />
-        <polygon points="278,55 300,17 344,17 366,55 344,93 300,93" />
-        <polygon points="410,55 432,17 476,17 498,55 476,93 432,93" />
-        <polygon points="542,55 564,17 608,17 630,55 608,93 564,93" />
+        <polygon points="146,45 168,10 212,10 234,45 212,80 168,80" />
+        <polygon points="278,45 300,10 344,10 366,45 344,80 300,80" class="lit" />
+        <polygon points="410,45 432,10 476,10 498,45 476,80 432,80" />
+        <polygon points="542,45 564,10 608,10 630,45 608,80 564,80" class="lit" />
         
-        <!-- Fila 2 (Centro) -->
-        <polygon points="80,93 102,55 146,55 168,93 146,131 102,131" />
-        <polygon points="212,93 234,55 278,55 300,93 278,131 234,131" />
-        <polygon points="344,93 366,55 410,55 432,93 410,131 366,131" class="lit-core" />
-        <polygon points="476,93 498,55 542,55 564,93 542,131 498,131" />
-        <polygon points="608,93 630,55 674,55 696,93 674,131 630,131" />
+        <!-- Fila 2 -->
+        <polygon points="80,80 102,45 146,45 168,80 146,115 102,115" />
+        <polygon points="212,80 234,45 278,45 300,80 278,115 234,115" class="lit" />
+        <polygon points="344,80 366,45 410,45 432,80 410,115 366,115" class="lit" />
+        <polygon points="476,80 498,45 542,45 564,80 542,115 498,115" class="lit" />
+        <polygon points="608,80 630,45 674,45 696,80 674,115 630,115" />
         
         <!-- Fila 3 -->
-        <polygon points="146,131 168,93 212,93 234,131 212,169 168,169" />
-        <polygon points="278,131 300,93 344,93 366,131 344,169 300,169" />
-        <polygon points="410,131 432,93 476,93 498,131 476,169 432,169" />
-        <polygon points="542,131 564,93 608,93 630,131 608,169 564,169" />
+        <polygon points="146,115 168,80 212,80 234,115 212,150 168,150" />
+        <polygon points="278,115 300,80 344,80 366,115 344,150 300,150" class="lit" />
+        <polygon points="410,115 432,80 476,80 498,115 476,150 432,150" />
+        <polygon points="542,115 564,80 608,80 630,115 608,150 564,150" class="lit" />
       </g>
-      
-      <!-- Tirantes de suspensión -->
-      <line x1="190" y1="0" x2="190" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
-      <line x1="322" y1="0" x2="322" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
-      <line x1="454" y1="0" x2="454" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
-      <line x1="586" y1="0" x2="586" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
     </svg>
   </div>
 
-  <!-- 2. Cono de iluminación cenital -->
+  <!-- Resplandor sutil -->
   <div class="light-cone" aria-hidden="true"></div>
 
-  <!-- 3. Contenedor de Texto Dimensional -->
-  <div class="hero-floor-container container">
+  <!-- Contenido y Textos -->
+  <div class="hero-content container">
     <span class="eyebrow">Sistema operativo para estética vehicular</span>
-    <h1 class="hero-title-3d">La plataforma integral para el detailing profesional</h1>
-    <p class="hero-description-3d">
-      Check-in con relevamiento fotográfico de daños, firma digital de conformidad y CRM de cabinas. Todo el flujo operativo de tu taller centralizado en un solo lugar.
-    </p>
+    <h1>La plataforma integral para el detailing profesional</h1>
+    <p>Check-in con relevamiento fotográfico de daños, firma digital de conformidad y CRM de cabinas. Todo el flujo operativo de tu taller centralizado en un solo lugar.</p>
     
     <div class="hero-cta">
       <a href="#precios" class="btn-primary">Comenzar 1 mes gratis</a>
@@ -251,10 +228,10 @@
     </p>
   </div>
 
-  <!-- 4. Piso del taller con reflejo -->
+  <!-- Base del piso -->
   <div class="stage-floor"><div class="floor-glow"></div></div>
 </section>
-
+  
 <!-- ============ COMPARATIVA ============ -->
 <section id="comparativa" class="band" data-theme="light">
   <div class="container">
