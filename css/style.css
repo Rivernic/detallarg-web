@@ -342,59 +342,97 @@ body.theme-light header {
   .menu-toggle { display: block; }
 }
 
-/* ============ HERO: TALLER (100% OPACO, CORREGIDO) ============ */
+/* ============ HERO: ESCENARIO 3D (100vh) ============ */
 .hero-stage {
   position: relative;
   width: 100%;
-  padding: 60px 20px 100px;
+  height: 100vh;
+  min-height: 700px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: #040303 !important; /* Fondo negro sólido inmutable */
+  justify-content: space-between; /* Techo arriba, texto abajo */
   overflow: hidden;
-  z-index: 10;
+  background-color: var(--bg); /* #040303 */
+  padding: 10px 0 50px;
+  perspective: 1000px; /* Profundidad de toda la escena */
 }
 
-/* El resplandor azul ahora termina en el color de fondo exacto #040303, no en transparent */
 .stage-ceiling {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 70%;
-  background: radial-gradient(ellipse 70% 80% at 50% -10%, rgba(82, 156, 193, 0.22) 0%, #040303 75%);
+  height: 55%;
+  background: radial-gradient(ellipse 80% 80% at 50% -10%, rgba(82, 156, 193, calc(0.25 * var(--brightness-level, 0.4))), transparent 70%);
   pointer-events: none;
   z-index: 1;
 }
 
-.hex-rig {
+/* 1. Parrilla Hexagonal 3D Suspendida en el Techo */
+.hex-rig-3d {
   position: relative;
-  width: min(840px, 94vw);
-  margin: 0 auto 30px auto;
-  z-index: 2;
+  width: min(780px, 94vw);
+  margin-top: 1vh;
+  transform: rotateX(45deg); /* Inclinación 3D de techo */
+  transform-origin: top center;
+  z-index: 5;
   pointer-events: none;
+  filter: blur(var(--blur-level, 0px));
+  opacity: calc(var(--brightness-level, 0.4));
+  transition: opacity 0.1s ease-out;
 }
 
-.hex-rig svg {
+.hex-rig-3d svg {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.hero-content {
+.hex-rig-3d .grid-tubes polygon {
+  stroke: #FFFFFF;
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+  fill: rgba(82, 156, 193, 0.05);
+  filter: drop-shadow(0 0 6px #529CC1) drop-shadow(0 0 16px rgba(82, 156, 193, 0.85));
+}
+
+.hex-rig-3d .grid-tubes .lit-core {
+  stroke: #E0F4FF;
+  stroke-width: 4.5;
+  filter: drop-shadow(0 0 10px #FFFFFF) drop-shadow(0 0 25px rgba(82, 156, 193, 1));
+}
+
+/* 2. Haz de luz cayendo desde el techo */
+.light-cone {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 85%;
+  background: conic-gradient(from 180deg at 50% 0%, transparent 32%, rgba(82, 156, 193, calc(0.15 * var(--brightness-level, 0.4))) 47%, rgba(255, 255, 255, calc(0.08 * var(--brightness-level, 0.4))) 50%, rgba(82, 156, 193, calc(0.15 * var(--brightness-level, 0.4))) 53%, transparent 68%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 2;
+  opacity: calc(var(--brightness-level, 0.4));
+}
+
+/* 3. Contenedor de Texto Dimensional (Piso) */
+.hero-floor-container {
   position: relative;
-  z-index: 5;
-  max-width: 860px;
+  z-index: 10;
+  max-width: 920px;
   margin: 0 auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  transform: rotateX(10deg); /* Perspectiva leve de suelo */
+  transform-origin: center bottom;
 }
 
-.eyebrow {
+.hero-floor-container .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--accent);
@@ -405,54 +443,54 @@ body.theme-light header {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   display: inline-block;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
-.hero-stage h1 {
+.hero-title-3d {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(2.1rem, 4.8vw, 3.3rem);
   font-weight: 800;
-  line-height: 1.12;
+  line-height: 1.14;
   letter-spacing: -1px;
-  max-width: 840px;
-  margin: 0 auto 18px auto;
-  color: #FFFFFF !important;
-  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 16px;
+  color: #FFFFFF;
+  text-shadow: 
+    0 -1px 2px rgba(255, 255, 255, 0.8),
+    0 2px 6px rgba(82, 156, 193, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.95);
 }
 
-.hero-stage p {
+.hero-description-3d {
   font-size: 1.1rem;
-  color: #C0C9CA !important;
-  max-width: 640px;
-  margin: 0 auto 30px auto;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 28px;
   font-weight: 400;
-  text-align: center;
 }
 
-.hero-cta {
+.hero-floor-container .hero-cta {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  margin: 0 auto;
 }
 
-.hero-subtext {
+.hero-floor-container .hero-subtext {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: #758386 !important;
+  color: var(--text-faint);
   letter-spacing: 0.3px;
-  margin-top: 20px !important;
-  text-align: center;
+  margin-top: 18px !important;
 }
 
+/* 4. Piso y Reflejos */
 .stage-floor {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 35%;
+  height: 30%;
   background: 
     linear-gradient(to top, #040303 0%, rgba(4, 3, 3, 0) 100%),
     repeating-linear-gradient(100deg, rgba(192, 201, 202, 0.02) 0 2px, transparent 2px 90px);
@@ -467,8 +505,8 @@ body.theme-light header {
   left: 50%;
   transform: translateX(-50%);
   width: 65%;
-  height: 20%;
-  background: radial-gradient(ellipse at 50% 100%, rgba(82, 156, 193, 0.22), transparent 70%);
+  height: 25%;
+  background: radial-gradient(ellipse at 50% 100%, rgba(82, 156, 193, calc(0.22 * var(--brightness-level, 0.4))), transparent 70%);
 }
 
 /* ============ IPHONE COMPONENT ============ */
