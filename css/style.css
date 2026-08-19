@@ -346,7 +346,6 @@ body.theme-light header {
 .hero-stage {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 80px);
   padding: 40px 20px 80px;
   display: flex !important;
   flex-direction: column !important;
@@ -372,7 +371,7 @@ body.theme-light header {
 .hex-rig {
   position: relative;
   width: min(820px, 92vw);
-  margin: 0 auto 24px auto;
+  margin: 0 auto 20px auto;
   z-index: 2;
   pointer-events: none;
   display: block;
@@ -384,10 +383,10 @@ body.theme-light header {
   display: block;
 }
 
-.hero-container {
+.hero-content {
   position: relative;
-  z-index: 5;
-  max-width: 860px;
+  z-index: 10;
+  max-width: 880px;
   width: 100%;
   margin: 0 auto;
   display: flex !important;
@@ -396,52 +395,59 @@ body.theme-light header {
   text-align: center !important;
 }
 
-.hero-container .eyebrow {
+.hero-content .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--accent);
-  background: var(--accent-soft);
-  border: 1px solid var(--border-strong);
+  color: var(--accent) !important;
+  background: var(--accent-soft) !important;
+  border: 1px solid var(--border-strong) !important;
   padding: 6px 16px;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  display: inline-block;
-  margin: 0 auto 20px auto;
+  display: inline-block !important;
+  margin: 0 auto 18px auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-.hero-main-title {
+.hero-content h1 {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -1px;
   max-width: 840px;
-  margin: 0 auto 18px auto;
+  margin: 0 auto 18px auto !important;
   color: #FFFFFF !important;
   text-align: center !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
 }
 
-.hero-main-desc {
+.hero-content p {
   font-size: 1.1rem;
   color: #C0C9CA !important;
   max-width: 640px;
-  margin: 0 auto 30px auto;
+  margin: 0 auto 30px auto !important;
   font-weight: 400;
   text-align: center !important;
   line-height: 1.6;
+  display: block !important;
 }
 
-.hero-container .hero-cta {
+.hero-content .hero-cta {
   display: flex !important;
   gap: 14px;
   justify-content: center !important;
   align-items: center !important;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
-.hero-container .hero-subtext {
+.hero-content .hero-subtext {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: #758386 !important;
