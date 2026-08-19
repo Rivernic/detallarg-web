@@ -182,60 +182,74 @@
 
 <!-- ============ HERO: TALLER ============ -->
 <section class="hero-stage" data-theme="dark">
-  <div class="stage-ceiling" aria-hidden="true"></div>
+  <div class="stage-glow" aria-hidden="true"></div>
 
-  <!-- Grilla Hexagonal LED -->
-  <div class="hex-rig" aria-hidden="true">
-    <svg viewBox="0 0 880 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="hex-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      <!-- Grilla Base -->
-      <g stroke="rgba(192, 201, 202, 0.25)" stroke-width="2" stroke-linejoin="round">
-        <polygon points="120,45 150,5 210,5 240,45 210,85 150,85" />
-        <polygon points="260,45 290,5 350,5 380,45 350,85 290,85" />
-        <polygon points="400,45 430,5 490,5 520,45 490,85 430,85" />
-        <polygon points="540,45 570,5 630,5 660,45 630,85 570,85" />
-        <polygon points="680,45 710,5 770,5 800,45 770,85 710,85" />
-
-        <polygon points="190,125 220,85 280,85 310,125 280,165 220,165" />
-        <polygon points="330,125 360,85 420,85 450,125 420,165 360,165" />
-        <polygon points="470,125 500,85 560,85 590,125 560,165 500,165" />
-        <polygon points="610,125 640,85 700,85 730,125 700,165 640,165" />
-      </g>
-
-      <!-- Luces LED Encendidas -->
-      <g stroke="#529CC1" stroke-width="2.8" stroke-linejoin="round" filter="url(#hex-glow)">
-        <polygon points="260,45 290,5 350,5 380,45 350,85 290,85" />
-        <polygon points="400,45 430,5 490,5 520,45 490,85 430,85" />
-        <polygon points="540,45 570,5 630,5 660,45 630,85 570,85" />
-        <polygon points="330,125 360,85 420,85 450,125 420,165 360,165" stroke="#FFFFFF" stroke-width="3" />
-        <polygon points="470,125 500,85 560,85 590,125 560,165 500,165" stroke="#FFFFFF" stroke-width="3" />
-      </g>
-    </svg>
-  </div>
-
-  <!-- Contenido Central -->
-  <div class="hero-content">
+  <div class="hero-container container">
+    <!-- Eyebrow -->
     <span class="eyebrow">Sistema operativo para estética vehicular</span>
+
+    <!-- Parrilla de Luces Hexagonales de Taller -->
+    <div class="hex-rig" aria-hidden="true">
+      <svg viewBox="0 0 860 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="neon-blue-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3" result="blur1" />
+            <feGaussianBlur stdDeviation="8" result="blur2" />
+            <feMerge>
+              <feMergeNode in="blur2" />
+              <feMergeNode in="blur1" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Tirantes de suspensión metálicos al techo -->
+        <line x1="170" y1="0" x2="170" y2="35" stroke="rgba(192, 201, 202, 0.35)" stroke-width="1.5" />
+        <line x1="310" y1="0" x2="310" y2="35" stroke="rgba(192, 201, 202, 0.35)" stroke-width="1.5" />
+        <line x1="450" y1="0" x2="450" y2="35" stroke="rgba(192, 201, 202, 0.35)" stroke-width="1.5" />
+        <line x1="590" y1="0" x2="590" y2="35" stroke="rgba(192, 201, 202, 0.35)" stroke-width="1.5" />
+        <line x1="730" y1="0" x2="730" y2="35" stroke="rgba(192, 201, 202, 0.35)" stroke-width="1.5" />
+
+        <!-- Estructura Hexagonal Base -->
+        <g stroke="rgba(192, 201, 202, 0.22)" stroke-width="2.5" stroke-linejoin="round">
+          <!-- Fila 1 -->
+          <polygon points="100,65 125,25 175,25 200,65 175,105 125,105" />
+          <polygon points="240,65 265,25 315,25 340,65 315,105 265,105" />
+          <polygon points="380,65 405,25 455,25 480,65 455,105 405,105" />
+          <polygon points="520,65 545,25 595,25 620,65 595,105 545,105" />
+          <polygon points="660,65 685,25 735,25 760,65 735,105 685,105" />
+
+          <!-- Fila 2 (Intercalada) -->
+          <polygon points="170,125 195,85 245,85 270,125 245,165 195,165" />
+          <polygon points="310,125 335,85 385,85 410,125 385,165 335,165" />
+          <polygon points="450,125 475,85 525,85 550,125 525,165 475,165" />
+          <polygon points="590,125 615,85 665,85 690,125 665,165 615,165" />
+        </g>
+
+        <!-- Tubos LED Encendidos con Glow Celeste Oficial -->
+        <g stroke="#529CC1" stroke-width="3" stroke-linejoin="round" filter="url(#neon-blue-glow)">
+          <polygon points="240,65 265,25 315,25 340,65 315,105 265,105" />
+          <polygon points="380,65 405,25 455,25 480,65 455,105 405,105" />
+          <polygon points="520,65 545,25 595,25 620,65 595,105 545,105" />
+          <polygon points="310,125 335,85 385,85 410,125 385,165 335,165" stroke="#FFFFFF" stroke-width="3.5" />
+          <polygon points="450,125 475,85 525,85 550,125 525,165 475,165" stroke="#FFFFFF" stroke-width="3.5" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Título Principal -->
     <h1>La plataforma integral para el detailing profesional</h1>
+
+    <!-- Bajada descriptiva -->
     <p>Check-in con relevamiento fotográfico de daños, firma digital de conformidad y CRM de cabinas. Todo el flujo operativo de tu taller centralizado en un solo lugar.</p>
-    
+
+    <!-- Botones de Acción -->
     <div class="hero-cta">
       <a href="#precios" class="btn-primary">Comenzar 1 mes gratis</a>
       <a href="#funciones" class="btn-secondary">Conocer la plataforma</a>
     </div>
-    
-    <p class="hero-subtext">
-      Plan Taller Pro bonificado 100% durante los primeros 30 días · Sin tarjeta
-    </p>
+
+    <p class="hero-subtext">Plan Taller Pro bonificado 100% durante los primeros 30 días · Sin tarjeta</p>
   </div>
 </section>
   
