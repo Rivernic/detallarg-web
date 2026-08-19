@@ -342,117 +342,113 @@ body.theme-light header {
   .menu-toggle { display: block; }
 }
 
-/* ============ HERO: TALLER / HEX RIG ============ */
+/* ============ HERO: ESTUDIO AUTOMOTRIZ 3D (100vh) ============ */
 .hero-stage {
   position: relative;
-  min-height: 96vh;
+  width: 100%;
+  height: 100vh;
+  min-height: 680px;
+  display: flex;
+  align-items: flex-end; /* Posiciona el contenido en la mitad inferior (piso) */
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--bg); /* #040303 */
+  padding-bottom: 7vh;
+}
+
+/* Fondo con panel de luz en el techo y variables reactivas al scroll */
+.hero-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-image: url('../taller-hero.png'); /* O la imagen de tu estudio en la raíz */
+  background-size: cover;
+  background-position: top center; /* Foco visual en el panel de luz superior */
+  background-repeat: no-repeat;
+  z-index: 1;
+  
+  /* Filtros dinámicos controlados por JS */
+  filter: brightness(var(--brightness-level, 0.1)) blur(var(--blur-level, 0px));
+  transform: scale(1.03); /* Evita bordes blancos al aplicar blur */
+  transition: filter 0.05s ease-out;
+  will-change: filter;
+}
+
+/* Contenedor 3D */
+.hero-perspective-container {
+  position: relative;
+  z-index: 10;
+  max-width: 960px;
+  margin: 0 auto;
+  perspective: 1000px; /* Campo de profundidad tridimensional */
+  perspective-origin: 50% 0%; /* El observador mira desde la altura de la luz hacia abajo */
+}
+
+/* Contenido inclinado en el plano del piso */
+.hero-floor-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   text-align: center;
-  overflow: hidden;
-  padding: 0 0 100px;
-  background: #040303;
-  perspective: 1100px;
+  transform: rotateX(15deg); /* Inclinación hacia atrás para apoyarse en el piso */
+  transform-origin: center bottom;
+  transform-style: preserve-3d;
 }
 
-.stage-ceiling {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background: radial-gradient(ellipse 80% 90% at 50% -10%, rgba(82, 156, 193, calc(0.18 * var(--light-intensity, 1))), transparent 70%);
-  pointer-events: none;
-  z-index: 1;
+.hero-floor-content .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--border-strong);
+  padding: 6px 16px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(82, 156, 193, 0.2);
 }
 
-.hex-rig {
-  position: relative;
-  width: min(760px, 92vw);
-  margin-top: 3vh;
-  margin-bottom: 2.5vh;
-  transform: rotateX(15deg);
-  transform-origin: top center;
-  z-index: 5;
-  pointer-events: none;
-  opacity: calc(0.95 * var(--light-intensity, 1));
-  transition: opacity 0.3s ease;
+/* Título con volumen y rebote lumínico cenital */
+.hero-title-3d {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  max-width: 880px;
+  margin: 0 auto 18px;
+  color: #FFFFFF;
+  
+  /* Múltiples capas de sombras para simular extrusión y rebote lumínico cenital */
+  text-shadow: 
+    0 -1px 2px rgba(255, 255, 255, 0.9),                /* Borde superior blanco iluminado */
+    0 2px 4px rgba(82, 156, 193, 0.4),                  /* Reflejo cyan del acento */
+    0 4px 12px rgba(4, 3, 3, 0.8),                      /* Oclusión ambiental */
+    0 12px 28px rgba(0, 0, 0, 0.95);                    /* Sombra proyectada en el piso */
 }
 
-.hex-rig svg {
-  width: 100%;
-  height: auto;
-  display: block;
+.hero-description-3d {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 28px;
+  font-weight: 400;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-.hex-rig .grid-tubes polygon {
-  stroke: #FFFFFF;
-  stroke-width: 3.2;
-  stroke-linejoin: round;
-  fill: rgba(82, 156, 193, 0.04);
-  filter: drop-shadow(0 0 8px #529CC1) drop-shadow(0 0 18px rgba(82, 156, 193, 0.8));
-  animation: tube-pulse 4s ease-in-out infinite alternate;
+.hero-floor-content .hero-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.hex-rig .grid-tubes .lit-core {
-  stroke: #E0F4FF;
-  stroke-width: 4;
-  filter: drop-shadow(0 0 10px #529CC1) drop-shadow(0 0 25px rgba(82, 156, 193, 0.95));
-}
-
-@keyframes tube-pulse {
-  0% {
-    filter: drop-shadow(0 0 6px #529CC1) drop-shadow(0 0 14px rgba(82, 156, 193, 0.6));
-  }
-  100% {
-    filter: drop-shadow(0 0 12px #FFFFFF) drop-shadow(0 0 26px rgba(82, 156, 193, 0.95));
-  }
-}
-
-.light-cone {
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  height: 80%;
-  background: conic-gradient(from 180deg at 50% 0%, transparent 30%, rgba(82, 156, 193, calc(0.12 * var(--light-intensity, 1))) 46%, rgba(255, 255, 255, calc(0.06 * var(--light-intensity, 1))) 50%, rgba(82, 156, 193, calc(0.12 * var(--light-intensity, 1))) 54%, transparent 70%);
-  filter: blur(16px);
-  pointer-events: none;
-  z-index: 2;
-  transition: opacity 0.3s ease;
-}
-
-.stage-floor {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 35%;
-  background: 
-    linear-gradient(to top, #040303 0%, rgba(4, 3, 3, 0) 100%),
-    repeating-linear-gradient(100deg, rgba(192, 201, 202, 0.02) 0 2px, transparent 2px 90px);
-  border-top: 1px solid rgba(192, 201, 202, 0.08);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.floor-glow {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 65%;
-  height: 20%;
-  background: radial-gradient(ellipse at 50% 100%, rgba(82, 156, 193, calc(0.25 * var(--light-intensity, 1))), transparent 70%);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 6;
-  padding-top: 0;
+.hero-floor-content .hero-subtext {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  letter-spacing: 0.3px;
+  margin-top: 18px !important;
 }
 
 .eyebrow {
