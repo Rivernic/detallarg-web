@@ -180,13 +180,11 @@
 
 <main>
 
-<!-- ============ HERO: ESTUDIO AUTOMOTRIZ 3D COMPLETO ============ -->
+<!-- ============ HERO: ESTUDIO AUTOMOTRIZ 3D ============ -->
 <section class="hero-stage" data-theme="dark">
-  
-  <!-- Resplandor ambiental de techo -->
   <div class="stage-ceiling" aria-hidden="true"></div>
 
-  <!-- 1. Parrilla Hexagonal 3D en el Techo (Con perspectiva y brillo dinámico) -->
+  <!-- 1. Parrilla Hexagonal 3D en el Techo -->
   <div class="hex-rig-3d" aria-hidden="true">
     <svg viewBox="0 0 760 220" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -224,7 +222,7 @@
         <polygon points="542,131 564,93 608,93 630,131 608,169 564,169" />
       </g>
       
-      <!-- Tirantes de suspensión metálicos -->
+      <!-- Tirantes de suspensión -->
       <line x1="190" y1="0" x2="190" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
       <line x1="322" y1="0" x2="322" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
       <line x1="454" y1="0" x2="454" y2="17" stroke="rgba(192, 201, 202, 0.4)" stroke-width="1.5" />
@@ -232,10 +230,10 @@
     </svg>
   </div>
 
-  <!-- 2. Cono de iluminación cenital que baña el texto -->
+  <!-- 2. Cono de iluminación cenital -->
   <div class="light-cone" aria-hidden="true"></div>
 
-  <!-- 3. Contenedor de Texto Dimensional apoyado en el piso -->
+  <!-- 3. Contenedor de Texto Dimensional -->
   <div class="hero-floor-container container">
     <span class="eyebrow">Sistema operativo para estética vehicular</span>
     <h1 class="hero-title-3d">La plataforma integral para el detailing profesional</h1>
@@ -254,43 +252,6 @@
   </div>
 
   <!-- 4. Piso del taller con reflejo -->
-  <div class="stage-floor"><div class="floor-glow"></div></div>
-</section>
-  
-    <!-- 4. Maqueta interactiva del iPhone -->
-    <div class="hero-phone-wrap">
-      <div class="iphone hero-phone" id="heroPhone">
-        <div class="iphone-screen">
-          <div class="iphone-status"><span>1:56</span><span>Detallarg</span></div>
-          <div style="text-align:left;">
-            <div style="font-family:var(--font-mono);font-size:0.66rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.5px;">Ficha de check-in</div>
-            <div style="font-family:var(--font-mono);font-weight:700;font-size:0.9rem;margin:2px 0 12px;">AB 213 JO</div>
-            <svg viewBox="0 0 320 130" role="img" aria-label="Diagrama de un auto con puntos marcados de daños previos" style="width:100%;">
-              <rect x="45" y="68" width="230" height="34" rx="14" fill="none" stroke="var(--text-faint)" stroke-width="1.5"/>
-              <path d="M85,68 L108,36 Q118,30 132,30 L188,30 Q202,30 212,36 L235,68 Z" fill="none" stroke="var(--text-faint)" stroke-width="1.5"/>
-              <line x1="160" y1="30" x2="160" y2="68" stroke="var(--text-faint)" stroke-width="1"/>
-              <circle cx="98" cy="104" r="17" fill="var(--surface)" stroke="var(--text-faint)" stroke-width="1.5"/>
-              <circle cx="222" cy="104" r="17" fill="var(--surface)" stroke="var(--text-faint)" stroke-width="1.5"/>
-              <circle cx="70" cy="80" r="6" fill="var(--accent)"/>
-              <text x="70" y="83.5" text-anchor="middle" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="#040303">1</text>
-              <circle cx="205" cy="60" r="6" fill="var(--accent)"/>
-              <text x="205" y="63.5" text-anchor="middle" font-family="JetBrains Mono" font-size="8" font-weight="700" fill="#040303">2</text>
-            </svg>
-            <ul style="list-style:none;font-size:0.72rem;color:var(--text-muted);margin:10px 0;">
-              <li style="margin-bottom:6px;"><b style="color:var(--accent);">1</b> Rayón leve, paragolpes · 2 fotos</li>
-              <li><b style="color:var(--accent);">2</b> Marca de granizo, puerta trasera</li>
-            </ul>
-            <div style="border-top:1px solid var(--border);padding-top:10px;display:flex;justify-content:space-between;align-items:center;">
-              <span style="font-size:0.7rem;color:var(--text-muted);">Conformidad</span>
-              <span class="sig" style="font-family:var(--font-sig);font-size:1.3rem;">Martina G.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 5. Piso del taller con resplandor -->
   <div class="stage-floor"><div class="floor-glow"></div></div>
 </section>
 
@@ -649,7 +610,7 @@
     <div style="max-width:800px;margin:0 auto;" class="reveal">
       <details class="faq-item" open>
         <summary>¿Cómo funciona la prueba gratuita de 1 mes?</summary>
-        <div class="faq-answer">Tenés 30 días de acceso total y sin costo al plan Taller Pro completo para usarlo en tu día a día con vehículos reales. Sin tarjetas de crédito ni compromisos.</div
+        <div class="faq-answer">Tenés 30 días de acceso total y sin costo al plan Taller Pro completo para usarlo en tu día a día con vehículos reales. Sin tarjetas de crédito ni compromisos.</div>
       </details>
       <details class="faq-item">
         <summary>¿Necesito descargar alguna app para empezar?</summary>
@@ -726,81 +687,31 @@
 </footer>
 
 <script>
-/* ---------- Control Dinámico de Luminosidad de la Cabina ---------- */
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const heroHeight = document.querySelector('.hero-stage')?.offsetHeight || 700;
-  const intensity = Math.max(0.2, 1 - (scrollY / (heroHeight * 0.75)));
-  document.documentElement.style.setProperty('--light-intensity', intensity.toFixed(2));
-}, { passive: true });
-
-/* ---------- Menú Móvil ---------- */
-function toggleMenu(){
-  const menu = document.getElementById('mobileMenu');
-  const btn = document.querySelector('.menu-toggle');
-  const icon = document.getElementById('menuIcon');
-  const isOpen = menu.classList.toggle('open');
-  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
-}
-function closeMenu(){
-  document.getElementById('mobileMenu').classList.remove('open');
-  document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
-  document.getElementById('menuIcon').className = 'fa-solid fa-bars';
-}
-
-/* ---------- Calculadora ROI ---------- */
-function updateCalc(){
-  const autos = parseInt(document.getElementById('autos-slider').value, 10);
-  const precio = parseInt(document.getElementById('precio-slider').value, 10);
-  document.getElementById('autos-val').innerText = autos;
-  document.getElementById('precio-val').innerText = '$' + precio.toLocaleString('es-AR');
-  
-  const retorno = Math.round(autos * 12 * 0.20 * (precio * 0.6));
-  document.getElementById('roi-result').innerText = '+$' + retorno.toLocaleString('es-AR');
-}
-updateCalc();
-
-/* ---------- Waitlist Form ---------- */
-function joinWaitlist(e){
-  e.preventDefault();
-  const emailInput = document.getElementById('waitlist-email');
-  const email = emailInput.value.trim();
-  if(!email) return;
-  const subject = encodeURIComponent('Interés en App Store / Play Store - Detallarg');
-  const body = encodeURIComponent('Hola equipo de Detallarg,\n\nQuiero recibir novedades y acceso prioritario al lanzamiento de las apps móviles.\n\nEmail: ' + email);
-  trackEvent('waitlist_submit', { method: 'mailto' });
-  window.location.href = 'mailto:contacto@detallarg.com?subject=' + subject + '&body=' + body;
-  emailInput.value = '';
-}
 /* ---------- Control de Iluminación y Desenfoque 3D por Scroll ---------- */
 (function() {
   let isTicking = false;
 
   function updateHeroLighting() {
     const scrollY = window.scrollY || window.pageYOffset;
-    let brightness = 0.4;
+    let brightness = 0.5;
     let blur = 0;
 
     if (scrollY <= 40) {
-      // Fase 1: Penumbra inicial suave (se aprecian las líneas 3D)
-      brightness = 0.4;
+      brightness = 0.5;
       blur = 0;
     } else if (scrollY > 40 && scrollY <= 220) {
-      // Fase 2: Las luces se encienden al 100% de potencia
       const progress = (scrollY - 40) / (220 - 40);
-      brightness = 0.4 + (progress * 0.6);
+      brightness = 0.5 + (progress * 0.5);
       blur = 0;
     } else if (scrollY > 220 && scrollY <= 300) {
       brightness = 1.0;
       blur = 0;
     } else if (scrollY > 300 && scrollY <= 600) {
-      // Fase 3: Difuminado suave para dar paso a la siguiente sección
       const progress = (scrollY - 300) / (600 - 300);
-      brightness = 1.0 - (progress * 0.5);
+      brightness = 1.0 - (progress * 0.4);
       blur = progress * 6;
     } else {
-      brightness = 0.5;
+      brightness = 0.6;
       blur = 6;
     }
 
@@ -818,6 +729,86 @@ function joinWaitlist(e){
 
   updateHeroLighting();
 })();
+
+/* ---------- Loader Blindado ---------- */
+function hideLoader() {
+  const loader = document.getElementById('loader');
+  if (loader) loader.classList.add('hide');
+  document.querySelectorAll('.hero-phone').forEach(el => el.classList.add('dropped'));
+}
+
+const alreadyLoaded = sessionStorage.getItem('detallarg_loaded');
+if (alreadyLoaded) {
+  const l = document.getElementById('loader');
+  if (l) l.classList.add('skip');
+  hideLoader();
+} else {
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      hideLoader();
+      sessionStorage.setItem('detallarg_loaded', '1');
+    }, 1800);
+  });
+  setTimeout(() => {
+    hideLoader();
+    sessionStorage.setItem('detallarg_loaded', '1');
+  }, 2500);
+}
+
+/* ---------- Menú Móvil ---------- */
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.querySelector('.menu-toggle');
+  const icon = document.getElementById('menuIcon');
+  if (!menu) return;
+  const isOpen = menu.classList.toggle('open');
+  if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  if (icon) icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+}
+function closeMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.querySelector('.menu-toggle');
+  const icon = document.getElementById('menuIcon');
+  if (menu) menu.classList.remove('open');
+  if (btn) btn.setAttribute('aria-expanded','false');
+  if (icon) icon.className = 'fa-solid fa-bars';
+}
+
+/* ---------- Calculadora ROI ---------- */
+function updateCalc(){
+  const autosSlider = document.getElementById('autos-slider');
+  const precioSlider = document.getElementById('precio-slider');
+  if (!autosSlider || !precioSlider) return;
+
+  const autos = parseInt(autosSlider.value, 10);
+  const precio = parseInt(precioSlider.value, 10);
+  
+  const autosVal = document.getElementById('autos-val');
+  const precioVal = document.getElementById('precio-val');
+  const roiResult = document.getElementById('roi-result');
+
+  if (autosVal) autosVal.innerText = autos;
+  if (precioVal) precioVal.innerText = '$' + precio.toLocaleString('es-AR');
+  
+  const retorno = Math.round(autos * 12 * 0.20 * (precio * 0.6));
+  if (roiResult) roiResult.innerText = '+$' + retorno.toLocaleString('es-AR');
+}
+updateCalc();
+
+/* ---------- Waitlist Form ---------- */
+function joinWaitlist(e){
+  e.preventDefault();
+  const emailInput = document.getElementById('waitlist-email');
+  if (!emailInput) return;
+  const email = emailInput.value.trim();
+  if(!email) return;
+  const subject = encodeURIComponent('Interés en App Store / Play Store - Detallarg');
+  const body = encodeURIComponent('Hola equipo de Detallarg,\n\nQuiero recibir novedades y acceso prioritario al lanzamiento de las apps móviles.\n\nEmail: ' + email);
+  trackEvent('waitlist_submit', { method: 'mailto' });
+  window.location.href = 'mailto:contacto@detallarg.com?subject=' + subject + '&body=' + body;
+  emailInput.value = '';
+}
+
 /* ---------- GA4 Tracking ---------- */
 function trackEvent(name, params){
   if (typeof gtag === 'function') gtag('event', name, params || {});
@@ -840,27 +831,6 @@ const WA_NUMBER = '5491112345678';
 document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
   a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/' + WA_NUMBER);
 });
-
-/* ---------- Loader ---------- */
-const alreadyLoaded = sessionStorage.getItem('detallarg_loaded');
-if (alreadyLoaded) {
-  document.getElementById('loader').classList.add('skip');
-  document.getElementById('heroPhone').classList.add('dropped');
-} else {
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      document.getElementById('loader').classList.add('hide');
-      document.getElementById('heroPhone').classList.add('dropped');
-      sessionStorage.setItem('detallarg_loaded', '1');
-    }, 2100);
-  });
-  setTimeout(() => {
-    const l = document.getElementById('loader');
-    if(l && !l.classList.contains('hide')) l.classList.add('hide');
-    document.getElementById('heroPhone').classList.add('dropped');
-    sessionStorage.setItem('detallarg_loaded', '1');
-  }, 3200);
-}
 
 /* ---------- Observer Tema Día / Noche ---------- */
 const themeSections = document.querySelectorAll('[data-theme]');
