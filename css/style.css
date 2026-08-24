@@ -422,14 +422,18 @@ body.theme-light header {
 }
 
 .hex-rig.ignite .hex-lit {
-  animation: hex-ignite 0.9s ease-out forwards;
+  animation: hex-ignite 0.5s ease-out forwards;
 }
 
 .hex-rig.ignite .hex-lit-1 { animation-delay: 0ms; }
-.hex-rig.ignite .hex-lit-2 { animation-delay: 90ms; }
-.hex-rig.ignite .hex-lit-3 { animation-delay: 180ms; }
-.hex-rig.ignite .hex-lit-4 { animation-delay: 270ms; }
-.hex-rig.ignite .hex-lit-5 { animation-delay: 360ms; }
+.hex-rig.ignite .hex-lit-2 { animation-delay: 500ms; }
+.hex-rig.ignite .hex-lit-3 { animation-delay: 1000ms; }
+.hex-rig.ignite .hex-lit-4 { animation-delay: 1500ms; }
+.hex-rig.ignite .hex-lit-5 { animation-delay: 2000ms; }
+.hex-rig.ignite .hex-lit-6 { animation-delay: 2500ms; }
+.hex-rig.ignite .hex-lit-7 { animation-delay: 3000ms; }
+.hex-rig.ignite .hex-lit-8 { animation-delay: 3500ms; }
+.hex-rig.ignite .hex-lit-9 { animation-delay: 4000ms; }
 
 @keyframes hex-ignite {
   0% { opacity: 0; }
