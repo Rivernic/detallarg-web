@@ -190,12 +190,14 @@
     <div class="hex-rig" aria-hidden="true">
       <svg viewBox="0 0 860 170" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <filter id="neon-blue-glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1" />
-            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2" />
+          <filter id="neon-blue-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="core" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur2" />
             <feMerge>
               <feMergeNode in="blur2" />
               <feMergeNode in="blur1" />
+              <feMergeNode in="core" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
@@ -223,11 +225,11 @@
 
         <!-- Tubos LED activos -->
         <g stroke="#529CC1" stroke-width="3" stroke-linejoin="round" filter="url(#neon-blue-glow)">
-          <polygon points="240,65 265,25 315,25 340,65 315,105 265,105" />
-          <polygon points="380,65 405,25 455,25 480,65 455,105 405,105" />
-          <polygon points="520,65 545,25 595,25 620,65 595,105 545,105" />
-          <polygon points="310,125 335,85 385,85 410,125 385,165 335,165" stroke="#FFFFFF" stroke-width="3.5" />
-          <polygon points="450,125 475,85 525,85 550,125 525,165 475,165" stroke="#FFFFFF" stroke-width="3.5" />
+          <polygon class="hex-lit hex-lit-1" points="240,65 265,25 315,25 340,65 315,105 265,105" />
+          <polygon class="hex-lit hex-lit-3" points="380,65 405,25 455,25 480,65 455,105 405,105" />
+          <polygon class="hex-lit hex-lit-5" points="520,65 545,25 595,25 620,65 595,105 545,105" />
+          <polygon class="hex-lit hex-lit-2" points="310,125 335,85 385,85 410,125 385,165 335,165" stroke="#FFFFFF" stroke-width="3.5" />
+          <polygon class="hex-lit hex-lit-4" points="450,125 475,85 525,85 550,125 525,165 475,165" stroke="#FFFFFF" stroke-width="3.5" />
         </g>
       </svg>
     </div>
@@ -241,7 +243,7 @@
       <a href="#funciones" class="btn-secondary">Conocer la plataforma</a>
     </div>
 
-    <p class="hero-subtext">Plan Taller Pro bonificado 100% durante los primeros 30 días · Sin tarjeta</p>
+    <p class="hero-subtext">30 días completos · Sin tarjeta</p>
   </div>
 </section>
   
@@ -686,6 +688,7 @@ function hideLoader() {
   const loader = document.getElementById('loader');
   if (loader) loader.classList.add('hide');
   document.querySelectorAll('.hero-phone').forEach(el => el.classList.add('dropped'));
+  document.querySelectorAll('.hex-rig').forEach(el => el.classList.add('ignite'));
 }
 
 const alreadyLoaded = sessionStorage.getItem('detallarg_loaded');

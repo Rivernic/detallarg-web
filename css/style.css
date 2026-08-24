@@ -372,7 +372,9 @@ body.theme-light header {
   width: 100%;
   max-width: 900px;
   height: 280px;
-  background: radial-gradient(ellipse 60% 70% at 50% 10%, rgba(82, 156, 193, 0.22), transparent 75%);
+  background:
+    radial-gradient(ellipse 38% 30% at 50% 14%, rgba(255, 255, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 60% 70% at 50% 10%, rgba(82, 156, 193, 0.22), transparent 75%);
   pointer-events: none;
   z-index: 1;
 }
@@ -413,6 +415,30 @@ body.theme-light header {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.hex-lit {
+  opacity: 0;
+}
+
+.hex-rig.ignite .hex-lit {
+  animation: hex-ignite 0.9s ease-out forwards;
+}
+
+.hex-rig.ignite .hex-lit-1 { animation-delay: 0ms; }
+.hex-rig.ignite .hex-lit-2 { animation-delay: 90ms; }
+.hex-rig.ignite .hex-lit-3 { animation-delay: 180ms; }
+.hex-rig.ignite .hex-lit-4 { animation-delay: 270ms; }
+.hex-rig.ignite .hex-lit-5 { animation-delay: 360ms; }
+
+@keyframes hex-ignite {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  14% { opacity: 0.15; }
+  22% { opacity: 1; }
+  30% { opacity: 0.3; }
+  40% { opacity: 1; }
+  100% { opacity: 1; }
 }
 
 .hero-stage h1 {
