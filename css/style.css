@@ -10,7 +10,6 @@
   --font-display: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --font-sig: 'Caveat', cursive;
 
   /* Tema Oscuro (Taller / Noche) — Default */
   --bg: #040303;
@@ -36,7 +35,7 @@ body.theme-light {
   --surface-2: #E5ECED;
   --text: #040303;
   --text-muted: #36494E;
-  --text-faint: #758386;
+  --text-faint: #697578;
   --border: rgba(54, 73, 78, 0.12);
   --border-strong: rgba(82, 156, 193, 0.45);
   --accent-glow: rgba(82, 156, 193, 0.18);
@@ -442,7 +441,7 @@ body.theme-light header {
 
 /* ============ IPHONE COMPONENT ============ */
 .iphone {
-  width: 254px;
+  width: min(254px, 82vw);
   border-radius: 40px;
   background: #080B0C;
   border: 6px solid #182023;
@@ -800,7 +799,7 @@ body.theme-light .iphone {
 
 .calculator-box h2 {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: clamp(1.8rem, 3.5vw, 2.3rem);
   margin-bottom: 10px;
   font-weight: 700;
 }
@@ -1257,10 +1256,12 @@ body.theme-light .iphone {
   font-size: 1.3rem;
   font-weight: 700;
   flex-shrink: 0;
+  display: inline-block;
+  transition: transform 0.2s ease;
 }
 
 .faq-item[open] summary::after {
-  content: "–";
+  transform: rotate(45deg);
 }
 
 .faq-answer {

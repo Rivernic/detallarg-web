@@ -33,7 +33,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23040303%22/><text x=%2250%22 y=%2258%22 font-family=%22Archivo%22 font-weight=%22800%22 font-size=%2242%22 fill=%22%23529CC1%22 text-anchor=%22middle%22>DA</text></svg>">
@@ -116,7 +116,7 @@
       "name": "¿Por qué los precios están en pesos argentinos?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Porque operamos en Argentina. Pagás en pesos, con facturación transparente y previsibilidad operativa para tu negocio."
+        "text": "Porque apostamos a la industria nacional. Pagás en pesos con valores transparentes, sin recargos por cotizaciones variables ni sorpresas cambiarias."
       }
     },
     {
@@ -237,7 +237,7 @@
     <p>Check-in con relevamiento fotográfico de daños, firma digital de conformidad y CRM de cabinas. Todo el flujo operativo de tu taller centralizado en un solo lugar.</p>
 
     <div class="hero-cta">
-      <a href="#precios" class="btn-primary">Comenzar 1 mes gratis</a>
+      <a href="#precios" class="btn-primary">1 Mes Gratis Pro</a>
       <a href="#funciones" class="btn-secondary">Conocer la plataforma</a>
     </div>
 
@@ -552,7 +552,7 @@
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Control de costos e insumos</li>
           </ul>
         </div>
-        <a href="#" class="btn-primary mp-checkout-btn" data-plan="pro" style="text-align:center;margin-top:16px;">Activar 1 mes gratis Pro</a>
+        <a href="#" class="btn-primary mp-checkout-btn" data-plan="pro" style="text-align:center;margin-top:16px;">1 Mes Gratis Pro</a>
       </div>
 
       <!-- Plan Intermedio -->
@@ -681,49 +681,6 @@
 </footer>
 
 <script>
-/* ---------- Control de Iluminación y Desenfoque 3D por Scroll ---------- */
-(function() {
-  let isTicking = false;
-
-  function updateHeroLighting() {
-    const scrollY = window.scrollY || window.pageYOffset;
-    let brightness = 0.5;
-    let blur = 0;
-
-    if (scrollY <= 40) {
-      brightness = 0.5;
-      blur = 0;
-    } else if (scrollY > 40 && scrollY <= 220) {
-      const progress = (scrollY - 40) / (220 - 40);
-      brightness = 0.5 + (progress * 0.5);
-      blur = 0;
-    } else if (scrollY > 220 && scrollY <= 300) {
-      brightness = 1.0;
-      blur = 0;
-    } else if (scrollY > 300 && scrollY <= 600) {
-      const progress = (scrollY - 300) / (600 - 300);
-      brightness = 1.0 - (progress * 0.4);
-      blur = progress * 6;
-    } else {
-      brightness = 0.6;
-      blur = 6;
-    }
-
-    document.documentElement.style.setProperty('--brightness-level', brightness.toFixed(3));
-    document.documentElement.style.setProperty('--blur-level', blur.toFixed(1) + 'px');
-    isTicking = false;
-  }
-
-  window.addEventListener('scroll', () => {
-    if (!isTicking) {
-      window.requestAnimationFrame(updateHeroLighting);
-      isTicking = true;
-    }
-  }, { passive: true });
-
-  updateHeroLighting();
-})();
-
 /* ---------- Loader Blindado ---------- */
 function hideLoader() {
   const loader = document.getElementById('loader');
