@@ -135,6 +135,8 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
 <noscript><style>.reveal,.fall{opacity:1!important;transform:none!important;}#loader{display:none!important;}</style></noscript>
 
 <div id="loader" aria-hidden="true">
@@ -167,7 +169,7 @@
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <a href="#funciones" onclick="closeMenu()">Funcionalidades</a>
   <a href="#comparativa" onclick="closeMenu()">Beneficios</a>
   <a href="#calendario" onclick="closeMenu()">CRM</a>
@@ -178,7 +180,7 @@
   <a href="#precios" class="btn-primary" onclick="closeMenu()">1 Mes Gratis Pro</a>
 </div>
 
-<main>
+<main id="main-content" tabindex="-1">
 
 <!-- ============ HERO: TALLER ============ -->
 <section class="hero-stage" data-theme="dark">
@@ -405,11 +407,11 @@
       <div class="calc-controls">
         <div class="calc-input-group">
           <label for="autos-slider">Autos atendidos por mes: <span id="autos-val" style="color:var(--text);font-weight:700;">15</span></label>
-          <input type="range" min="5" max="60" value="15" class="calc-slider" id="autos-slider" oninput="updateCalc()">
+          <input type="range" min="5" max="60" value="15" class="calc-slider" id="autos-slider" oninput="updateCalc()" aria-valuetext="15 autos por mes">
         </div>
         <div class="calc-input-group">
           <label for="precio-slider">Ticket promedio por trabajo ($): <span id="precio-val" style="color:var(--text);font-weight:700;">$60.000</span></label>
-          <input type="range" min="15000" max="250000" value="60000" step="5000" class="calc-slider" id="precio-slider" oninput="updateCalc()">
+          <input type="range" min="15000" max="250000" value="60000" step="5000" class="calc-slider" id="precio-slider" oninput="updateCalc()" aria-valuetext="$60.000">
         </div>
       </div>
       <p style="font-size:0.85rem;color:var(--text-muted);text-transform:uppercase;font-family:var(--font-mono);">Facturación extra proyectada al año</p>
@@ -722,14 +724,36 @@ function toggleMenu(){
   const isOpen = menu.classList.toggle('open');
   if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   if (icon) icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+  menu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  if (isOpen) {
+    const firstLink = menu.querySelector('a');
+    if (firstLink) firstLink.focus();
+  }
 }
 function closeMenu(){
   const menu = document.getElementById('mobileMenu');
   const btn = document.querySelector('.menu-toggle');
   const icon = document.getElementById('menuIcon');
+  const wasOpen = !!(menu && menu.classList.contains('open'));
   if (menu) menu.classList.remove('open');
   if (btn) btn.setAttribute('aria-expanded','false');
   if (icon) icon.className = 'fa-solid fa-bars';
+  if (menu) menu.setAttribute('aria-hidden', 'true');
+  if (wasOpen && btn) btn.focus();
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  const menu = document.getElementById('mobileMenu');
+  if (menu && menu.classList.contains('open')) closeMenu();
+});
+
+/* ---------- Skip Link ---------- */
+const skipLink = document.querySelector('.skip-link');
+if (skipLink) {
+  skipLink.addEventListener('click', () => {
+    const target = document.getElementById('main-content');
+    if (target) target.focus();
+  });
 }
 
 /* ---------- Calculadora ROI ---------- */
@@ -747,7 +771,9 @@ function updateCalc(){
 
   if (autosVal) autosVal.innerText = autos;
   if (precioVal) precioVal.innerText = '$' + precio.toLocaleString('es-AR');
-  
+  autosSlider.setAttribute('aria-valuetext', autos + ' autos por mes');
+  precioSlider.setAttribute('aria-valuetext', '$' + precio.toLocaleString('es-AR'));
+
   const retorno = Math.round(autos * 12 * 0.20 * (precio * 0.6));
   if (roiResult) roiResult.innerText = '+$' + retorno.toLocaleString('es-AR');
 }
