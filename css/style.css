@@ -20,6 +20,7 @@
   --text-faint: #758386;
   --border: rgba(192, 201, 202, 0.12);
   --border-strong: rgba(82, 156, 193, 0.38);
+  --card-shadow: 0 14px 32px -12px rgba(0, 0, 0, 0.45);
 
   --chrome-1: #36494E;
   --chrome-2: #C0C9CA;
@@ -39,6 +40,7 @@ body.theme-light {
   --border: rgba(54, 73, 78, 0.12);
   --border-strong: rgba(82, 156, 193, 0.45);
   --accent-glow: rgba(82, 156, 193, 0.18);
+  --card-shadow: 0 14px 32px -12px rgba(4, 3, 3, 0.16);
 
   --chrome-1: #36494E;
   --chrome-2: #529CC1;
@@ -101,6 +103,11 @@ img, svg {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .calc-slider::-webkit-slider-thumb,
+  .calc-slider::-moz-range-thumb {
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -233,6 +240,12 @@ body.theme-light header {
   font-size: 1.35rem;
   letter-spacing: 0.5px;
   white-space: nowrap;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.03);
 }
 
 .logo .arg {
@@ -456,6 +469,10 @@ body.theme-light .iphone {
   box-shadow: 0 35px 70px -20px rgba(4, 3, 3, 0.25), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
+.iphone.fall {
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
 .iphone::before {
   content: "";
   position: absolute;
@@ -560,6 +577,11 @@ body.theme-light .iphone {
   border-radius: 12px;
   border: 1px solid var(--border);
   background: var(--surface-2);
+  transition: transform 0.2s ease;
+}
+
+.comp-card:hover {
+  transform: translateY(-2px);
 }
 
 .comp-card.before {
@@ -676,6 +698,19 @@ body.theme-light .iphone {
 .feature-visual {
   display: flex;
   justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.feature-visual:hover {
+  transform: scale(1.025);
+}
+
+.feature-visual:hover .iphone {
+  box-shadow: 0 40px 85px -18px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(192, 201, 202, 0.1);
+}
+
+body.theme-light .feature-visual:hover .iphone {
+  box-shadow: 0 40px 85px -18px rgba(4, 3, 3, 0.35), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 /* Pantallas internas iPhone */
@@ -762,12 +797,13 @@ body.theme-light .iphone {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 22px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mini-card:hover {
   transform: translateY(-2px);
   border-color: var(--border-strong);
+  box-shadow: var(--card-shadow);
 }
 
 .mini-card i {
@@ -775,6 +811,12 @@ body.theme-light .iphone {
   font-size: 1.2rem;
   margin-bottom: 10px;
   display: block;
+  transition: transform 0.25s ease, color 0.2s ease;
+}
+
+.mini-card:hover i {
+  transform: scale(1.15);
+  color: var(--accent-2);
 }
 
 .mini-card h4 {
@@ -836,6 +878,65 @@ body.theme-light .iphone {
   border-radius: 3px;
   accent-color: var(--accent);
   cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--surface-2);
+  outline: none;
+}
+
+.calc-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface-2);
+}
+
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--surface);
+  box-shadow: 0 2px 8px rgba(82, 156, 193, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calc-slider:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+  box-shadow: 0 4px 14px rgba(82, 156, 193, 0.6);
+}
+
+.calc-slider:active::-webkit-slider-thumb {
+  transform: scale(1.25);
+}
+
+.calc-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface-2);
+}
+
+.calc-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--surface);
+  box-shadow: 0 2px 8px rgba(82, 156, 193, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calc-slider:hover::-moz-range-thumb {
+  transform: scale(1.15);
+  box-shadow: 0 4px 14px rgba(82, 156, 193, 0.6);
+}
+
+.calc-slider:active::-moz-range-thumb {
+  transform: scale(1.25);
 }
 
 .calc-result-number {
@@ -929,12 +1030,23 @@ body.theme-light .iphone {
   font-size: 0.68rem;
   line-height: 1.3;
   color: var(--text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.crm-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -4px rgba(0, 0, 0, 0.35);
+  border-color: var(--accent);
 }
 
 .crm-event.b2 {
   background: rgba(192, 201, 202, 0.12);
   border-color: rgba(192, 201, 202, 0.35);
   border-left-color: var(--text-muted);
+}
+
+.crm-event.b2:hover {
+  border-color: var(--text-muted);
 }
 
 .crm-event .svc {
@@ -963,12 +1075,13 @@ body.theme-light .iphone {
   border: 1px solid var(--border);
   padding: 30px;
   border-radius: 14px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .step-card:hover {
   transform: translateY(-3px);
   border-color: var(--border-strong);
+  box-shadow: var(--card-shadow);
 }
 
 .step-num {
@@ -978,6 +1091,12 @@ body.theme-light .iphone {
   color: var(--accent);
   opacity: 0.75;
   margin-bottom: 10px;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.step-card:hover .step-num {
+  color: var(--accent-2);
+  opacity: 1;
 }
 
 .step-card h3 {
@@ -1006,12 +1125,13 @@ body.theme-light .iphone {
   padding: 28px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .founder-card:hover {
   transform: translateY(-3px);
   border-color: var(--border-strong);
+  box-shadow: var(--card-shadow);
 }
 
 .founder-icon {
@@ -1025,6 +1145,11 @@ body.theme-light .iphone {
   color: var(--accent);
   font-size: 1.25rem;
   margin-bottom: 18px;
+  transition: transform 0.25s ease;
+}
+
+.founder-card:hover .founder-icon {
+  transform: scale(1.1) rotate(-4deg);
 }
 
 .founder-card h3 {
@@ -1068,6 +1193,11 @@ body.theme-light .iphone {
   border-radius: 12px;
   padding: 12px 24px;
   user-select: none;
+  transition: border-color 0.2s ease;
+}
+
+.store-badge:hover {
+  border-color: var(--border-strong);
 }
 
 .store-badge i {
@@ -1136,11 +1266,12 @@ body.theme-light .iphone {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .price-card:hover {
   transform: translateY(-3px);
+  box-shadow: var(--card-shadow);
 }
 
 /* Resaltado del Plan Taller Pro con 1 Mes Gratis */
@@ -1153,6 +1284,7 @@ body.theme-light .iphone {
 
 .price-card.featured:hover {
   transform: scale(1.02) translateY(-3px);
+  box-shadow: 0 18px 44px -12px var(--accent-glow);
 }
 
 @media(max-width: 900px) {
@@ -1172,6 +1304,7 @@ body.theme-light .iphone {
   border-radius: 12px;
   font-weight: 800;
   letter-spacing: 0.5px;
+  animation: pulse-ring 1.8s ease-in-out 4;
 }
 
 .price-card h3 {
@@ -1287,12 +1420,13 @@ body.theme-light .iphone {
   text-align: left;
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .contact-card:hover {
   transform: translateY(-3px);
   border-color: var(--border-strong);
+  box-shadow: var(--card-shadow);
 }
 
 .contact-card .ic {
@@ -1306,6 +1440,11 @@ body.theme-light .iphone {
   justify-content: center;
   font-size: 1.25rem;
   margin-bottom: 18px;
+  transition: transform 0.25s ease;
+}
+
+.contact-card:hover .ic {
+  transform: scale(1.1) rotate(-4deg);
 }
 
 .contact-card.support .ic {
@@ -1434,10 +1573,16 @@ footer {
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
   z-index: 1000;
   transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: whatsapp-pulse 2s ease-in-out 3;
 }
 
 .whatsapp-float:hover {
   transform: scale(1.08);
+}
+
+@keyframes whatsapp-pulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  50% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4), 0 0 0 12px rgba(37, 211, 102, 0); }
 }
 
 /* ============ PÁGINAS LEGALES ============ */
