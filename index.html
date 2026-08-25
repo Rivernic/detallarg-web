@@ -841,17 +841,44 @@ document.querySelectorAll('.mp-checkout-btn').forEach(btn => {
   });
 });
   
-/* ---------- Observer Tema Día / Noche ---------- */
-const themeSections = document.querySelectorAll('[data-theme]');
-const themeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      const theme = entry.target.getAttribute('data-theme');
-      document.body.classList.toggle('theme-light', theme === 'light');
-    }
-  });
-}, { rootMargin: '-35% 0px -35% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
-themeSections.forEach(s => themeObserver.observe(s));
+/* ---------- Tema Día / Noche: sección exacta bajo el header ---------- */
+/* En vez de aproximar con IntersectionObserver (banda del viewport), se calcula
+   en cada scroll qué sección ocupa la línea justo debajo del header fijo, y se
+   aplica su tema. Así el cambio ocurre siempre en el punto correcto, sin
+   importar la altura de cada sección ni la velocidad del scroll. */
+const themeSections = [...document.querySelectorAll('[data-theme]')];
+const themeHeaderEl = document.querySelector('header');
+
+function updateTheme() {
+  /* El padding vertical de cada sección (ej. .band { padding: 100px 0 })
+     es espacio en blanco sin contenido real. Si se lo cuenta como parte de
+     la sección anterior, esta "retiene" el tema mientras dura ese padding
+     aunque el título de la sección siguiente ya esté a la vista. Por eso
+     cada sección le resta a su punto de entrada el padding-bottom real de
+     la anterior (leído con getComputedStyle, sin valores fijos por
+     sección) y hereda ese hueco en blanco en vez de esperar a que termine. */
+  const refY = themeHeaderEl.offsetHeight + 16;
+  let current = themeSections[0];
+  let prevPaddingBottom = 0;
+  for (const section of themeSections) {
+    const effectiveTop = section.getBoundingClientRect().top - prevPaddingBottom;
+    if (effectiveTop > refY) break;
+    current = section;
+    prevPaddingBottom = parseFloat(getComputedStyle(section).paddingBottom) || 0;
+  }
+  document.body.classList.toggle('theme-light', current.getAttribute('data-theme') === 'light');
+}
+
+let themeTicking = false;
+function onThemeScroll() {
+  if (!themeTicking) {
+    requestAnimationFrame(() => { updateTheme(); themeTicking = false; });
+    themeTicking = true;
+  }
+}
+window.addEventListener('scroll', onThemeScroll, { passive: true });
+window.addEventListener('resize', onThemeScroll);
+updateTheme();
 
 /* ---------- Scroll Reveal ---------- */
 const revealEls = document.querySelectorAll('.reveal, .fall');
