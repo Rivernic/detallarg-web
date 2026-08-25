@@ -309,6 +309,9 @@ header {
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
   transition: var(--theme-transition);
+  /* Pequeño delay para que el header no cruce por su punto medio gris
+     exactamente al mismo instante que el título del hero detrás suyo. */
+  transition-delay: 0.12s;
 }
 
 body.theme-light header {
