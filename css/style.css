@@ -6,7 +6,43 @@
   --accent-soft: rgba(82, 156, 193, 0.14);
   --accent-glow: rgba(82, 156, 193, 0.28);
   --danger-muted: #B5564A;
-  --radius: 14px;
+
+  /* Radios de borde: escala de 3 niveles (progresión de 6px) que agrupa los
+     ~11 valores sueltos que había antes (entre 6px y 40px, sin criterio).
+     sm = controles interactivos: botones, inputs, skip-link.
+     md = cards de contenido chicas, badges de ícono y paneles compactos:
+       comp-card, mini-card, bubble, founder-icon, contact-card .ic,
+       store-badge, faq-item, price-badge, legal-draft-notice, step-card,
+       legal-toc.
+     lg = paneles y cards grandes: founder-card, price-card, contact-card,
+       comparison-box, crm-panel, calculator-box.
+     Quedan afuera a propósito (no son parte de esta escala de "card"):
+     círculos (50%: sliders, dots del CRM, whatsapp-float), el chasis del
+     mockup de iPhone (40px/12px, tamaño fijo del dispositivo), badges tipo
+     píldora (eyebrow, ya redondeados al máximo por su propia altura) y
+     tags/barras muy chicos (2–6px: loader-bar, calc-slider, comp-tag,
+     crm-event) donde 8px+ se vería desproporcionado. */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* Ritmo vertical entre secciones: escala de 3 niveles, múltiplos de 20px,
+     asignados según densidad de contenido (no todas las secciones son
+     iguales, pero antes usaban solo 2 valores sueltos -100px u 80px- sin
+     ese criterio).
+     sm = bloque único y compacto, poco para escanear: calculadora,
+       app-nativa, faq.
+     md = densidad media, el default: comparativa, calendario/CRM,
+       cómo-funciona, contacto.
+     lg = secciones con más contenido para recorrer: funciones
+       (scrollytelling de 4 bloques), precios (grid de planes), equipo
+       (grid de founders).
+     El hero-stage queda afuera: no es un .band, tiene su propio ritmo
+     (60px/90px) por diseño y no se toca acá. */
+  --space-section-sm: 80px;
+  --space-section-md: 100px;
+  --space-section-lg: 120px;
+
   --font-display: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -152,7 +188,7 @@ a {
   background: var(--accent);
   color: #040303;
   padding: 10px 18px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-weight: 700;
   font-size: 0.9rem;
   transition: top 0.2s ease;
@@ -359,7 +395,7 @@ body.theme-light header {
   color: #040303;
   font-weight: 700;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   display: inline-block;
   border: none;
   cursor: pointer;
@@ -381,7 +417,7 @@ body.theme-light header {
   background: transparent;
   color: var(--text);
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   border: 1px solid var(--border-strong);
   display: inline-block;
@@ -643,11 +679,15 @@ body.theme-light .iphone {
 
 /* ============ SECTION BASE ============ */
 .band {
-  padding: 100px 0;
+  padding: var(--space-section-md) 0;
 }
 
 .band.tight {
-  padding: 80px 0;
+  padding: var(--space-section-sm) 0;
+}
+
+.band.loose {
+  padding: var(--space-section-lg) 0;
 }
 
 .section-title {
@@ -675,7 +715,7 @@ body.theme-light .iphone {
 .comparison-box {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   padding: 32px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -688,7 +728,7 @@ body.theme-light .iphone {
 
 .comp-card {
   padding: 24px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border);
   background: var(--surface-2);
   transition: transform 0.2s ease, var(--theme-transition);
@@ -836,7 +876,7 @@ body.theme-light .feature-visual:hover .iphone {
 
 .bubble {
   background: var(--surface-2);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 9px 12px;
   font-size: 0.76rem;
   max-width: 85%;
@@ -909,7 +949,7 @@ body.theme-light .feature-visual:hover .iphone {
 .mini-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 22px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, var(--theme-transition);
 }
@@ -948,7 +988,7 @@ body.theme-light .feature-visual:hover .iphone {
 .calculator-box {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   padding: 44px 30px;
   text-align: center;
 }
@@ -1074,7 +1114,7 @@ body.theme-light .feature-visual:hover .iphone {
 .crm-panel {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
@@ -1188,7 +1228,7 @@ body.theme-light .feature-visual:hover .iphone {
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 30px;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   transition: transform 0.2s ease, box-shadow 0.2s ease, var(--theme-transition);
 }
 
@@ -1235,7 +1275,7 @@ body.theme-light .feature-visual:hover .iphone {
 .founder-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -1252,7 +1292,7 @@ body.theme-light .feature-visual:hover .iphone {
   width: 48px;
   height: 48px;
   background: var(--accent-soft);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1304,7 +1344,7 @@ body.theme-light .feature-visual:hover .iphone {
   gap: 14px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 12px 24px;
   user-select: none;
   transition: var(--theme-transition);
@@ -1374,7 +1414,7 @@ body.theme-light .feature-visual:hover .iphone {
 .price-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 32px;
   display: flex;
   flex-direction: column;
@@ -1415,7 +1455,7 @@ body.theme-light .feature-visual:hover .iphone {
   font-size: 0.72rem;
   font-family: var(--font-mono);
   padding: 5px 14px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-weight: 800;
   letter-spacing: 0.5px;
   animation: pulse-ring 1.8s ease-in-out 4;
@@ -1472,7 +1512,7 @@ body.theme-light .feature-visual:hover .iphone {
 .faq-item {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   margin-bottom: 14px;
   padding: 20px 22px;
   transition: var(--theme-transition);
@@ -1529,7 +1569,7 @@ body.theme-light .feature-visual:hover .iphone {
 .contact-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 30px;
   text-align: left;
   position: relative;
@@ -1546,7 +1586,7 @@ body.theme-light .feature-visual:hover .iphone {
 .contact-card .ic {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: var(--accent-soft);
   color: var(--accent);
   display: flex;
@@ -1603,7 +1643,7 @@ body.theme-light .feature-visual:hover .iphone {
   flex: 1;
   min-width: 0;
   padding: 10px 14px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   background: var(--surface-2);
   color: var(--text);
@@ -1704,7 +1744,7 @@ footer {
 .legal-hero .eyebrow { margin-bottom: 18px; }
 .legal-hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 10px; }
 .legal-updated { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.5px; }
-.legal-draft-notice { background: var(--accent-soft); border: 1px solid var(--border-strong); border-radius: 12px; padding: 16px 20px; margin: 22px 0 8px; font-size: 0.9rem; color: var(--text); display: flex; gap: 12px; align-items: flex-start; }
+.legal-draft-notice { background: var(--accent-soft); border: 1px solid var(--border-strong); border-radius: var(--radius-md); padding: 16px 20px; margin: 22px 0 8px; font-size: 0.9rem; color: var(--text); display: flex; gap: 12px; align-items: flex-start; }
 .legal-draft-notice i { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
 .legal-body { max-width: 760px; margin: 0 auto; padding: 30px 0 70px; }
 .legal-body h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; margin: 38px 0 12px; }
@@ -1715,7 +1755,7 @@ footer {
 .legal-body li { margin-bottom: 6px; }
 .legal-body a { color: var(--accent); font-weight: 600; }
 .legal-body a:hover { text-decoration: underline; }
-.legal-toc { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 26px; margin-bottom: 10px; }
+.legal-toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px 26px; margin-bottom: 10px; }
 .legal-toc p { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-faint); margin-bottom: 10px; }
 .legal-toc ol { margin: 0 0 0 20px; }
 .legal-toc a { color: var(--text-muted); }
