@@ -126,6 +126,14 @@
         "@type": "Answer",
         "text": "El sistema genera un enlace seguro que podés enviar por WhatsApp con el reporte fotográfico inicial para que el cliente lo apruebe y firme digitalmente desde su teléfono."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La firma digital de conformidad tiene validez legal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, es una firma electrónica con valor probatorio conforme a la Ley 25.506, respaldada por las fotos y la fecha/hora del check-in. No es una firma digital certificada (la que requiere certificado digital emitido por un certificador licenciado); frente a un reclamo puntual, el respaldo fotográfico del check-in es lo que refuerza su fuerza probatoria."
+      }
     }
   ]
 }
@@ -162,7 +170,7 @@
       <a href="#app-nativa">App</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a href="#precios" class="btn-primary header-cta-desktop">1 Mes Gratis Pro</a>
+    <a href="#precios" class="btn-primary header-cta-desktop" data-open-modal="registerModal">1 Mes Gratis Pro</a>
     <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()">
       <i class="fa-solid fa-bars" id="menuIcon" aria-hidden="true"></i>
     </button>
@@ -177,7 +185,7 @@
   <a href="#precios" onclick="closeMenu()">Planes</a>
   <a href="#app-nativa" onclick="closeMenu()">App</a>
   <a href="#contacto" onclick="closeMenu()">Contacto</a>
-  <a href="#precios" class="btn-primary" onclick="closeMenu()">1 Mes Gratis Pro</a>
+  <a href="#precios" class="btn-primary" onclick="closeMenu()" data-open-modal="registerModal">1 Mes Gratis Pro</a>
 </div>
 
 <main id="main-content" tabindex="-1">
@@ -245,11 +253,18 @@
     <p>Check-in con relevamiento fotográfico de daños, firma digital de conformidad y CRM de cabinas. Todo el flujo operativo de tu taller centralizado en un solo lugar.</p>
 
     <div class="hero-cta">
-      <a href="#precios" class="btn-primary">1 Mes Gratis Pro</a>
+      <a href="#precios" class="btn-primary" data-open-modal="registerModal">1 Mes Gratis Pro</a>
       <a href="#funciones" class="btn-secondary">Conocer la plataforma</a>
     </div>
 
     <p class="hero-subtext">30 días completos · Sin tarjeta</p>
+    <button type="button" class="hero-demo-link" data-open-modal="demoModal">¿Preferís probarlo primero? Mirá el check-in en 30 segundos →</button>
+
+    <div class="trust-badges">
+      <span class="trust-badge"><i class="fa-solid fa-lock" aria-hidden="true"></i>Conexión SSL</span>
+      <span class="trust-badge"><i class="fa-solid fa-cloud" aria-hidden="true"></i>Datos encriptados y aislados por cuenta</span>
+      <span class="trust-badge"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Cumple Ley 25.326 / 25.506</span>
+    </div>
   </div>
 </section>
   
@@ -298,6 +313,7 @@
         <span class="feature-index">01 — Check-in Digital</span>
         <h3>Mapeo integral de daños previo al servicio</h3>
         <p>Documentá visualmente cada panel antes de comenzar. Con firma de conformidad legal y registro fotográfico respaldado en la nube para una protección total contra reclamos.</p>
+        <button type="button" class="btn-secondary feature-demo-btn" data-open-modal="demoModal">Probar Check-in en 30 segundos</button>
       </div>
       <div class="feature-visual">
         <div class="iphone fall">
@@ -560,7 +576,7 @@
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Control de costos e insumos</li>
           </ul>
         </div>
-        <a href="#" class="btn-primary mp-checkout-btn" data-plan="pro" style="text-align:center;margin-top:16px;">1 Mes Gratis Pro</a>
+        <a href="#contacto" class="btn-primary" data-open-modal="registerModal" style="text-align:center;margin-top:16px;">1 Mes Gratis Pro</a>
       </div>
 
       <!-- Plan Intermedio -->
@@ -580,6 +596,7 @@
       </div>
     </div>
     <p class="pricing-note reveal" style="margin-top:26px;">Primeros 30 días de prueba bonificados en su totalidad para cualquier plan.</p>
+    <p class="pricing-note reveal" style="margin-top:10px;">Pagos mensuales recurrentes a través de Mercado Pago (tarjetas de crédito y débito). El cobro se renueva automáticamente cada mes desde la fecha de alta y podés cancelar la suscripción cuando quieras, sin penalidad. Emitimos Factura C.</p>
   </div>
 </section>
 
@@ -626,6 +643,10 @@
         <summary>¿Cómo firma la conformidad el cliente si no está en el taller?</summary>
         <div class="faq-answer">Le enviás un enlace directo por WhatsApp con el reporte fotográfico inicial para que lo revise y lo apruebe digitalmente desde su propio teléfono.</div>
       </details>
+      <details class="faq-item">
+        <summary>¿La firma digital de conformidad tiene validez legal?</summary>
+        <div class="faq-answer">Sí, es una firma electrónica con valor probatorio conforme a la Ley 25.506, respaldada por las fotos y la fecha/hora del check-in. No es una firma digital certificada (la que requiere certificado digital emitido por un certificador licenciado); frente a un reclamo puntual, el respaldo fotográfico del check-in es lo que refuerza su fuerza probatoria.</div>
+      </details>
     </div>
   </div>
 </section>
@@ -660,9 +681,13 @@
         <div class="ic"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></div>
         <h3>Lanzamiento de Apps</h3>
         <p>Dejanos tu email para notificarte el lanzamiento de las aplicaciones en Play Store y App Store.</p>
-        <form class="waitlist-form" onsubmit="joinWaitlist(event)">
+        <form class="waitlist-form" action="https://formsubmit.co/contacto@detallarg.com" method="POST" id="waitlist-form">
+          <input type="hidden" name="_subject" value="Interés en App Store / Play Store - Detallarg">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://detallarg.com/#contacto">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
           <label for="waitlist-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Tu email</label>
-          <input type="email" id="waitlist-email" required placeholder="tu@email.com" autocomplete="email">
+          <input type="email" id="waitlist-email" name="email" required placeholder="tu@email.com" autocomplete="email">
           <button type="submit" class="btn-primary">Avisarme</button>
         </form>
         <p class="waitlist-note">Sin spam: únicamente novedades de lanzamientos y actualizaciones.</p>
@@ -670,6 +695,100 @@
     </div>
   </div>
 </section>
+
+
+<!-- ============ MODAL: REGISTRO ============ -->
+<div class="modal-overlay" id="registerModal" role="dialog" aria-modal="true" aria-labelledby="registerModalTitle" aria-hidden="true">
+  <div class="modal-panel">
+    <button type="button" class="modal-close" aria-label="Cerrar">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+
+    <div class="modal-steps" aria-hidden="true">
+      <span class="modal-step-dot active" data-step-dot="1"></span>
+      <span class="modal-step-dot" data-step-dot="2"></span>
+    </div>
+
+    <h2 id="registerModalTitle">Creá tu cuenta</h2>
+    <p class="modal-subtitle">Empezá tu mes gratis del plan Taller Pro. Sin tarjeta.</p>
+
+    <form id="registerForm" novalidate>
+      <div class="modal-step" data-step="1">
+        <label for="reg-nombre">Tu nombre</label>
+        <input type="text" id="reg-nombre" name="nombre" required autocomplete="name" placeholder="Ej: Augusto Di Paolo">
+
+        <label for="reg-nombre-taller">Nombre del taller</label>
+        <input type="text" id="reg-nombre-taller" name="nombre_taller" required autocomplete="organization" placeholder="Ej: Detailing Palermo">
+
+        <button type="button" class="btn-primary" id="registerStep1Next">Continuar</button>
+      </div>
+
+      <div class="modal-step" data-step="2" hidden>
+        <label for="reg-email">Email</label>
+        <input type="email" id="reg-email" name="email" required autocomplete="email" placeholder="tu@email.com">
+
+        <label for="reg-telefono">Teléfono <span class="opt-tag">(opcional)</span></label>
+        <input type="tel" id="reg-telefono" name="telefono" autocomplete="tel" placeholder="11 1234 5678">
+
+        <label for="reg-password">Contraseña</label>
+        <input type="password" id="reg-password" name="password" required minlength="6" autocomplete="new-password" placeholder="Mínimo 6 caracteres">
+
+        <p class="modal-error" id="registerError" role="alert" hidden></p>
+
+        <div class="modal-step-actions">
+          <button type="button" class="btn-secondary" id="registerStep2Back">Volver</button>
+          <button type="submit" class="btn-primary" id="registerSubmit">Crear cuenta</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ MODAL: DEMO INTERACTIVA ============ -->
+<div class="modal-overlay" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle" aria-hidden="true">
+  <div class="modal-panel demo-panel">
+    <button type="button" class="modal-close" aria-label="Cerrar">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+
+    <h2 id="demoModalTitle">Probá el check-in en 30 segundos</h2>
+    <p class="modal-subtitle" id="demoSubtitle">Elegí un vehículo de ejemplo para empezar.</p>
+
+    <div class="demo-body">
+      <div class="demo-vehicle-picker" id="demoVehiclePicker">
+        <button type="button" class="demo-vehicle-btn" data-vehicle="0">Toyota Corolla · AC 044 KM</button>
+        <button type="button" class="demo-vehicle-btn" data-vehicle="1">VW Amarok · AD 118 XY</button>
+        <button type="button" class="demo-vehicle-btn" data-vehicle="2">Fiat Cronos · AE 902 LM</button>
+      </div>
+
+      <div class="iphone fall demo-iphone" id="demoIphone" hidden>
+        <div class="iphone-screen">
+          <div class="iphone-status"><span>9:14</span><span>Check-in</span></div>
+          <div style="text-align:left;font-size:0.76rem;color:var(--text-muted);">
+            <div style="font-family:var(--font-mono);font-weight:700;color:var(--text);margin-bottom:10px;" id="demoVehicleName">—</div>
+            <div class="demo-photo-grid" id="demoPhotoGrid">
+              <div class="demo-photo-slot" data-slot="0"><i class="fa-solid fa-camera" aria-hidden="true"></i></div>
+              <div class="demo-photo-slot" data-slot="1"><i class="fa-solid fa-camera" aria-hidden="true"></i></div>
+              <div class="demo-photo-slot" data-slot="2"><i class="fa-solid fa-camera" aria-hidden="true"></i></div>
+              <div class="demo-photo-slot" data-slot="3"><i class="fa-solid fa-camera" aria-hidden="true"></i></div>
+            </div>
+            <div id="demoStatusLine" style="border-top:1px solid var(--border);padding-top:10px;">Tocá los 4 recuadros para simular las fotos del relevamiento.</div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-primary" id="demoSignBtn" hidden>Firmar conformidad</button>
+
+      <div class="demo-done" id="demoDone" hidden>
+        <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+        <h3>¡Listo! Así de rápido es un check-in real.</h3>
+        <p>Fotos + firma en menos de 30 segundos. Esto es una simulación con datos de ejemplo — en la app real, tu cliente lo aprueba desde su propio teléfono.</p>
+        <a href="#" class="btn-primary" id="demoCtaRegister">Crear mi cuenta</a>
+        <button type="button" class="btn-secondary" id="demoRestart">Probar de nuevo</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </main>
 
@@ -684,10 +803,16 @@
         <a href="privacidad.html">Política de privacidad</a>
       </div>
     </div>
+    <div class="trust-badges footer-trust-badges">
+      <span class="trust-badge"><i class="fa-solid fa-lock" aria-hidden="true"></i>Conexión SSL</span>
+      <span class="trust-badge"><i class="fa-solid fa-cloud" aria-hidden="true"></i>Datos encriptados y aislados por cuenta</span>
+      <span class="trust-badge"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>Cumple Ley 25.326 / 25.506</span>
+    </div>
     <div class="footer-legal">© 2026 DETALLARG.COM — El software estándar para la industria del detailing en Argentina.</div>
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ---------- Loader Blindado ---------- */
 function hideLoader() {
@@ -780,17 +905,11 @@ function updateCalc(){
 updateCalc();
 
 /* ---------- Waitlist Form ---------- */
-function joinWaitlist(e){
-  e.preventDefault();
-  const emailInput = document.getElementById('waitlist-email');
-  if (!emailInput) return;
-  const email = emailInput.value.trim();
-  if(!email) return;
-  const subject = encodeURIComponent('Interés en App Store / Play Store - Detallarg');
-  const body = encodeURIComponent('Hola equipo de Detallarg,\n\nQuiero recibir novedades y acceso prioritario al lanzamiento de las apps móviles.\n\nEmail: ' + email);
-  trackEvent('waitlist_submit', { method: 'mailto' });
-  window.location.href = 'mailto:contacto@detallarg.com?subject=' + subject + '&body=' + body;
-  emailInput.value = '';
+const waitlistForm = document.getElementById('waitlist-form');
+if (waitlistForm) {
+  waitlistForm.addEventListener('submit', () => {
+    trackEvent('waitlist_submit', { method: 'formsubmit' });
+  });
 }
 
 /* ---------- GA4 Tracking ---------- */
@@ -821,6 +940,9 @@ const MP_LINKS = {
   // Pegar acá los links de suscripción mensual generados desde Mercado Pago
   independiente: "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=TU_PLAN_ID_INDEPENDIENTE",
   intermedio: "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=TU_PLAN_ID_INTERMEDIO",
+  // "pro" queda sin botón asociado: el CTA de Taller Pro ahora abre el registro
+  // en vez de ir directo a Mercado Pago. Se deja acá para cuando se conecte el
+  // cobro real después del mes gratis (post-registro o post-trial).
   pro: "https://www.mercadopago.com.ar/subscriptions/checkout?preapproval_plan_id=TU_PLAN_ID_PRO"
 };
 
@@ -891,6 +1013,227 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.18, rootMargin: '0px 0px -60px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
+
+/* ---------- Modales: apertura/cierre genérico ---------- */
+function openModal(id){
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  if (id === 'demoModal') resetDemo();
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  const focusable = modal.querySelector('input, button');
+  if (focusable) focusable.focus();
+  trackEvent('modal_open', { modal: id });
+}
+function closeModal(id){
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (id === 'registerModal') resetRegisterForm();
+}
+document.querySelectorAll('[data-open-modal]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(el.getAttribute('data-open-modal'));
+  });
+});
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
+  const closeBtn = overlay.querySelector('.modal-close');
+  if (closeBtn) closeBtn.addEventListener('click', () => closeModal(overlay.id));
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('.modal-overlay.open').forEach(overlay => closeModal(overlay.id));
+});
+
+/* ---------- Registro de 2 pasos (Supabase Auth) ---------- */
+const SUPABASE_URL = 'https://rnpwzsxexvsxrogynkco.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucHd6c3hleHZzeHJvZ3lua2NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0NDU3ODMsImV4cCI6MjEwMzAyMTc4M30.dejtfO5x8i439GYRCL25nzC2nJgFyOk8uPoQdfczHUY';
+let supabaseClient = null;
+function getSupabaseClient(){
+  if (!supabaseClient && window.supabase && window.supabase.createClient) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+  return supabaseClient;
+}
+
+const registerForm = document.getElementById('registerForm');
+const registerStep1 = registerForm.querySelector('[data-step="1"]');
+const registerStep2 = registerForm.querySelector('[data-step="2"]');
+const registerDots = document.querySelectorAll('#registerModal .modal-step-dot');
+const registerError = document.getElementById('registerError');
+const registerSubmitBtn = document.getElementById('registerSubmit');
+
+function resetRegisterForm(){
+  registerForm.reset();
+  registerStep1.hidden = false;
+  registerStep2.hidden = true;
+  registerDots[0].classList.add('active');
+  registerDots[1].classList.remove('active');
+  registerError.hidden = true;
+  registerSubmitBtn.disabled = false;
+  registerSubmitBtn.textContent = 'Crear cuenta';
+}
+
+document.getElementById('registerStep1Next').addEventListener('click', () => {
+  const nombre = document.getElementById('reg-nombre');
+  const nombreTaller = document.getElementById('reg-nombre-taller');
+  if (!nombre.checkValidity()) { nombre.reportValidity(); return; }
+  if (!nombreTaller.checkValidity()) { nombreTaller.reportValidity(); return; }
+  registerStep1.hidden = true;
+  registerStep2.hidden = false;
+  registerDots[0].classList.remove('active');
+  registerDots[1].classList.add('active');
+  document.getElementById('reg-email').focus();
+});
+
+document.getElementById('registerStep2Back').addEventListener('click', () => {
+  registerStep2.hidden = true;
+  registerStep1.hidden = false;
+  registerDots[1].classList.remove('active');
+  registerDots[0].classList.add('active');
+  document.getElementById('reg-nombre').focus();
+});
+
+registerForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  registerError.hidden = true;
+
+  const nombre = document.getElementById('reg-nombre').value.trim();
+  const nombreTaller = document.getElementById('reg-nombre-taller').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const telefono = document.getElementById('reg-telefono').value.trim();
+  const password = document.getElementById('reg-password').value;
+
+  if (!email || !password || password.length < 6) {
+    registerError.textContent = 'Revisá el email y que la contraseña tenga al menos 6 caracteres.';
+    registerError.hidden = false;
+    return;
+  }
+
+  const client = getSupabaseClient();
+  if (!client) {
+    registerError.textContent = 'No pudimos conectar con el servidor. Probá de nuevo en unos segundos.';
+    registerError.hidden = false;
+    return;
+  }
+
+  registerSubmitBtn.disabled = true;
+  registerSubmitBtn.textContent = 'Creando cuenta…';
+
+  const { data, error } = await client.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        nombre: nombre,
+        nombre_taller: nombreTaller,
+        telefono: telefono || null
+      }
+    }
+  });
+
+  registerSubmitBtn.disabled = false;
+  registerSubmitBtn.textContent = 'Crear cuenta';
+
+  if (error) {
+    if (/already registered|already exists/i.test(error.message)) {
+      registerError.textContent = 'Ya existe una cuenta con ese email.';
+    } else if (/password/i.test(error.message)) {
+      registerError.textContent = 'La contraseña no cumple los requisitos mínimos: ' + error.message;
+    } else {
+      registerError.textContent = 'No pudimos crear la cuenta: ' + error.message;
+    }
+    registerError.hidden = false;
+    trackEvent('sign_up_error', { message: error.message });
+    return;
+  }
+
+  trackEvent('sign_up', { method: 'email' });
+  const estado = (data && data.session) ? 'listo' : 'pendiente';
+  window.location.href = 'bienvenida.html?estado=' + estado + '&nombre=' + encodeURIComponent(nombre);
+});
+
+/* ---------- Demo interactiva de Check-in (sin backend, en memoria) ---------- */
+const DEMO_VEHICLES = [
+  'Toyota Corolla · AC 044 KM',
+  'VW Amarok · AD 118 XY',
+  'Fiat Cronos · AE 902 LM'
+];
+let demoFilledCount = 0;
+
+const demoVehiclePicker = document.getElementById('demoVehiclePicker');
+const demoIphone = document.getElementById('demoIphone');
+const demoSignBtn = document.getElementById('demoSignBtn');
+const demoDone = document.getElementById('demoDone');
+const demoSubtitle = document.getElementById('demoSubtitle');
+const demoStatusLine = document.getElementById('demoStatusLine');
+const demoVehicleName = document.getElementById('demoVehicleName');
+
+function resetDemo(){
+  demoFilledCount = 0;
+  demoVehiclePicker.hidden = false;
+  demoIphone.hidden = true;
+  demoSignBtn.hidden = true;
+  demoSignBtn.disabled = false;
+  demoSignBtn.textContent = 'Firmar conformidad';
+  demoDone.hidden = true;
+  demoDone.classList.remove('show');
+  demoSubtitle.textContent = 'Elegí un vehículo de ejemplo para empezar.';
+  demoStatusLine.textContent = 'Tocá los 4 recuadros para simular las fotos del relevamiento.';
+  document.querySelectorAll('.demo-photo-slot').forEach(slot => {
+    slot.classList.remove('filled');
+    slot.innerHTML = '<i class="fa-solid fa-camera" aria-hidden="true"></i>';
+  });
+}
+
+document.querySelectorAll('.demo-vehicle-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    demoVehicleName.textContent = DEMO_VEHICLES[Number(btn.dataset.vehicle)];
+    demoVehiclePicker.hidden = true;
+    demoIphone.hidden = false;
+    demoSubtitle.textContent = 'Tocá los 4 recuadros para simular las fotos.';
+    trackEvent('demo_vehicle_selected', {});
+  });
+});
+
+document.querySelectorAll('.demo-photo-slot').forEach(slot => {
+  slot.addEventListener('click', () => {
+    if (slot.classList.contains('filled')) return;
+    slot.classList.add('filled');
+    slot.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i>';
+    demoFilledCount++;
+    if (demoFilledCount === 4) {
+      demoStatusLine.textContent = 'Fotos completas. Confirmá la firma de conformidad.';
+      demoSignBtn.hidden = false;
+    }
+  });
+});
+
+demoSignBtn.addEventListener('click', () => {
+  demoSignBtn.disabled = true;
+  demoSignBtn.textContent = 'Firmando…';
+  setTimeout(() => {
+    demoIphone.hidden = true;
+    demoSignBtn.hidden = true;
+    demoDone.hidden = false;
+    requestAnimationFrame(() => demoDone.classList.add('show'));
+    trackEvent('demo_completed', {});
+  }, 700);
+});
+
+document.getElementById('demoRestart').addEventListener('click', resetDemo);
+document.getElementById('demoCtaRegister').addEventListener('click', (e) => {
+  e.preventDefault();
+  closeModal('demoModal');
+  openModal('registerModal');
+});
 </script>
 </body>
 </html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Bienvenido a Detallarg! — DETALLARG</title>
+<meta name="description" content="Tu cuenta en Detallarg fue creada. Próximos pasos para empezar a usar la plataforma.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://detallarg.com/bienvenida.html">
+<meta name="theme-color" content="#040303">
+
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQW5ZD2PF5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQW5ZD2PF5');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23040303%22/><text x=%2250%22 y=%2258%22 font-family=%22Archivo%22 font-weight=%22800%22 font-size=%2242%22 fill=%22%23529CC1%22 text-anchor=%22middle%22>DA</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a href="https://wa.me/5491112345678?text=Hola!%20Acabo%20de%20crear%20mi%20cuenta%20en%20Detallarg" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+
+<header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <a href="index.html" class="logo" style="text-decoration:none;">DETALL<span class="arg chrome">ARG</span></a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="index.html#funciones">Funcionalidades</a>
+      <a href="index.html#precios">Planes</a>
+      <a href="index.html#equipo">Quiénes somos</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <a href="index.html" class="btn-primary header-cta-desktop">Volver al inicio</a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars" id="menuIcon" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#funciones" onclick="closeMenu()">Funcionalidades</a>
+  <a href="index.html#precios" onclick="closeMenu()">Planes</a>
+  <a href="index.html#equipo" onclick="closeMenu()">Quiénes somos</a>
+  <a href="index.html#contacto" onclick="closeMenu()">Contacto</a>
+  <a href="index.html" class="btn-primary" onclick="closeMenu()">Volver al inicio</a>
+</div>
+
+<main>
+<section class="band" data-theme="dark" style="min-height:56vh;display:flex;align-items:center;">
+  <div class="container" style="max-width:600px;text-align:center;">
+    <div style="width:56px;height:56px;border-radius:var(--radius-md);background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 22px;">
+      <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+    </div>
+    <h1 id="welcomeTitle" style="font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin-bottom:14px;">Cargando…</h1>
+    <p id="welcomeBody" style="color:var(--text-muted);font-size:1.02rem;line-height:1.7;"></p>
+    <div class="hero-cta" style="margin-top:30px;">
+      <a href="https://wa.me/5491112345678?text=Hola!%20Acabo%20de%20crear%20mi%20cuenta%20en%20Detallarg" class="btn-primary" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      <a href="index.html" class="btn-secondary">Volver al inicio</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-theme="dark">
+  <div class="container">
+    <div class="footer-top">
+      <a href="index.html" class="logo" style="text-decoration:none;">DETALL<span class="arg chrome">ARG</span></a>
+      <div class="footer-links">
+        <a href="index.html#funciones">Funcionalidades</a>
+        <a href="index.html#precios">Planes</a>
+        <a href="terminos.html">Términos y condiciones</a>
+        <a href="privacidad.html">Política de privacidad</a>
+      </div>
+    </div>
+    <div class="footer-legal">© 2026 DETALLARG.COM — Hecho en Argentina para la industria del detailing.</div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.querySelector('.menu-toggle');
+  const icon = document.getElementById('menuIcon');
+  const isOpen = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+  document.getElementById('menuIcon').className = 'fa-solid fa-bars';
+}
+const WA_NUMBER = '5491112345678';
+document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
+  a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/' + WA_NUMBER);
+  a.addEventListener('click', () => { if (typeof gtag === 'function') gtag('event','whatsapp_click',{link_location:'bienvenida_page'}); });
+});
+
+/* ---------- Copy dinámico según resultado del registro ---------- */
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const estado = params.get('estado');
+  const nombreRaw = (params.get('nombre') || '').slice(0, 80);
+  const titleEl = document.getElementById('welcomeTitle');
+  const bodyEl = document.getElementById('welcomeBody');
+  const saludo = nombreRaw ? ('¡Gracias, ' + nombreRaw + '!') : '¡Gracias!';
+
+  if (estado === 'listo') {
+    titleEl.textContent = 'Tu cuenta está creada';
+    bodyEl.textContent = saludo + ' Ya guardamos los datos de tu taller en Detallarg. Estamos terminando de habilitar el acceso al panel — te escribimos por WhatsApp o email en cuanto esté listo para que entres con este mismo usuario y contraseña.';
+  } else if (estado === 'pendiente') {
+    titleEl.textContent = 'Ya casi — confirmá tu email';
+    bodyEl.textContent = saludo + ' Te mandamos un email para confirmar tu cuenta: abrí el link que te llegó y quedás registrado. Después te contactamos por WhatsApp con el siguiente paso.';
+  } else {
+    titleEl.textContent = '¡Bienvenido a Detallarg!';
+    bodyEl.textContent = 'Tu cuenta quedó registrada. Te contactamos por WhatsApp o email con el siguiente paso.';
+  }
+
+  if (typeof gtag === 'function') gtag('event', 'signup_welcome_view', { estado: estado || 'desconocido' });
+})();
+</script>
+</body>
+</html>
