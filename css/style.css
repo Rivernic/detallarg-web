@@ -2280,3 +2280,209 @@ footer {
   color: var(--accent);
   font-weight: 600;
 }
+
+/* ============ PANEL (FASE 2) ============ */
+/* --panel-accent queda separada de --accent a propósito: los elementos nuevos
+   del panel (pestañas, KPIs) no deben depender del acento global del resto
+   del sitio, aunque hoy compartan el mismo valor. */
+body.page-panel {
+  --panel-accent: #529CC1;
+}
+
+.panel-shell {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px;
+  color: var(--text);
+}
+
+.panel-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.panel-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.panel-tab {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.panel-tab:hover {
+  color: var(--text);
+}
+
+.panel-tab.active {
+  background: var(--panel-accent);
+  border-color: var(--panel-accent);
+  color: #FFFFFF;
+}
+
+.panel-kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.panel-kpi {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+}
+
+.panel-kpi .label {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  margin-bottom: 8px;
+}
+
+.panel-kpi .value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--panel-accent);
+}
+
+.panel-alert {
+  background: var(--accent-soft);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  color: var(--text);
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.panel-alert i {
+  color: var(--danger-muted);
+  margin-top: 2px;
+}
+
+.panel-alert-link {
+  display: block;
+  margin-top: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--panel-accent);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.panel-alert-link:hover {
+  text-decoration: underline;
+}
+
+.panel-section-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 26px 0 12px;
+}
+
+.panel-section-title:first-child {
+  margin-top: 0;
+}
+
+.panel-table-wrap {
+  overflow-x: auto;
+}
+
+.panel-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.panel-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.panel-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.panel-table td.num {
+  font-family: var(--font-mono);
+  color: var(--text);
+  text-align: right;
+}
+
+.panel-empty {
+  color: var(--text-faint);
+  font-size: 0.88rem;
+  padding: 16px 0;
+}
+
+.panel-costos-list {
+  list-style: none;
+}
+
+.panel-costos-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.panel-costos-list li:last-child {
+  border-bottom: none;
+}
+
+.panel-costos-list .monto {
+  font-family: var(--font-mono);
+  color: var(--text);
+}

@@ -27,7 +27,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230A0A0B%22/><text x=%2250%22 y=%2258%22 font-family=%22Archivo%22 font-weight=%22800%22 font-size=%2242%22 fill=%22%23C77B3E%22 text-anchor=%22middle%22>DA</text></svg>">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="theme-light">
+<body class="theme-light page-panel">
 
 <header>
   <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
@@ -58,10 +58,92 @@
       <p class="panel-loading">Verificando tu sesión…</p>
     </div>
 
-    <div class="auth-card" id="panelContent" hidden>
-      <h1>Hola, sesión iniciada</h1>
-      <p class="modal-subtitle">Estás conectado como <span class="panel-email" id="panelEmail">—</span></p>
-      <button type="button" class="btn-secondary" id="logoutBtn" style="width:100%;text-align:center;">Cerrar sesión</button>
+    <div class="panel-shell" id="panelContent" hidden>
+      <div class="panel-header">
+        <div>
+          <h1>Hola, sesión iniciada</h1>
+          <p class="modal-subtitle">Estás conectado como <span class="panel-email" id="panelEmail">—</span></p>
+        </div>
+        <button type="button" class="btn-secondary" id="logoutBtn">Cerrar sesión</button>
+      </div>
+
+      <nav class="panel-tabs" role="tablist" aria-label="Secciones del panel">
+        <button type="button" class="panel-tab active" data-tab="resumen" role="tab" aria-selected="true">Resumen</button>
+        <button type="button" class="panel-tab" data-tab="proximos" role="tab" aria-selected="false">Próximos turnos</button>
+        <button type="button" class="panel-tab" data-tab="completados" role="tab" aria-selected="false">Completados</button>
+        <button type="button" class="panel-tab" data-tab="finanzas" role="tab" aria-selected="false">Finanzas</button>
+      </nav>
+
+      <!-- ============ RESUMEN ============ -->
+      <div class="panel-tab-content" data-tab-content="resumen">
+        <div class="panel-kpis">
+          <div class="panel-kpi">
+            <div class="label">Turnos de hoy (no completados)</div>
+            <div class="value" id="kpiTurnosHoy">—</div>
+          </div>
+          <div class="panel-kpi">
+            <div class="label">Facturación del mes</div>
+            <div class="value" id="kpiFacturacionMes">—</div>
+          </div>
+        </div>
+
+        <div class="panel-alert" id="alertVencidos" hidden>
+          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+          <div>
+            <span id="alertVencidosText"></span>
+            <button type="button" class="panel-alert-link" id="alertVencidosLink">Ver en Próximos turnos →</button>
+          </div>
+        </div>
+
+        <h3 class="panel-section-title">Turnos de hoy</h3>
+        <div class="panel-table-wrap">
+          <table class="panel-table" id="tablaTurnosHoy">
+            <thead><tr><th>Hora</th><th>Servicio</th><th>Cliente</th><th>Precio</th></tr></thead>
+            <tbody id="tbodyTurnosHoy"></tbody>
+          </table>
+        </div>
+        <p class="panel-empty" id="emptyTurnosHoy" hidden>No tenés turnos pendientes para hoy.</p>
+      </div>
+
+      <!-- ============ PRÓXIMOS TURNOS ============ -->
+      <div class="panel-tab-content" data-tab-content="proximos" hidden>
+        <div id="proximosContainer"></div>
+        <p class="panel-empty" id="emptyProximos" hidden>No tenés turnos próximos.</p>
+      </div>
+
+      <!-- ============ COMPLETADOS ============ -->
+      <div class="panel-tab-content" data-tab-content="completados" hidden>
+        <p class="modal-subtitle">Últimos 30, por fecha de entrega.</p>
+        <div class="panel-table-wrap">
+          <table class="panel-table" id="tablaCompletados">
+            <thead><tr><th>Entregado</th><th>Servicio</th><th>Cliente</th><th>Estado</th><th>Precio</th></tr></thead>
+            <tbody id="tbodyCompletados"></tbody>
+          </table>
+        </div>
+        <p class="panel-empty" id="emptyCompletados" hidden>Todavía no hay turnos completados.</p>
+      </div>
+
+      <!-- ============ FINANZAS ============ -->
+      <div class="panel-tab-content" data-tab-content="finanzas" hidden>
+        <div class="panel-kpis">
+          <div class="panel-kpi">
+            <div class="label">Facturación del mes</div>
+            <div class="value" id="kpiFacturacionMes2">—</div>
+          </div>
+          <div class="panel-kpi">
+            <div class="label">Gastos del mes</div>
+            <div class="value" id="kpiGastosMes">—</div>
+          </div>
+          <div class="panel-kpi">
+            <div class="label">Facturación menos gastos fijos y variables</div>
+            <div class="value" id="kpiDiferencia">—</div>
+          </div>
+        </div>
+
+        <h3 class="panel-section-title">Costos fijos vigentes</h3>
+        <ul class="panel-costos-list" id="listaCostosFijos"></ul>
+        <p class="panel-empty" id="emptyCostosFijos" hidden>No hay costos fijos cargados.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -109,6 +191,231 @@ function getSupabaseClient(){
   return supabaseClient;
 }
 
+/* ---------- Pestañas ---------- */
+document.querySelectorAll('.panel-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.getAttribute('data-tab')));
+});
+function switchTab(name){
+  document.querySelectorAll('.panel-tab').forEach(t => {
+    const active = t.getAttribute('data-tab') === name;
+    t.classList.toggle('active', active);
+    t.setAttribute('aria-selected', active ? 'true' : 'false');
+  });
+  document.querySelectorAll('.panel-tab-content').forEach(c => {
+    c.hidden = c.getAttribute('data-tab-content') !== name;
+  });
+}
+document.getElementById('alertVencidosLink').addEventListener('click', () => switchTab('proximos'));
+
+/* ---------- Helpers de formato ---------- */
+function toDateStr(d){
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function formatFecha(raw){
+  if (!raw) return '—';
+  const datePart = String(raw).split('T')[0];
+  const partes = datePart.split('-');
+  if (partes.length !== 3) return String(raw);
+  return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+function formatHora(raw){
+  if (!raw) return '—';
+  return String(raw).slice(0, 5);
+}
+function formatMonto(n){
+  const val = Number(n) || 0;
+  return '$' + Math.round(val).toLocaleString('es-AR');
+}
+function nombreCliente(row){
+  if (row && row.clientes && row.clientes.nombre) return row.clientes.nombre;
+  return '—';
+}
+function escapeHtml(str){
+  return String(str == null ? '—' : str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+/* ---------- Carga de datos (solo lectura) ---------- */
+const ESTADOS_NO_COMPLETADOS = ['Pendiente', 'En proceso'];
+const ESTADOS_COMPLETADOS = ['Finalizado', 'Entregado'];
+
+async function loadPanelData(){
+  const client = getSupabaseClient();
+  const hoy = new Date();
+  const hoyStr = toDateStr(hoy);
+  const inicioMes = toDateStr(new Date(hoy.getFullYear(), hoy.getMonth(), 1));
+  const inicioMesSiguiente = toDateStr(new Date(hoy.getFullYear(), hoy.getMonth() + 1, 1));
+
+  const [proximosRes, completadosRes, cobrosRes, gastosRes, costosRes] = await Promise.all([
+    client.from('turnos')
+      .select('id, fecha, hora, servicio_nombre, precio, clientes(nombre)')
+      .in('estado', ESTADOS_NO_COMPLETADOS)
+      .order('fecha', { ascending: true })
+      .order('hora', { ascending: true }),
+    client.from('turnos')
+      .select('id, fecha_entregado, servicio_nombre, precio, estado, clientes(nombre)')
+      .in('estado', ESTADOS_COMPLETADOS)
+      .order('fecha_entregado', { ascending: false })
+      .limit(30),
+    client.from('cobros')
+      .select('monto')
+      .gte('fecha', inicioMes)
+      .lt('fecha', inicioMesSiguiente),
+    client.from('gastos_variables')
+      .select('monto')
+      .gte('fecha', inicioMes)
+      .lt('fecha', inicioMesSiguiente),
+    client.from('costos_fijos')
+      .select('nombre, monto')
+  ]);
+
+  [
+    ['proximos', proximosRes], ['completados', completadosRes], ['cobros', cobrosRes],
+    ['gastos_variables', gastosRes], ['costos_fijos', costosRes]
+  ].forEach(([label, res]) => {
+    if (res.error) console.error('[panel] error consultando ' + label + ':', res.error);
+  });
+
+  const proximos = proximosRes.data || [];
+  const completados = completadosRes.data || [];
+  const cobros = cobrosRes.data || [];
+  const gastosVariables = gastosRes.data || [];
+  const costosFijos = costosRes.data || [];
+
+  const facturacionMes = cobros.reduce((sum, r) => sum + (Number(r.monto) || 0), 0);
+  const gastosVariablesMes = gastosVariables.reduce((sum, r) => sum + (Number(r.monto) || 0), 0);
+  const costosFijosTotal = costosFijos.reduce((sum, r) => sum + (Number(r.monto) || 0), 0);
+  const gastosMes = gastosVariablesMes + costosFijosTotal;
+  const diferencia = facturacionMes - gastosMes;
+
+  const turnosHoy = proximos.filter(t => t.fecha && String(t.fecha).split('T')[0] === hoyStr);
+  const turnosVencidos = proximos.filter(t => t.fecha && String(t.fecha).split('T')[0] < hoyStr);
+
+  renderResumen(turnosHoy, turnosVencidos, facturacionMes);
+  renderProximos(proximos);
+  renderCompletados(completados);
+  renderFinanzas(facturacionMes, gastosMes, diferencia, costosFijos);
+}
+
+function filaTurno(t, incluirPrecio){
+  return `<td>${formatHora(t.hora)}</td><td>${escapeHtml(t.servicio_nombre)}</td><td>${escapeHtml(nombreCliente(t))}</td><td class="num">${formatMonto(t.precio)}</td>`;
+}
+
+function renderResumen(turnosHoy, turnosVencidos, facturacionMes){
+  document.getElementById('kpiTurnosHoy').textContent = turnosHoy.length;
+  document.getElementById('kpiFacturacionMes').textContent = formatMonto(facturacionMes);
+
+  const alertEl = document.getElementById('alertVencidos');
+  const alertText = document.getElementById('alertVencidosText');
+  if (turnosVencidos.length > 0) {
+    const plural = turnosVencidos.length === 1 ? '' : 's';
+    alertText.textContent = `Tenés ${turnosVencidos.length} turno${plural} vencido${plural} sin completar.`;
+    alertEl.hidden = false;
+  } else {
+    alertEl.hidden = true;
+  }
+
+  const tbody = document.getElementById('tbodyTurnosHoy');
+  const tableEl = document.getElementById('tablaTurnosHoy');
+  const emptyEl = document.getElementById('emptyTurnosHoy');
+  tbody.innerHTML = '';
+  if (turnosHoy.length === 0) {
+    emptyEl.hidden = false;
+    tableEl.hidden = true;
+    return;
+  }
+  emptyEl.hidden = true;
+  tableEl.hidden = false;
+  turnosHoy.forEach(t => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = filaTurno(t);
+    tbody.appendChild(tr);
+  });
+}
+
+function renderProximos(rows){
+  const container = document.getElementById('proximosContainer');
+  const emptyEl = document.getElementById('emptyProximos');
+  container.innerHTML = '';
+  if (!rows.length) {
+    emptyEl.hidden = false;
+    return;
+  }
+  emptyEl.hidden = true;
+
+  const grupos = [];
+  let currentFecha = null;
+  let currentGrupo = null;
+  rows.forEach(t => {
+    const fechaKey = t.fecha ? String(t.fecha).split('T')[0] : 'sin-fecha';
+    if (fechaKey !== currentFecha) {
+      currentFecha = fechaKey;
+      currentGrupo = { fecha: t.fecha, items: [] };
+      grupos.push(currentGrupo);
+    }
+    currentGrupo.items.push(t);
+  });
+
+  grupos.forEach(grupo => {
+    const h3 = document.createElement('h3');
+    h3.className = 'panel-section-title';
+    h3.textContent = formatFecha(grupo.fecha);
+    container.appendChild(h3);
+
+    const wrap = document.createElement('div');
+    wrap.className = 'panel-table-wrap';
+    const table = document.createElement('table');
+    table.className = 'panel-table';
+    table.innerHTML = '<thead><tr><th>Hora</th><th>Servicio</th><th>Cliente</th><th>Precio</th></tr></thead><tbody></tbody>';
+    const tbody = table.querySelector('tbody');
+    grupo.items.forEach(t => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = filaTurno(t);
+      tbody.appendChild(tr);
+    });
+    wrap.appendChild(table);
+    container.appendChild(wrap);
+  });
+}
+
+function renderCompletados(rows){
+  const tbody = document.getElementById('tbodyCompletados');
+  const emptyEl = document.getElementById('emptyCompletados');
+  const tableEl = document.getElementById('tablaCompletados');
+  tbody.innerHTML = '';
+  if (!rows.length) {
+    emptyEl.hidden = false;
+    tableEl.hidden = true;
+    return;
+  }
+  emptyEl.hidden = true;
+  tableEl.hidden = false;
+  rows.forEach(t => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${formatFecha(t.fecha_entregado)}</td><td>${escapeHtml(t.servicio_nombre)}</td><td>${escapeHtml(nombreCliente(t))}</td><td>${escapeHtml(t.estado)}</td><td class="num">${formatMonto(t.precio)}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderFinanzas(facturacionMes, gastosMes, diferencia, costosFijos){
+  document.getElementById('kpiFacturacionMes2').textContent = formatMonto(facturacionMes);
+  document.getElementById('kpiGastosMes').textContent = formatMonto(gastosMes);
+  document.getElementById('kpiDiferencia').textContent = formatMonto(diferencia);
+
+  const lista = document.getElementById('listaCostosFijos');
+  const emptyEl = document.getElementById('emptyCostosFijos');
+  lista.innerHTML = '';
+  if (!costosFijos.length) {
+    emptyEl.hidden = false;
+    return;
+  }
+  emptyEl.hidden = true;
+  costosFijos.forEach(c => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span>${escapeHtml(c.nombre)}</span><span class="monto">${formatMonto(c.monto)}</span>`;
+    lista.appendChild(li);
+  });
+}
+
 /* ---------- Guard de sesión + datos del taller ---------- */
 (async function initPanel(){
   const client = getSupabaseClient();
@@ -132,6 +439,13 @@ function getSupabaseClient(){
   if (taller && taller.correo) correo = taller.correo;
 
   document.getElementById('panelEmail').textContent = correo;
+
+  try {
+    await loadPanelData();
+  } catch (err) {
+    console.error('[panel] error cargando datos:', err);
+  }
+
   document.getElementById('panelLoading').hidden = true;
   document.getElementById('panelContent').hidden = false;
 })();
