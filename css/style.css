@@ -88,6 +88,59 @@ body.theme-light {
   --chrome-5: #529CC1;
 }
 
+/* Cada sección declara su data-theme de forma estática en el HTML (no
+   cambia en runtime): fijamos acá las variables de color POR SECCIÓN en vez
+   de depender solo de body.theme-light (que el scroll togglea). Antes, el
+   fondo de TODA la página (secciones + hero, todas heredando la misma
+   variable --bg de body) crossfadeaba en simultáneo entre negro y blanco
+   casi puros, y ese blend de color pasa inevitablemente por un gris medio
+   parejo en toda la pantalla a la vez. Fijando el valor localmente por
+   sección, cada una tiene su color final desde el primer render, sin
+   animación ni gris intermedio; solo el header (que sí necesita reaccionar
+   en vivo a qué sección tiene detrás) sigue atado a body.theme-light. */
+[data-theme="dark"] {
+  --bg: #040303;
+  --surface: #0E1315;
+  --surface-2: #182023;
+  --text: #FFFFFF;
+  --text-muted: #C0C9CA;
+  --text-faint: #758386;
+  --border: rgba(192, 201, 202, 0.12);
+  --border-strong: rgba(82, 156, 193, 0.38);
+  --accent-glow: rgba(82, 156, 193, 0.28);
+  --card-shadow: 0 14px 32px -12px rgba(0, 0, 0, 0.45);
+
+  --chrome-1: #36494E;
+  --chrome-2: #C0C9CA;
+  --chrome-3: #FFFFFF;
+  --chrome-4: #529CC1;
+  --chrome-5: #C0C9CA;
+}
+
+[data-theme="light"] {
+  --bg: #F4F7F8;
+  --surface: #FFFFFF;
+  --surface-2: #E5ECED;
+  --text: #040303;
+  --text-muted: #36494E;
+  --text-faint: #697578;
+  --border: rgba(54, 73, 78, 0.12);
+  --border-strong: rgba(82, 156, 193, 0.45);
+  --accent-glow: rgba(82, 156, 193, 0.18);
+  --card-shadow: 0 14px 32px -12px rgba(4, 3, 3, 0.16);
+
+  --chrome-1: #36494E;
+  --chrome-2: #529CC1;
+  --chrome-3: #040303;
+  --chrome-4: #36494E;
+  --chrome-5: #529CC1;
+}
+
+[data-theme] {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
 /* ============ RESET & BASE ============ */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -348,13 +401,16 @@ header {
   top: 0;
   z-index: 100;
   background: rgba(4, 3, 3, 0.80);
+  color: var(--text);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  transition: var(--theme-transition);
-  /* Pequeño delay para que el header no cruce por su punto medio gris
-     exactamente al mismo instante que el título del hero detrás suyo. */
-  transition-delay: 0.12s;
+  /* El header es el único elemento que sigue el theme-light de scroll en
+     vivo (las secciones ya tienen su color fijo, ver [data-theme] arriba).
+     Cruzar de negro a blanco puro por color siempre pasa por un gris medio;
+     acá se acorta la duración para que ese punto intermedio sea breve y
+     quede acotado a la barra del header, sin afectar el resto de la página. */
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 body.theme-light header {
@@ -622,7 +678,7 @@ body.theme-light header {
   backface-visibility: hidden;
 }
 
-body.theme-light .iphone {
+[data-theme="light"] .iphone {
   box-shadow: 0 35px 70px -20px rgba(4, 3, 3, 0.25), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
@@ -687,6 +743,32 @@ body.theme-light .iphone {
 /* ============ SECTION BASE ============ */
 .band {
   padding: var(--space-section-md) 0;
+  z-index: 0;
+}
+
+/* Franja fija (no atada al scroll) que suaviza el corte entre una sección
+   y la anterior, siempre de tema opuesto: se pinta con el color de la
+   sección anterior y se desvanece hacia el propio fondo de esta sección.
+   .hero-stage y footer quedan afuera a propósito: hero es la primera
+   sección (nada antes que suavizar) y footer repite el tema de contacto
+   (no hay corte de color en ese borde). */
+.band::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.band[data-theme="light"]::before {
+  background: linear-gradient(to bottom, #040303, transparent 70%);
+}
+
+.band[data-theme="dark"]::before {
+  background: linear-gradient(to bottom, #F4F7F8, transparent 70%);
 }
 
 .band.tight {
@@ -870,7 +952,7 @@ body.theme-light .iphone {
   box-shadow: 0 40px 85px -18px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(192, 201, 202, 0.1);
 }
 
-body.theme-light .feature-visual:hover .iphone {
+[data-theme="light"] .feature-visual:hover .iphone {
   box-shadow: 0 40px 85px -18px rgba(4, 3, 3, 0.35), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
@@ -2093,4 +2175,108 @@ footer {
   width: 100%;
   text-align: center;
   margin-bottom: 10px;
+}
+
+/* ============ AUTH (LOGIN / PANEL) ============ */
+.auth-section {
+  min-height: calc(100vh - 260px);
+  display: flex;
+  align-items: center;
+}
+
+.auth-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 34px 30px;
+  color: var(--text);
+  transition: var(--theme-transition);
+}
+
+.auth-card h1 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.auth-card .modal-subtitle {
+  margin-bottom: 22px;
+}
+
+.auth-form label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 14px 0 6px;
+}
+
+.auth-form label:first-child {
+  margin-top: 0;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.92rem;
+  font-family: var(--font-body);
+}
+
+.auth-form input:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.auth-form input::placeholder {
+  color: var(--text-faint);
+}
+
+.auth-form > .btn-primary {
+  width: 100%;
+  text-align: center;
+  margin-top: 22px;
+}
+
+.auth-error {
+  color: var(--danger-muted);
+  font-size: 0.85rem;
+  margin-top: 12px;
+}
+
+.auth-success {
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin-top: 12px;
+}
+
+.auth-note {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.auth-note a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.panel-loading {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.panel-email {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-weight: 600;
 }

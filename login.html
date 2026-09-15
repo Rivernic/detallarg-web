@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingresar — DETALLARG</title>
+<meta name="description" content="Ingresá a tu cuenta de Detallarg para gestionar tu taller.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://detallarg.com/login.html">
+<meta name="theme-color" content="#F3F1EC">
+
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQW5ZD2PF5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQW5ZD2PF5');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230A0A0B%22/><text x=%2250%22 y=%2258%22 font-family=%22Archivo%22 font-weight=%22800%22 font-size=%2242%22 fill=%22%23C77B3E%22 text-anchor=%22middle%22>DA</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-light">
+
+<a href="https://wa.me/5491112345678?text=Hola!%20Tengo%20una%20consulta%20sobre%20mi%20cuenta%20de%20Detallarg" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+
+<header>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
+    <a href="index.html" class="logo" style="text-decoration:none;">DETALL<span class="arg chrome">ARG</span></a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="index.html#funciones">Funcionalidades</a>
+      <a href="index.html#precios">Planes</a>
+      <a href="index.html#equipo">Quiénes somos</a>
+      <a href="index.html#contacto">Contacto</a>
+    </nav>
+    <a href="index.html#precios" class="btn-primary header-cta-desktop">Probar 14 días gratis</a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars" id="menuIcon" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#funciones" onclick="closeMenu()">Funcionalidades</a>
+  <a href="index.html#precios" onclick="closeMenu()">Planes</a>
+  <a href="index.html#equipo" onclick="closeMenu()">Quiénes somos</a>
+  <a href="index.html#contacto" onclick="closeMenu()">Contacto</a>
+  <a href="index.html#precios" class="btn-primary" onclick="closeMenu()">Probar 14 días gratis</a>
+</div>
+
+<main>
+<section class="band tight auth-section" data-theme="light">
+  <div class="container">
+    <div class="auth-card">
+      <h1>Ingresar a tu taller</h1>
+      <p class="modal-subtitle">Accedé al panel de gestión de tu cuenta.</p>
+
+      <form id="loginForm" class="auth-form" novalidate>
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" name="email" required autocomplete="email" placeholder="tu@email.com">
+
+        <label for="login-password">Contraseña</label>
+        <input type="password" id="login-password" name="password" required autocomplete="current-password" placeholder="Tu contraseña">
+
+        <p class="auth-error" id="loginError" role="alert" hidden></p>
+        <button type="button" class="btn-secondary" id="resendConfirmBtn" hidden style="width:100%;margin-top:12px;text-align:center;">Reenviar email de confirmación</button>
+        <p class="auth-success" id="resendSuccess" role="status" hidden>Te reenviamos el email de confirmación. Revisá tu bandeja de entrada.</p>
+
+        <button type="submit" class="btn-primary" id="loginSubmit">Ingresar</button>
+      </form>
+
+      <p class="auth-note">¿Todavía no tenés cuenta? <a href="index.html#precios">Registrate acá</a>.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer data-theme="dark">
+  <div class="container">
+    <div class="footer-top">
+      <a href="index.html" class="logo" style="text-decoration:none;">DETALL<span class="arg chrome">ARG</span></a>
+      <div class="footer-links">
+        <a href="index.html#funciones">Funcionalidades</a>
+        <a href="index.html#precios">Planes</a>
+        <a href="terminos.html">Términos y condiciones</a>
+        <a href="privacidad.html">Política de privacidad</a>
+      </div>
+    </div>
+    <div class="footer-legal">© 2026 DETALLARG.COM — Hecho en Argentina para la industria del detailing.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.querySelector('.menu-toggle');
+  const icon = document.getElementById('menuIcon');
+  const isOpen = menu.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
+  document.getElementById('menuIcon').className = 'fa-solid fa-bars';
+}
+const WA_NUMBER = '5491112345678';
+document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
+  a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/' + WA_NUMBER);
+  a.addEventListener('click', () => { if (typeof gtag === 'function') gtag('event','whatsapp_click',{link_location:'login_page'}); });
+});
+
+/* ---------- Cliente Supabase (mismo patrón que index.html) ---------- */
+const SUPABASE_URL = 'https://rnpwzsxexvsxrogynkco.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucHd6c3hleHZzeHJvZ3lua2NvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc0NDU3ODMsImV4cCI6MjEwMzAyMTc4M30.dejtfO5x8i439GYRCL25nzC2nJgFyOk8uPoQdfczHUY';
+let supabaseClient = null;
+function getSupabaseClient(){
+  if (!supabaseClient && window.supabase && window.supabase.createClient) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+  return supabaseClient;
+}
+
+/* ---------- Login ---------- */
+const loginForm = document.getElementById('loginForm');
+const loginError = document.getElementById('loginError');
+const resendBtn = document.getElementById('resendConfirmBtn');
+const resendSuccess = document.getElementById('resendSuccess');
+const loginSubmit = document.getElementById('loginSubmit');
+let pendingConfirmEmail = '';
+
+function showLoginError(msg){
+  loginError.textContent = msg;
+  loginError.hidden = false;
+}
+function hideLoginMessages(){
+  loginError.hidden = true;
+  resendBtn.hidden = true;
+  resendSuccess.hidden = true;
+}
+
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  hideLoginMessages();
+
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+
+  const client = getSupabaseClient();
+  if (!client) {
+    showLoginError('No pudimos conectar con el servidor. Probá de nuevo en unos segundos.');
+    return;
+  }
+
+  loginSubmit.disabled = true;
+  loginSubmit.textContent = 'Ingresando…';
+
+  let result;
+  try {
+    result = await client.auth.signInWithPassword({ email, password });
+  } catch (err) {
+    loginSubmit.disabled = false;
+    loginSubmit.textContent = 'Ingresar';
+    showLoginError('Hubo un problema de conexión. Probá de nuevo.');
+    return;
+  }
+
+  loginSubmit.disabled = false;
+  loginSubmit.textContent = 'Ingresar';
+
+  const { data, error } = result;
+
+  if (error) {
+    if (/email not confirmed/i.test(error.message)) {
+      pendingConfirmEmail = email;
+      showLoginError('Todavía no confirmaste tu email. Revisá tu bandeja de entrada o reenviá el correo de confirmación.');
+      resendBtn.hidden = false;
+    } else if (/invalid login credentials/i.test(error.message)) {
+      showLoginError('Revisá tu email y contraseña.');
+    } else {
+      showLoginError('No pudimos iniciar sesión. Probá de nuevo en unos minutos.');
+    }
+    return;
+  }
+
+  window.location.href = 'panel.html';
+});
+
+resendBtn.addEventListener('click', async () => {
+  const client = getSupabaseClient();
+  if (!client || !pendingConfirmEmail) return;
+  resendBtn.disabled = true;
+  resendBtn.textContent = 'Reenviando…';
+  const { error } = await client.auth.resend({ type: 'signup', email: pendingConfirmEmail });
+  resendBtn.disabled = false;
+  resendBtn.textContent = 'Reenviar email de confirmación';
+  if (error) {
+    showLoginError('No pudimos reenviar el email. Probá de nuevo en unos minutos.');
+    resendBtn.hidden = false;
+    return;
+  }
+  resendBtn.hidden = true;
+  resendSuccess.hidden = false;
+});
+</script>
+</body>
+</html>
