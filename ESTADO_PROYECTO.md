@@ -51,3 +51,22 @@ Revisado `login.html` y `panel.html`: solo usan la anon key pública (nunca `ser
 
 ### Punto 5 — CORS — no aplica
 La Data API de Supabase es abierta por diseño (`Access-Control-Allow-Origin: *`, confirmado en headers reales); Supabase no expone configuración de CORS/orígenes para la Data API en el dashboard, y la seguridad la da RLS, no el origen. No es un hallazgo. El único lugar donde CORS sería configurable de verdad es en una futura Edge Function propia (ej. el webhook de Mercado Pago), que define sus propios headers en el código.
+
+## Preparación Mercado Pago (15/09) — código listo, sin conectar
+
+### Hecho y verificado
+- Columna **`talleres.mp_preapproval_id`** (`text`, nullable, sin default) — `ALTER TABLE` corrido y confirmado contra `information_schema.columns`.
+- Edge Function **`supabase/functions/mp-webhook/index.ts`** — escrita y revisada, **no desplegada**. Incluye validación de firma `x-signature` (manifest `id:...;request-id:...;ts:...;`, HMAC-SHA256, comparación en tiempo constante) según la documentación oficial de MP, manejo explícito de secrets faltantes (`MP_ACCESS_TOKEN`, `MP_WEBHOOK_SECRET` → 500 con mensaje claro, nunca falla en silencio), y las **5 dudas abiertas documentadas en el propio archivo y en su `README.md`** (valores reales de `talleres.plan`, formato real de notificación de esta cuenta, si `external_reference` va a traer el `taller_id`, qué hacer con `subscription_authorized_payment`, qué hacer con `cancelled`/`paused`).
+- Script **`scripts/set-mp-plan-ids.sh`** — reemplaza los 3 placeholders `TU_PLAN_ID_*` en `index.html` dado los `plan_id` reales, sin tocar nada más. Probado contra una copia de `index.html` (el archivo real sigue con los placeholders intactos).
+
+### Bloqueado, esperando a Augusto
+- Credenciales de test y de producción de Mercado Pago — **ninguna guardada localmente todavía** (ni `.env.mp-test` ni `.env.mp-production` existen).
+- Los 3 `plan_id` reales (Independiente, Intermedio, Pro).
+
+### Próximos pasos mecánicos, una vez lleguen las credenciales
+1. Cargar los secrets en Supabase (`MP_ACCESS_TOKEN`, `MP_WEBHOOK_SECRET`, `MP_PLAN_ID_INDEPENDIENTE`, `MP_PLAN_ID_INTERMEDIO`, `MP_PLAN_ID_PRO`).
+2. Crear los 3 planes vía API.
+3. Correr `scripts/set-mp-plan-ids.sh` con los `plan_id` reales sobre `index.html`.
+4. Desplegar `mp-webhook`.
+5. Cargar la `notification_url` en el dashboard de MP.
+6. Probar con una suscripción de test real — ahí se resuelven las 5 dudas documentadas con datos reales, no antes.
