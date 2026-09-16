@@ -756,31 +756,6 @@ header {
   z-index: 0;
 }
 
-/* Franja fija (no atada al scroll) que suaviza el corte entre una sección
-   y la anterior, siempre de tema opuesto: se pinta con el color de la
-   sección anterior y se desvanece hacia el propio fondo de esta sección.
-   .hero-stage y footer quedan afuera a propósito: hero es la primera
-   sección (nada antes que suavizar) y footer repite el tema de contacto
-   (no hay corte de color en ese borde). */
-.band::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 180px;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.band[data-theme="light"]::before {
-  background: linear-gradient(to bottom, transparent, #040303 45%, transparent);
-}
-
-.band[data-theme="dark"]::before {
-  background: linear-gradient(to bottom, transparent, #F4F7F8 45%, transparent);
-}
-
 .band.tight {
   padding: var(--space-section-sm) 0;
 }
