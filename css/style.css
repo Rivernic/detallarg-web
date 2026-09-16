@@ -400,21 +400,31 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(4, 3, 3, 0.80);
+
+  /* El header ya NO sigue el theme-light de scroll: backdrop-filter sobre
+     un elemento sticky no repinta de forma confiable en cada frame durante
+     scroll con inercia (bug de compositing de Chromium), así que togear su
+     color con body.theme-light lo dejaba "pegado" en el color viejo hasta
+     que el scroll se frenaba, con saltos bruscos en vez de una transición.
+     En vez de perseguir el compositing, el header pasa a tener una paleta
+     fija (vidrio oscuro translúcido) que funciona igual de bien encima de
+     cualquier sección, clara u oscura. Estas variables locales evitan que
+     sus hijos (.logo, .nav-links, .menu-toggle, el texto "ARG" con
+     .chrome) hereden --text/--chrome-* de body.theme-light. */
+  --text: #F4F7F8;
+  --text-muted: #C0C9CA;
+  --border: rgba(192, 201, 202, 0.16);
+  --chrome-1: #36494E;
+  --chrome-2: #C0C9CA;
+  --chrome-3: #FFFFFF;
+  --chrome-4: #529CC1;
+  --chrome-5: #C0C9CA;
+
+  background: rgba(15, 17, 19, 0.62);
   color: var(--text);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  /* El header es el único elemento que sigue el theme-light de scroll en
-     vivo (las secciones ya tienen su color fijo, ver [data-theme] arriba).
-     Cruzar de negro a blanco puro por color siempre pasa por un gris medio;
-     acá se acorta la duración para que ese punto intermedio sea breve y
-     quede acotado a la barra del header, sin afectar el resto de la página. */
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
-
-body.theme-light header {
-  background: rgba(244, 247, 248, 0.85);
 }
 
 .logo {
@@ -764,11 +774,11 @@ body.theme-light header {
 }
 
 .band[data-theme="light"]::before {
-  background: linear-gradient(to bottom, #040303, transparent 70%);
+  background: linear-gradient(to bottom, transparent, #040303 45%, transparent);
 }
 
 .band[data-theme="dark"]::before {
-  background: linear-gradient(to bottom, #F4F7F8, transparent 70%);
+  background: linear-gradient(to bottom, transparent, #F4F7F8 45%, transparent);
 }
 
 .band.tight {
