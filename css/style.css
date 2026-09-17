@@ -764,34 +764,6 @@ header {
   padding: var(--space-section-lg) 0;
 }
 
-/* Fundido real entre secciones: 100% CSS estático, sin scroll ni JS de
-   por medio (no puede sufrir el bug de compositing que tuvo el header).
-   Cada sección resuelve en sus primeros 180px desde el color de la
-   sección INMEDIATAMENTE ANTERIOR en el DOM hacia el propio. El orden y
-   el theme de cada sección se confirmaron leyendo el DOM real de
-   index.html (no se asumió): hero-stage(dark) -> comparativa(light) ->
-   funciones(dark) -> calculadora sin id, 4ta section de main (light) ->
-   calendario(dark) -> como-funciona(light) -> equipo(dark) ->
-   precios(light) -> app-nativa(dark) -> faq(light) -> contacto(dark).
-   Es una alternancia perfecta, así que solo hay dos formas de fundido
-   (oscuro->claro y claro->oscuro); hero-stage es la primera sección, no
-   tiene anterior, y se queda con su fondo sólido de siempre. */
-#comparativa,
-main > section:nth-of-type(4),
-#como-funciona,
-#precios,
-#faq {
-  background: linear-gradient(to bottom, #040303 0, #F4F7F8 180px, #F4F7F8 100%);
-}
-
-#funciones,
-#calendario,
-#equipo,
-#app-nativa,
-#contacto {
-  background: linear-gradient(to bottom, #F4F7F8 0, #040303 180px, #040303 100%);
-}
-
 .section-title {
   text-align: center;
   margin: 0 0 46px;
