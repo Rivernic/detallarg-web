@@ -13,14 +13,8 @@ Los textos de `terminos.html` y `privacidad.html` son borradores de referencia, 
 - **Fase 1** — `login.html` + `panel.html` (login con `signInWithPassword`, manejo de credenciales inválidas y email no confirmado con reenvío, guard de sesión, logout). Commit `08fd098`. Confirmado sirviendo 200 en producción.
 - **Fase 2** — `panel.html` con 4 pestañas de solo lectura (Resumen, Próximos turnos, Completados, Finanzas), usando los nombres reales de columnas de `turnos`, `cobros`, `gastos_variables`, `costos_fijos`, `clientes` (verificados en vivo, sin errores de columna). Commit `0fea3ce`. Confirmado sirviendo 200 en producción.
 
-### Pendiente, sin empezar — Mercado Pago
-Ninguno de los 4 pasos del flujo de MP se ejecutó todavía:
-1. Crear los planes vía API.
-2. Reemplazar los placeholders `TU_PLAN_ID_INDEPENDIENTE`, `TU_PLAN_ID_INTERMEDIO` y `TU_PLAN_ID_PRO` en `index.html` (confirmado presentes, sin tocar).
-3. Edge Function del webhook (no existe carpeta `supabase/functions` en el repo).
-4. `notification_url`.
-
-Archivos de entorno: **`.env.mp-test` no existe. `.env.mp-production` no existe.**
+### Mercado Pago — código listo, sin conectar
+El código ya está escrito y revisado (columna `talleres.mp_preapproval_id`, Edge Function `mp-webhook`, script `set-mp-plan-ids.sh`), pero nada está desplegado ni conectado. Sigue bloqueado esperando las credenciales de test/producción de Mercado Pago y los 3 `plan_id` reales — ambos a cargo de Augusto. Ver detalle completo en "Preparación Mercado Pago" más abajo.
 
 ### Pendiente, sin empezar — Fase 4
 - **Fase 4**: correcciones sobre lo que salga de la Fase 3. Ver sección "Fase 3 — Auditoría de seguridad" más abajo: no hay ningún hallazgo CRÍTICO ni IMPORTANTE, así que por ahora la Fase 4 no tiene nada urgente que corregir.
