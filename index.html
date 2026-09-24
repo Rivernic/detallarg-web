@@ -1257,6 +1257,48 @@ document.getElementById('demoCtaRegister').addEventListener('click', (e) => {
   openModal('registerModal');
 });
 
+/* ---------- FAQ: animación de apertura/cierre de <details> ----------
+   El navegador no anima el toggle nativo, así que se intercepta el click en
+   summary (Enter/Espacio con teclado también disparan click) y se anima la
+   altura del <details> con Web Animations API. Al cerrar, el atributo open
+   se saca recién cuando termina la animación. Con prefers-reduced-motion se
+   deja el toggle nativo, porque la regla global del CSS no alcanza a WAAPI. */
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const summary = item.querySelector('summary');
+    let anim = null;
+
+    summary.addEventListener('click', e => {
+      if (reduceMotion.matches) return;
+      e.preventDefault();
+
+      const closing = item.open && !item.classList.contains('closing');
+      const start = item.offsetHeight;
+      if (anim) anim.cancel();
+
+      // Medir la altura final sin pintar el estado intermedio
+      item.open = !closing;
+      const end = item.offsetHeight;
+      item.open = true;
+
+      item.classList.toggle('closing', closing);
+      item.style.overflow = 'hidden';
+      anim = item.animate(
+        { height: [start + 'px', end + 'px'] },
+        { duration: 280, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' }
+      );
+      anim.onfinish = () => {
+        item.open = !closing;
+        item.classList.remove('closing');
+        item.style.overflow = '';
+        anim = null;
+      };
+    });
+  });
+})();
+
 /* ---------- Toggle Mensual / Anual (Precios) ----------
    Anual = 10 meses pagando 12: se muestra el equivalente mensual redondeado
    al millar y, debajo, el total facturado por año. Solo informativo. */

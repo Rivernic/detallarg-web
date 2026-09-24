@@ -1945,6 +1945,12 @@ header {
   transform: rotate(45deg);
 }
 
+/* Mientras se anima el cierre el atributo open sigue puesto (se saca al
+   terminar la animación), así que el ícono vuelve a "+" desde el inicio. */
+.faq-item.closing summary::after {
+  transform: none;
+}
+
 .faq-answer {
   color: var(--text-muted);
   margin-top: 12px;
