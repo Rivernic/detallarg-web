@@ -29,7 +29,7 @@
 </head>
 <body>
 
-<a href="https://wa.me/5491112345678?text=Hola!%20Acabo%20de%20crear%20mi%20cuenta%20en%20Detallarg" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://wa.me/5492604553379?text=Hola!%20Acabo%20de%20crear%20mi%20cuenta%20en%20Detallarg" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
 
 <header>
   <div class="container" style="display:flex;justify-content:space-between;align-items:center;">
@@ -64,7 +64,7 @@
     <h1 id="welcomeTitle" style="font-family:var(--font-display);font-size:clamp(1.6rem,4vw,2.2rem);font-weight:800;margin-bottom:14px;">Cargando…</h1>
     <p id="welcomeBody" style="color:var(--text-muted);font-size:1.02rem;line-height:1.7;"></p>
     <div class="hero-cta" style="margin-top:30px;">
-      <a href="https://wa.me/5491112345678?text=Hola!%20Acabo%20de%20crear%20mi%20cuenta%20en%20Detallarg" class="btn-primary" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      <a href="https://wa.me/5492604553379?text=Hola!%20Acabo%20de%20crear%20mi%20cuenta%20en%20Detallarg" class="btn-primary" target="_blank" rel="noopener">Hablar por WhatsApp</a>
       <a href="index.html" class="btn-secondary">Volver al inicio</a>
     </div>
   </div>
@@ -100,7 +100,7 @@ function closeMenu(){
   document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');
   document.getElementById('menuIcon').className = 'fa-solid fa-bars';
 }
-const WA_NUMBER = '5491112345678';
+const WA_NUMBER = '5492604553379';
 document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
   a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/' + WA_NUMBER);
   a.addEventListener('click', () => { if (typeof gtag === 'function') gtag('event','whatsapp_click',{link_location:'bienvenida_page'}); });
