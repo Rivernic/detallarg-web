@@ -53,21 +53,21 @@
     {
       "@type": "Offer",
       "name": "Independiente",
-      "price": "45000",
+      "price": "35000",
       "priceCurrency": "ARS",
       "url": "https://detallarg.com/#precios"
     },
     {
       "@type": "Offer",
       "name": "Intermedio",
-      "price": "68000",
+      "price": "55000",
       "priceCurrency": "ARS",
       "url": "https://detallarg.com/#precios"
     },
     {
       "@type": "Offer",
       "name": "Taller Pro",
-      "price": "95000",
+      "price": "75000",
       "priceCurrency": "ARS",
       "url": "https://detallarg.com/#precios"
     }
@@ -552,6 +552,11 @@
       <h2>Planes transparentes en pesos argentinos</h2>
       <p>Comenzá con <strong>1 mes gratis del plan Taller Pro completo</strong>. Sin sorpresas ni letra chica.</p>
     </div>
+    <div class="billing-toggle reveal" role="group" aria-label="Período de facturación">
+      <button type="button" class="billing-opt active" data-billing="monthly" aria-pressed="true">Mensual</button>
+      <button type="button" class="billing-opt" data-billing="annual" aria-pressed="false">Anual <span class="billing-save">Ahorrá 2 meses</span></button>
+    </div>
+
     <div class="pricing-grid reveal">
       
       <!-- Plan Independiente -->
@@ -559,7 +564,8 @@
         <div>
           <h3>Independiente</h3>
           <p class="desc">Para el detailer que opera de forma autónoma o en garage propio.</p>
-          <div class="price">$45.000<span>/mes</span></div>
+          <div class="price" data-monthly="35000"><strong class="price-amount">$35.000</strong><span>/mes</span></div>
+          <p class="price-billed" hidden></p>
           <ul class="price-features">
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 30 vehículos por mes</li>
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Check-in fotográfico ilimitado</li>
@@ -574,11 +580,13 @@
 
       <!-- Plan Taller Pro (Destacado) -->
       <div class="price-card featured">
+        <span class="price-tag">Más Elegido</span>
         <span class="price-badge">1 Mes Gratis Pro</span>
         <div>
           <h3>Taller Pro</h3>
           <p class="desc">Para centros de estética automotriz con múltiples cabinas y equipo.</p>
-          <div class="price">$95.000<span>/mes</span></div>
+          <div class="price" data-monthly="75000"><strong class="price-amount">$75.000</strong><span>/mes</span></div>
+          <p class="price-billed" hidden></p>
           <ul class="price-features">
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Vehículos y operarios ilimitados</li>
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Check-in y mapeo de daños avanzado</li>
@@ -595,7 +603,8 @@
         <div>
           <h3>Intermedio</h3>
           <p class="desc">Para talleres en crecimiento que incorporan equipo técnico.</p>
-          <div class="price">$68.000<span>/mes</span></div>
+          <div class="price" data-monthly="55000"><strong class="price-amount">$55.000</strong><span>/mes</span></div>
+          <p class="price-billed" hidden></p>
           <ul class="price-features">
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 80 vehículos por mes</li>
             <li><i class="fa-solid fa-check" aria-hidden="true"></i>Hasta 3 operarios simultáneos</li>
@@ -1247,6 +1256,38 @@ document.getElementById('demoCtaRegister').addEventListener('click', (e) => {
   closeModal('demoModal');
   openModal('registerModal');
 });
+
+/* ---------- Toggle Mensual / Anual (Precios) ----------
+   Anual = 10 meses pagando 12: se muestra el equivalente mensual redondeado
+   al millar y, debajo, el total facturado por año. Solo informativo. */
+(() => {
+  const fmt = n => '$' + n.toLocaleString('es-AR');
+  const opts = document.querySelectorAll('.billing-opt');
+  const prices = document.querySelectorAll('.price[data-monthly]');
+
+  function setBilling(mode) {
+    opts.forEach(o => {
+      const on = o.dataset.billing === mode;
+      o.classList.toggle('active', on);
+      o.setAttribute('aria-pressed', on);
+    });
+    prices.forEach(price => {
+      const monthly = Number(price.dataset.monthly);
+      const amount = price.querySelector('.price-amount');
+      const billed = price.nextElementSibling;
+      if (mode === 'annual') {
+        amount.textContent = fmt(Math.round(monthly * 10 / 12 / 1000) * 1000);
+        billed.textContent = 'Facturado ' + fmt(monthly * 10) + '/año';
+        billed.hidden = false;
+      } else {
+        amount.textContent = fmt(monthly);
+        billed.hidden = true;
+      }
+    });
+  }
+
+  opts.forEach(o => o.addEventListener('click', () => setBilling(o.dataset.billing)));
+})();
 </script>
 </body>
 </html>

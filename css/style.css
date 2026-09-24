@@ -1732,17 +1732,21 @@ header {
   box-shadow: var(--card-shadow);
 }
 
-/* Resaltado del Plan Taller Pro con 1 Mes Gratis */
+/* Resaltado del Plan Taller Pro con 1 Mes Gratis. El borde en gradiente sale
+   de dos capas de fondo: el relleno recortado a padding-box y el gradiente
+   accent → accent-2 a border-box, visible a través del borde transparente. */
 .price-card.featured {
-  border-color: var(--accent);
-  background: var(--surface-2);
-  box-shadow: 0 12px 36px -10px var(--accent-glow);
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(var(--surface-2), var(--surface-2)) padding-box,
+    linear-gradient(135deg, var(--accent), var(--accent-2) 50%, var(--accent)) border-box;
+  box-shadow: 0 26px 60px -18px var(--accent-glow), 0 12px 28px -14px rgba(4, 3, 3, 0.35);
   transform: scale(1.02);
 }
 
 .price-card.featured:hover {
   transform: scale(1.02) translateY(-3px);
-  box-shadow: 0 18px 44px -12px var(--accent-glow);
+  box-shadow: 0 32px 70px -18px var(--accent-glow), 0 16px 32px -14px rgba(4, 3, 3, 0.4);
 }
 
 @media(max-width: 900px) {
@@ -1763,6 +1767,22 @@ header {
   font-weight: 800;
   letter-spacing: 0.5px;
   animation: pulse-ring 1.8s ease-in-out 4;
+}
+
+.price-tag {
+  position: absolute;
+  top: -12px;
+  left: 26px;
+  background: var(--surface);
+  color: var(--accent);
+  border: 1px solid var(--border-strong);
+  font-size: 0.66rem;
+  font-family: var(--font-mono);
+  padding: 4px 11px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
 }
 
 .price-card h3 {
@@ -1789,6 +1809,76 @@ header {
   color: var(--text-muted);
   font-weight: 400;
   font-family: var(--font-body);
+}
+
+.price-amount {
+  font-weight: inherit;
+}
+
+.price-billed {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-faint);
+  margin-bottom: 4px;
+}
+
+/* Toggle Mensual / Anual */
+.billing-toggle {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 30px;
+  padding: 4px;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.billing-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.billing-opt:hover {
+  color: var(--text);
+}
+
+.billing-opt:active {
+  transform: scale(0.97);
+}
+
+.billing-opt.active {
+  background: var(--accent);
+  color: #040303;
+}
+
+.billing-save {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.billing-opt.active .billing-save {
+  background: rgba(4, 3, 3, 0.15);
+  color: #040303;
 }
 
 .price-features {
