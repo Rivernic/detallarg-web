@@ -175,6 +175,7 @@ body {
    define explícitamente (var(--surface), var(--border), etc.) necesita su propia
    transition para acompañar el fade de body en vez de cambiar de golpe. */
 .hero-stage,
+.hero-pill,
 .eyebrow,
 .hero-stage h1,
 .hero-stage p,
@@ -474,6 +475,32 @@ header {
   cursor: pointer;
   font-size: 0.9rem;
   transition: background-color 0.2s ease, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sheen: misma técnica que chrome-sweep (gradiente sobredimensionado que se
+   desplaza con background-position), pero en un pseudo-elemento y una sola
+   pasada por hover — sin loop, para no sumar movimiento ambiente al de hex-ignite. */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.32) 50%, transparent 60%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after {
+  animation: btn-sheen 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1;
+}
+
+@keyframes btn-sheen {
+  0% { background-position: 100% 0; opacity: 1; }
+  100% { background-position: 0% 0; opacity: 1; }
 }
 
 .btn-primary:hover {
@@ -483,7 +510,7 @@ header {
 }
 
 .btn-primary:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.97);
 }
 
 .btn-secondary {
@@ -502,6 +529,10 @@ header {
   background: var(--surface-2);
   border-color: var(--accent);
   transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0) scale(0.97);
 }
 
 .menu-toggle {
@@ -557,6 +588,25 @@ header {
   overflow: hidden;
 }
 
+/* Grilla técnica de fondo: líneas de 1px con var(--border) cada 48px, a media
+   opacidad y desvanecida hacia los bordes con una máscara radial para que no
+   compita con el hex-rig. Queda debajo de stage-glow (z 1) y del contenido (z 5). */
+.hero-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center top;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 35%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 35%, #000 30%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .stage-glow {
   position: absolute;
   top: 0;
@@ -582,6 +632,31 @@ header {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 5px 14px 5px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.hero-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: pulse-ring 2.4s ease-in-out infinite;
 }
 
 .eyebrow {
